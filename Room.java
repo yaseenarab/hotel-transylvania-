@@ -131,9 +131,21 @@ class Room extends Reservations {
         }
         this.roomNumber = roomNumber;
     }
-    public static Integer getFirstFloorMin() {
-        return FIRST_FLOOR_MIN;
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Room)) {
+            return false;
+        }
+        return this.roomStatus.equals(((Room) obj).roomStatus) &&
+                this.bedType.equals(((Room) obj).bedType) &&
+                this.roomType.equals(((Room) obj).roomType) &&
+                this.qualityLevel.equals(((Room) obj).qualityLevel) &&
+                this.smokingAllowed.equals(((Room) obj).smokingAllowed) &&
+                this.roomNumber.equals(((Room) obj).roomNumber);
     }
+
+    // Get Methods
+    public static Integer getFirstFloorMin() {return FIRST_FLOOR_MIN; }
     public static Integer getFirstFloorMax() {
         return FIRST_FLOOR_MAX;
     }
@@ -149,8 +161,6 @@ class Room extends Reservations {
     public static Integer getThirdFloorMax() {
         return THIRD_FLOOR_MAX;
     }
-
-    // Get Methods
     protected RoomStatus getRoomStatus() {
         return this.roomStatus;
     }
