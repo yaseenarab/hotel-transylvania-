@@ -29,6 +29,8 @@ public class Main {
         Reservations r = new Reservations();
         Integer []roomNumbers = new Integer[1];
         roomNumbers[0] = room.getRoomNumber();
+        guest.reserveRoom(roomNumbers, new Date(2024, Calendar.MAY,1), new Date(2024, Calendar.MAY,8));
+
 
         //UI STUFF
         JFrame frame = new JFrame();
