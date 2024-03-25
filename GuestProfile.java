@@ -80,6 +80,20 @@ public class GuestProfile extends Reservations {
     }
 
     // Modifier Methods
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof GuestProfile)) {
+            return false;
+        }
+        return this.username.equals(((GuestProfile) obj).username) &&
+                this.password.equals(((GuestProfile) obj).password) &&
+                this.firstName.equals(((GuestProfile) obj).firstName) &&
+                this.lastName.equals(((GuestProfile) obj).lastName) &&
+                this.email.equals(((GuestProfile) obj).email) &&
+                this.phoneNumber.equals(((GuestProfile) obj).phoneNumber);
+    }
+
     protected void MakeOnlineAccount(String username, String password) throws Exception {
         if(this.username != null || this.password != null) {
             throw new IllegalAccessException();
