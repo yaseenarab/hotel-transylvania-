@@ -22,6 +22,16 @@ public class Card {
         return false;
     }
 
+    public String getAccountNumber() {
+        return this.accountNumber;
+    }
+    public ZonedDateTime getExpiration() {
+        return this.expiration;
+    }
+    public Double getFunds() {
+        return this.funds;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (!(obj instanceof Card)) {
