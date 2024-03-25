@@ -3,38 +3,30 @@ import RoomEnums.QualityLevel;
 import RoomEnums.RoomStatus;
 import RoomEnums.RoomType;
 
-import java.util.List;
-
 public class Reservations {
-    private Room[]
-            firstFloorRooms,
-            secondFloorRooms,
-            thirdFloorRooms;
+    private final RoomStatus ROOM_STATUS = RoomStatus.VaCl;
+    private final BedType BED_TYPE = BedType.KG;
+    private final RoomType ROOM_TYPE = RoomType.NR;
+    private final QualityLevel QUALITY_LEVEL = QualityLevel.CoL;
+    private final Boolean SMOKING_ALLOWED = false;
+
+    private Room[] firstFloorRooms, secondFloorRooms, thirdFloorRooms;
+
     Reservations() throws Exception {
-        RoomStatus roomStatus = RoomStatus.VaCl;
-        BedType bedType = BedType.KG;
-        RoomType roomType = RoomType.NR;
-        QualityLevel qualityLevel = QualityLevel.CoL;
-        Boolean smokingAllowed = false;
-
-        Integer roomNumber = 100;
         firstFloorRooms = new Room[Room.getFirstFloorMax() - Room.getFirstFloorMin() + 1];
-        for(Room modRoom : firstFloorRooms) {
-            modRoom = new Room(roomStatus, bedType, roomType, qualityLevel, smokingAllowed, roomNumber++);
+        for(int i = Room.getFirstFloorMin(); i < Room.getFirstFloorMax(); ++i) {
+            firstFloorRooms[i] = new Room(ROOM_STATUS, BED_TYPE, ROOM_TYPE, QUALITY_LEVEL, SMOKING_ALLOWED, i);
         }
 
-        roomNumber = 200;
         secondFloorRooms = new Room[Room.getSecondFloorMax() - Room.getSecondFloorMin() + 1];
-        for(Room modRoom : secondFloorRooms) {
-            modRoom = new Room(roomStatus, bedType, roomType, qualityLevel, smokingAllowed, roomNumber++);
+        for(int i = Room.getSecondFloorMin(); i < Room.getSecondFloorMax(); ++i) {
+            secondFloorRooms[i] = new Room(ROOM_STATUS, BED_TYPE, ROOM_TYPE, QUALITY_LEVEL, SMOKING_ALLOWED, i);
         }
 
-        roomNumber = 300;
         thirdFloorRooms = new Room[Room.getThirdFloorMax() - Room.getThirdFloorMin() + 1];
-        for(Room modRoom : thirdFloorRooms) {
-            modRoom = new Room(roomStatus, bedType, roomType, qualityLevel, smokingAllowed, roomNumber++);
+        for(int i = Room.getThirdFloorMin(); i < Room.getThirdFloorMax(); ++i) {
+            thirdFloorRooms[i] = new Room(ROOM_STATUS, BED_TYPE, ROOM_TYPE, QUALITY_LEVEL, SMOKING_ALLOWED, i);
         }
-
     }
     public void setRoomStatus(RoomStatus roomStatus, Room[] rooms) throws Exception{
         for (Room modRoom : rooms) {
