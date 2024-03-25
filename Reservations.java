@@ -16,46 +16,74 @@ public class Reservations {
         RoomType roomType = RoomType.NR;
         QualityLevel qualityLevel = QualityLevel.CoL;
         Boolean smokingAllowed = false;
-        Integer roomNumber = 0;
-        int count = 0;
+
+        Integer roomNumber = 100;
         firstFloorRooms = new Room[Room.getFirstFloorMax() - Room.getFirstFloorMin() + 1];
         for(Room modRoom : firstFloorRooms) {
-            ++count;
-            modRoom = new Room(roomStatus, bedType, roomType, qualityLevel, smokingAllowed, (Room.getFirstFloorMin() + (roomNumber++)));
-            if(count % 6 == 0) {
-                bedType = BedType.KG;
-                qualityLevel = QualityLevel.CoL;
-            }
-            else if(count == 1) {
-                bedType = BedType.QN;
-                qualityLevel = QualityLevel.BuL;
-            }
-            else if(count == 2) {
-                bedType = BedType.FL;
-            }
-            else if(count == 3) {
-                bedType = BedType.TW;
-            }
+            modRoom = new Room(roomStatus, bedType, roomType, qualityLevel, smokingAllowed, roomNumber++);
         }
 
-        bedType = BedType.KG;
-        roomType = RoomType.UE;
-        qualityLevel = QualityLevel.CoL;
-        smokingAllowed = false;
-        roomNumber = 0;
-        count = 0;
+        roomNumber = 200;
         secondFloorRooms = new Room[Room.getSecondFloorMax() - Room.getSecondFloorMin() + 1];
+        for(Room modRoom : secondFloorRooms) {
+            modRoom = new Room(roomStatus, bedType, roomType, qualityLevel, smokingAllowed, roomNumber++);
+        }
 
-        bedType = BedType.KG;
-        roomType = RoomType.VC;
-        qualityLevel = QualityLevel.CoL;
-        smokingAllowed = false;
-        roomNumber = 0;
-        count = 0;
+        roomNumber = 300;
         thirdFloorRooms = new Room[Room.getThirdFloorMax() - Room.getThirdFloorMin() + 1];
+        for(Room modRoom : thirdFloorRooms) {
+            modRoom = new Room(roomStatus, bedType, roomType, qualityLevel, smokingAllowed, roomNumber++);
+        }
 
     }
-    protected void setVCRooms(Room[] rooms) {
-
+    public void setRoomStatus(RoomStatus roomStatus, Room[] rooms) throws Exception{
+        for (Room modRoom : rooms) {
+            try {
+                modRoom.setRoomStatus(roomStatus);
+            }
+            catch (Exception e) {
+                throw new Exception("Error in setRoomStatus when passed " + modRoom, e);
+            }
+        }
+    }
+    public void setBedType(BedType bedType, Room[] rooms) throws Exception{
+        for (Room modRoom : rooms) {
+            try {
+                modRoom.setBedType(bedType);
+            }
+            catch (Exception e) {
+                throw new Exception("Error in setBedType when passed " + modRoom, e);
+            }
+        }
+    }
+    public void setRoomType(RoomType roomType, Room[] rooms) throws Exception{
+        for (Room modRoom : rooms) {
+            try {
+                modRoom.setRoomType(roomType);
+            }
+            catch (Exception e) {
+                throw new Exception("Error in setRoomType when passed " + modRoom, e);
+            }
+        }
+    }
+    public void setSmokingAllowed(Boolean smokingAllowed, Room[] rooms) throws Exception{
+        for (Room modRoom : rooms) {
+            try {
+                modRoom.setSmokingAllowed(smokingAllowed);
+            }
+            catch (Exception e) {
+                throw new Exception("Error in setSmokingAllowed when passed " + modRoom, e);
+            }
+        }
+    }
+    public void setQualityLevel(QualityLevel qualityLevel, Room[] rooms) throws Exception{
+        for (Room modRoom : rooms) {
+            try {
+                modRoom.setQualityLevel(qualityLevel);
+            }
+            catch (Exception e) {
+                throw new Exception("Error in setQualityLevel when passed " + modRoom, e);
+            }
+        }
     }
 }
