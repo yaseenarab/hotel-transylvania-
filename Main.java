@@ -10,6 +10,7 @@ import RoomEnums.RoomType;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Calendar;
 import java.util.Date;
 
 
@@ -18,18 +19,11 @@ public class Main {
     public static void main(String[] args) throws Exception {
 
 
-
         GuestProfile guest = new GuestProfile("Bob", "Wilson", "Bwill123@gmail.com", "8329474839");
 
         guest.MakeOnlineAccount("bwill123", "Password");
 
-
-        Room room = new Room(RoomStatus.VaCl, BedType.FL, RoomType.NR, QualityLevel.CoL, false, 104);
-
         Reservations r = new Reservations();
-        Integer []roomNumbers = new Integer[1];
-        roomNumbers[0] = room.getRoomNumber();
-        guest.reserveRoom(roomNumbers, new Date(2024, Calendar.MAY,1), new Date(2024, Calendar.MAY,8));
 
 
         //UI STUFF
@@ -62,6 +56,10 @@ public class Main {
                     && password.getText().equals(guest.getPassword().toString())){
 
                     System.out.println("Correct!");
+                    
+                    frame.setEnabled(false);
+                    frame.setVisible(false);
+                    HotelReservationSystem reservationSystem = new HotelReservationSystem();
                 }
                 else{;
                     System.out.println("Invalid");
@@ -80,8 +78,6 @@ public class Main {
 
         frame.setLayout(null);
         frame.setVisible(true);
-
-        guest.reserveRoom(roomNumbers, new Date(2024, 4, 1), new Date(2024,4,8));
 
     }
     public static JTextField addJTextFeild(int x, int y, int width, int height){
@@ -110,5 +106,15 @@ public class Main {
 
 
         return login;
+    }
+    
+    public static void reservationWindow() {
+    	ReserveRoomPanel reservationPanel = new ReserveRoomPanel();
+    	JFrame frame = new JFrame();
+        frame.setSize(400,400);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.add(reservationPanel);
+        System.out.println("Here");
+    	
     }
 }

@@ -2,7 +2,7 @@ package org.example;
 
 import java.util.Date;
 
-public class GuestProfile  extends Reservations{
+public class GuestProfile  extends Reservations {
     // Constants (inclusive)
     final int
             NAME_MAX_LENGTH = 16,
@@ -74,7 +74,7 @@ public class GuestProfile  extends Reservations{
     public void reserveRoom(Integer [] roomNumbers, Date startDate, Date endDate) throws Exception {
         roomNights = new Room[roomNumbers.length];
         for(int i = 0 ; i < roomNumbers.length; i++){
-            roomNights[i] = getRoom(roomNumbers[i]);
+            //roomNights[i] = getRoom(roomNumbers[i]);
 
         }
 

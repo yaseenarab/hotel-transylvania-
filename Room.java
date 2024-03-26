@@ -139,6 +139,15 @@ class Room {
         }
         this.roomNumber = roomNumber;
     }
+    
+    public boolean match(Room rm) {
+    	if (roomStatus.equals(rm.roomStatus) && bedType.equals(rm.bedType) 
+    	 && roomType.equals(rm.roomType) && qualityLevel.equals(rm.qualityLevel) && smokingAllowed.equals(rm.smokingAllowed)) {
+    		return true;
+    	}
+    	return false;
+    }
+    
     public static Integer getFirstFloorMin() {
         return FIRST_FLOOR_MIN;
     }

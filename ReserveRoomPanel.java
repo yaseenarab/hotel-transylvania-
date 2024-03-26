@@ -1,26 +1,35 @@
 package org.example;
 
 import javax.swing.*;
-import javax.swing.text.*;
 import java.text.SimpleDateFormat;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
+
+import RoomEnums.BedType;
+import RoomEnums.QualityLevel;
+import RoomEnums.RoomStatus;
+import RoomEnums.RoomType;
+
+import java.util.List;
 import java.util.Random;
 
 
 public class ReserveRoomPanel extends JPanel {
+	private Reservations reservations;
     private JTextField guestNameField, memberNumberField, cardNumberField;
-    private JComboBox<String> hotelTypeComboBox, roomTypeComboBox;
-    private JSpinner numberOfBedsSpinner;
+    private JComboBox<String> hotelTypeComboBox, roomTypeComboBox, qualityLevelComboBox, bedTypeComboBox;
     private JFormattedTextField checkInDateField, checkOutDateField;
     private JCheckBox smokingCheckBox;
     private JTextArea reservationSummary;
     private JButton reserveButton;
+    
+    private Room roomNeeds;
 
     public ReserveRoomPanel() {
+    	reservations = new Reservations();
+    	
         setLayout(new BorderLayout());
 
         JPanel formPanel = new JPanel(new GridLayout(0, 2));
@@ -45,10 +54,14 @@ public class ReserveRoomPanel extends JPanel {
         roomTypeComboBox = new JComboBox<>();
         hotelTypeComboBox.addActionListener(e -> updateRoomTypes());
         formPanel.add(roomTypeComboBox);
+        
+        formPanel.add(new JLabel("Quality Level:"));
+        qualityLevelComboBox = new JComboBox<>(new String[]{"Executive", "Business", "Comfort", "Economy"});
+        formPanel.add(qualityLevelComboBox);
 
-        formPanel.add(new JLabel("Number of Beds:"));
-        numberOfBedsSpinner = new JSpinner(new SpinnerNumberModel(1, 1, 4, 1));
-        formPanel.add(numberOfBedsSpinner);
+        formPanel.add(new JLabel("Bed Type:"));
+        bedTypeComboBox = new JComboBox<>(new String[] {"Twin", "Full", "Queen", "King"});
+        formPanel.add(bedTypeComboBox);
 
         formPanel.add(new JLabel("Smoking Allowed:"));
         smokingCheckBox = new JCheckBox();
@@ -95,8 +108,13 @@ public class ReserveRoomPanel extends JPanel {
 
     private void performReservation() {
         boolean isHigherStatus = checkGuestStatus();
-        String bedType = assignRandomBedType();
         double rate = calculateRate(isHigherStatus, (String) roomTypeComboBox.getSelectedItem());
+        try {
+			roomNeeds = new Room(RoomStatus.VaCl, BedType.getEnum(bedTypeComboBox.getSelectedItem().toString()), RoomType.getEnum(roomTypeComboBox.getSelectedItem().toString()), 
+					QualityLevel.getEnum(qualityLevelComboBox.getSelectedItem().toString()), smokingCheckBox.isSelected(), 100);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
         int roomNumber = assignRoomNumber((String) hotelTypeComboBox.getSelectedItem());
 
         reservationSummary.setText(
@@ -105,8 +123,8 @@ public class ReserveRoomPanel extends JPanel {
                         "Member Number: " + memberNumberField.getText() + "\n" +
                         "Hotel Type: " + hotelTypeComboBox.getSelectedItem() + "\n" +
                         "Room Type: " + roomTypeComboBox.getSelectedItem() + "\n" +
-                        "Bed Type: " + bedType + "\n" +
-                        "Number of Beds: " + numberOfBedsSpinner.getValue() + "\n" +
+                        "Quality Level: " + qualityLevelComboBox.getSelectedItem() + "\n" +
+                        "Bed Type: " + bedTypeComboBox.getSelectedItem() + "\n" +
                         "Smoking: " + (smokingCheckBox.isSelected() ? "Yes" : "No") + "\n" +
                         "Check-in Date: " + checkInDateField.getText() + "\n" +
                         "Check-out Date: " + checkOutDateField.getText() + "\n" +
@@ -121,12 +139,6 @@ public class ReserveRoomPanel extends JPanel {
         return memberNumberField.getText().length() > 0;
     }
 
-    private String assignRandomBedType() {
-        String[] bedTypes = {"Twin", "Full", "Queen", "King"};
-        Random random = new Random();
-        return bedTypes[random.nextInt(bedTypes.length)];
-    }
-
     private double calculateRate(boolean isHigherStatus, String roomType) {
         double baseRate = 100;
         if (isHigherStatus) {
@@ -136,14 +148,23 @@ public class ReserveRoomPanel extends JPanel {
     }
 
     private int assignRoomNumber(String hotelType) {
-        Random random = new Random();
-        if ("Nature Retreat".equals(hotelType)) {
-            return 1 + random.nextInt(100); // 1-100
+        List<Room> roomOptions;
+    	if ("Nature Retreat".equals(hotelType)) {
+            roomOptions = reservations.getFirstFloorRooms();
         } else if ("Urban Elegance".equals(hotelType)) {
-            return 101 + random.nextInt(100); // 101-200
+            roomOptions = reservations.getSecondFloorRooms();
         } else if ("Vintage Charm".equals(hotelType)) {
-            return 201 + random.nextInt(100); // 201-300
+            roomOptions = reservations.getThirdFloorRooms();
+        } else {
+        	throw new IllegalArgumentException();
         }
+    	
+    	for (Room rm : roomOptions) {
+        	if (rm.match(roomNeeds)) {
+        		return rm.getRoomNumber();
+        	}
+        }
+    	
         return 0;
     }
 
