@@ -1,4 +1,4 @@
-package RoomEnums;
+package edu.baylor.hoteltransylvania;
 
 // Executive Level, Business Level, Comfort Level, Economy Level
 public enum QualityLevel {

@@ -1,10 +1,10 @@
-package org.example;
+package edu.baylor.hoteltransylvania;
 
 
-import RoomEnums.BedType;
-import RoomEnums.QualityLevel;
-import RoomEnums.RoomStatus;
-import RoomEnums.RoomType;
+import edu.baylor.hoteltransylvania.BedType;
+import edu.baylor.hoteltransylvania.QualityLevel;
+import edu.baylor.hoteltransylvania.RoomStatus;
+import edu.baylor.hoteltransylvania.RoomType;
 
 //import java.util.Date;
 

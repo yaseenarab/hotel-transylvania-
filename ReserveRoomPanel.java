@@ -1,16 +1,17 @@
-package org.example;
+package edu.baylor.hoteltransylvania;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
 import java.text.ParseException;
 import javax.swing.text.MaskFormatter;
 
-import RoomEnums.BedType;
-import RoomEnums.QualityLevel;
-import RoomEnums.RoomStatus;
-import RoomEnums.RoomType;
+import edu.baylor.hoteltransylvania.BedType;
+import edu.baylor.hoteltransylvania.QualityLevel;
+import edu.baylor.hoteltransylvania.RoomStatus;
+import edu.baylor.hoteltransylvania.RoomType;
 
 import java.util.List;
 import java.util.Random;
@@ -24,10 +25,13 @@ public class ReserveRoomPanel extends JPanel {
     private JCheckBox smokingCheckBox;
     private JTextArea reservationSummary;
     private JButton reserveButton;
+
+    // NEW ADDITION
+    private JButton exitButton;
     
     private Room roomNeeds;
 
-    public ReserveRoomPanel() {
+    public ReserveRoomPanel(JPanel mainPanel, String guestFirstName) {
     	reservations = new Reservations();
     	
         setLayout(new BorderLayout());
@@ -80,14 +84,31 @@ public class ReserveRoomPanel extends JPanel {
         formPanel.add(checkOutDateField);
 
         add(formPanel, BorderLayout.CENTER);
+        //add(formPanel, BorderLayout.NORTH);
 
         reservationSummary = new JTextArea(5, 20);
         reservationSummary.setEditable(false);
         add(new JScrollPane(reservationSummary), BorderLayout.EAST);
 
+        JPanel bottomPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+
         reserveButton = new JButton("Reserve");
-        add(reserveButton, BorderLayout.SOUTH);
+        //add(reserveButton, BorderLayout.SOUTH);
+        //add(reserveButton, BorderLayout.CENTER);
+        bottomPanel.add(reserveButton);
         reserveButton.addActionListener(e -> performReservation());
+
+        exitButton = new JButton("Exit");
+        //add(exitButton);
+        //add(exitButton, BorderLayout.SOUTH);
+        bottomPanel.add(exitButton);
+        add(bottomPanel, BorderLayout.SOUTH);
+        exitButton.addActionListener(e -> {
+            mainPanel.remove(this);
+            mainPanel.add((new GuestHomePanel(mainPanel, guestFirstName)).getPanel());
+            mainPanel.revalidate();
+            mainPanel.repaint();
+        });
     }
 
     private void updateRoomTypes() {

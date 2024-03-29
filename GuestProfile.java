@@ -1,4 +1,4 @@
-package org.example;
+package edu.baylor.hoteltransylvania;
 
 import java.util.Date;
 
@@ -117,8 +117,5 @@ public class GuestProfile  extends Reservations {
     public String getUsername() {
         return this.username;
     }
-    public String getPassword(){
-        return this.password;
-
-    }
+    public String getPassword() { return this.password; }
 }

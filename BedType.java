@@ -1,4 +1,4 @@
-package RoomEnums;
+package edu.baylor.hoteltransylvania;
 
 // Twin, Full, Queen, King
 public enum BedType {

@@ -1,4 +1,4 @@
-package org.example;
+package edu.baylor.hoteltransylvania;
 
 import java.util.Date;
 import java.util.concurrent.TimeUnit;

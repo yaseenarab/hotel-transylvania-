@@ -1,4 +1,4 @@
-package RoomEnums;
+package edu.baylor.hoteltransylvania;
 
 // Family, Double, Single, Deluxe, Suite, Standard
 public enum RoomType {
