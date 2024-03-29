@@ -10,7 +10,7 @@
 - Instead of a `JFrame`, it has been adapted into a `JPanel` contained in the main `JFrame`
     - This `JPanel` is removed after a successful login and is replaced by a `GuestHomePanel` instance
 - `Login` components have been rearranged with a `GridBagLayout` manager
-## `ReserveRoomPanel` Changes
+### `ReserveRoomPanel` Changes
 - The constructor now takes two parameters, both related to going back to the Guest's home page:
     - `JPanel mainPanel`, the content panel for the main `JFrame`, to update the content of `mainPanel` to `GuestHomePanel`
     - `String guestFirstName`, to display the correct name for `GuestHomePanel`'s welcome label
