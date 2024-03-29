@@ -8,11 +8,17 @@ import java.awt.event.ActionListener;
 
 public class Main {
     public static void main(String[] args) throws Exception {
+        /*
         GuestProfile guest = new GuestProfile("Bob", "Wilson", "Bwill123@gmail.com", "8329474839");
         guest.MakeOnlineAccount("bwill123", "Password");
         Reservations r = new Reservations();
+         */
+
+        JFrame login = new LoginFrame();
+        login.setVisible(true);
 
         //UI STUFF
+        /*
         JFrame frame = new JFrame("Hotel Transylvania");
         //frame.setSize(400,400);
         frame.setSize(new Dimension(720 , 480));
@@ -20,8 +26,9 @@ public class Main {
 
         JPanel mainPanel = new JPanel();
         mainPanel.setSize(new Dimension(720, 480));
-        //mainPanel.setSize(400,400);
+         */
 
+        /*
         JPanel guestLogin = new JPanel();
         guestLogin.setBorder(new EmptyBorder(5, 5, 5, 5));
         //guestLogin.setLayout(new BorderLayout(0, 0));
@@ -91,6 +98,7 @@ public class Main {
                 }
             }
         } );
+         */
 
         /*
         frame.add(username);
@@ -121,45 +129,9 @@ public class Main {
         guestLoginPane.add(login);
          */
 
-        frame.add(mainPanel);
+        //frame.add(mainPanel);
 
-        frame.setLayout(null);
-        frame.setVisible(true);
+        //frame.setLayout(null);
+        //frame.setVisible(true);
     }
-    public static JTextField addJTextField(int x, int y, int width, int height){
-        JTextField jtxt = new JTextField();
-        jtxt.setBounds(x,y, width ,height);
-        jtxt.setPreferredSize(new Dimension(width, height));
-        jtxt.setMinimumSize(new Dimension(width, height));
-
-
-        return jtxt;
-
-    }
-
-    public static JLabel addLabel(String label, int x, int y, int width, int height){
-        JLabel jLabel = new JLabel(label);
-        jLabel.setBounds(x,y,width,height);
-        jLabel.setMinimumSize(new Dimension(width, height));
-
-        return jLabel;
-    }
-
-    public static JButton login(){
-        JButton login = new JButton("login");
-        login.setBounds(142,250, 100 ,30);
-
-        return login;
-    }
-
-    /*
-    public static void reservationWindow() {
-    	ReserveRoomPanel reservationPanel = new ReserveRoomPanel();
-    	JFrame frame = new JFrame();
-        frame.setSize(400,400);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.add(reservationPanel);
-        System.out.println("Here");
-    }
-     */
 }

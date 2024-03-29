@@ -2,19 +2,11 @@ package edu.baylor.hoteltransylvania;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
 import javax.swing.text.MaskFormatter;
 
-import edu.baylor.hoteltransylvania.BedType;
-import edu.baylor.hoteltransylvania.QualityLevel;
-import edu.baylor.hoteltransylvania.RoomStatus;
-import edu.baylor.hoteltransylvania.RoomType;
-
 import java.util.List;
-import java.util.Random;
 
 
 public class ReserveRoomPanel extends JPanel {
@@ -31,7 +23,7 @@ public class ReserveRoomPanel extends JPanel {
     
     private Room roomNeeds;
 
-    public ReserveRoomPanel(JPanel mainPanel, String guestFirstName) {
+    public ReserveRoomPanel(GuestHomeFrame GHF, String username) {
     	reservations = new Reservations();
     	
         setLayout(new BorderLayout());
@@ -104,10 +96,10 @@ public class ReserveRoomPanel extends JPanel {
         bottomPanel.add(exitButton);
         add(bottomPanel, BorderLayout.SOUTH);
         exitButton.addActionListener(e -> {
-            mainPanel.remove(this);
-            mainPanel.add((new GuestHomePanel(mainPanel, guestFirstName)).getPanel());
-            mainPanel.revalidate();
-            mainPanel.repaint();
+            GHF.remove(this);
+            GHF.add(GHF.GuestHomePanel(username));
+            GHF.revalidate();
+            GHF.repaint();
         });
     }
 
