@@ -3,10 +3,27 @@ package edu.baylor.hoteltransylvania;
 import javax.swing.*;
 import java.awt.*;
 import java.text.SimpleDateFormat;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.ParseException;
 import javax.swing.text.MaskFormatter;
 
+//import RoomEnums.BedType;
+//import RoomEnums.QualityLevel;
+//import RoomEnums.RoomStatus;
+//import RoomEnums.RoomType;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Random;
+import java.util.Set;
 
 
 public class ReserveRoomPanel extends JPanel {
@@ -17,21 +34,20 @@ public class ReserveRoomPanel extends JPanel {
     private JCheckBox smokingCheckBox;
     private JTextArea reservationSummary;
     private JButton reserveButton;
-
-    // NEW ADDITION
     private JButton exitButton;
-    
     private Room roomNeeds;
+    private GuestProfile guest;
 
-    public ReserveRoomPanel(GuestHomeFrame GHF, String username) {
+    public ReserveRoomPanel(GuestHomeFrame frame, GuestProfile guest) {
     	reservations = new Reservations();
+    	this.guest = guest;
     	
         setLayout(new BorderLayout());
 
         JPanel formPanel = new JPanel(new GridLayout(0, 2));
 
         formPanel.add(new JLabel("Guest Name:"));
-        guestNameField = new JTextField();
+        guestNameField = new JTextField(guest.getFirstName() + " " + guest.getLastName());
         formPanel.add(guestNameField);
 
         formPanel.add(new JLabel("Member Number (optional):"));
@@ -48,6 +64,7 @@ public class ReserveRoomPanel extends JPanel {
 
         formPanel.add(new JLabel("Room Type:"));
         roomTypeComboBox = new JComboBox<>();
+        updateRoomTypes();
         hotelTypeComboBox.addActionListener(e -> updateRoomTypes());
         formPanel.add(roomTypeComboBox);
         
@@ -76,30 +93,25 @@ public class ReserveRoomPanel extends JPanel {
         formPanel.add(checkOutDateField);
 
         add(formPanel, BorderLayout.CENTER);
-        //add(formPanel, BorderLayout.NORTH);
 
         reservationSummary = new JTextArea(5, 20);
         reservationSummary.setEditable(false);
         add(new JScrollPane(reservationSummary), BorderLayout.EAST);
 
+        // NEW ADDITION
         JPanel bottomPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 
-        reserveButton = new JButton("Reserve");
+        reserveButton = new JButton("Make Reservation");
         //add(reserveButton, BorderLayout.SOUTH);
-        //add(reserveButton, BorderLayout.CENTER);
         bottomPanel.add(reserveButton);
         reserveButton.addActionListener(e -> performReservation());
 
+        // NEW ADDITION
         exitButton = new JButton("Exit");
-        //add(exitButton);
-        //add(exitButton, BorderLayout.SOUTH);
         bottomPanel.add(exitButton);
         add(bottomPanel, BorderLayout.SOUTH);
         exitButton.addActionListener(e -> {
-            GHF.remove(this);
-            GHF.add(GHF.GuestHomePanel(username));
-            GHF.revalidate();
-            GHF.repaint();
+            frame.cl.show(frame.container, "Home");
         });
     }
 
@@ -120,32 +132,51 @@ public class ReserveRoomPanel extends JPanel {
     }
 
     private void performReservation() {
-        boolean isHigherStatus = checkGuestStatus();
-        double rate = calculateRate(isHigherStatus, (String) roomTypeComboBox.getSelectedItem());
-        try {
-			roomNeeds = new Room(RoomStatus.VaCl, BedType.getEnum(bedTypeComboBox.getSelectedItem().toString()), RoomType.getEnum(roomTypeComboBox.getSelectedItem().toString()), 
-					QualityLevel.getEnum(qualityLevelComboBox.getSelectedItem().toString()), smokingCheckBox.isSelected(), 100);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-        int roomNumber = assignRoomNumber((String) hotelTypeComboBox.getSelectedItem());
-
-        reservationSummary.setText(
-                "Reservation Summary:\n" +
-                        "Guest Name: " + guestNameField.getText() + "\n" +
-                        "Member Number: " + memberNumberField.getText() + "\n" +
-                        "Hotel Type: " + hotelTypeComboBox.getSelectedItem() + "\n" +
-                        "Room Type: " + roomTypeComboBox.getSelectedItem() + "\n" +
-                        "Quality Level: " + qualityLevelComboBox.getSelectedItem() + "\n" +
-                        "Bed Type: " + bedTypeComboBox.getSelectedItem() + "\n" +
-                        "Smoking: " + (smokingCheckBox.isSelected() ? "Yes" : "No") + "\n" +
-                        "Check-in Date: " + checkInDateField.getText() + "\n" +
-                        "Check-out Date: " + checkOutDateField.getText() + "\n" +
-                        "Rate: $" + rate + " per night\n" +
-                        "Assigned Room Number: " + roomNumber
-        );
-
-        JOptionPane.showMessageDialog(this, "Reservation has been made successfully.");
+	    try {
+	    	boolean isHigherStatus = checkGuestStatus();
+	        double rate = calculateRate(isHigherStatus, (String) roomTypeComboBox.getSelectedItem());
+	        try {
+				roomNeeds = new Room(RoomStatus.VaCl, BedType.getEnum(bedTypeComboBox.getSelectedItem().toString()), RoomType.getEnum(roomTypeComboBox.getSelectedItem().toString()), 
+						QualityLevel.getEnum(qualityLevelComboBox.getSelectedItem().toString()), smokingCheckBox.isSelected(), 100);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+	        Reservation res = assignRoom((String) hotelTypeComboBox.getSelectedItem());
+	        
+	        if (res != null) {
+		        reservationSummary.setText(
+		                "Reservation Summary:\n" +
+		                        "Guest Name: " + guestNameField.getText() + "\n" +
+		                        "Member Number: " + memberNumberField.getText() + "\n" +
+		                        "Hotel Type: " + hotelTypeComboBox.getSelectedItem() + "\n" +
+		                        "Room Type: " + roomTypeComboBox.getSelectedItem() + "\n" +
+		                        "Quality Level: " + qualityLevelComboBox.getSelectedItem() + "\n" +
+		                        "Bed Type: " + bedTypeComboBox.getSelectedItem() + "\n" +
+		                        "Smoking: " + (smokingCheckBox.isSelected() ? "Yes" : "No") + "\n" +
+		                        "Check-in Date: " + checkInDateField.getText() + "\n" +
+		                        "Check-out Date: " + checkOutDateField.getText() + "\n" +
+		                        "Rate: $" + rate + " per night\n" +
+		                        "Assigned Room Number: " + res.getRoomNumber()
+		                        
+		        );
+		        
+		        JOptionPane.showMessageDialog(this, "Reservation has been made successfully.");
+		        try {
+		        	FileWriter fw = new FileWriter("./src/main/resources/reservations.csv", true);
+		        	BufferedWriter bw = new BufferedWriter(fw);
+		        	bw.write(res.csvOutput());
+		        	bw.close();
+		        } catch (IOException e) {
+		        	System.out.println("Error writing to reservations.csv");
+		        	e.printStackTrace();
+		        }
+	        } else {
+	        	JOptionPane.showMessageDialog(this, "No available rooms found. Please try again");
+	        }
+	    } catch (NullPointerException e) {
+	    	JOptionPane.showMessageDialog(this, "Please fill all fields");
+	    	e.printStackTrace();
+	    }
     }
 
     private boolean checkGuestStatus() {
@@ -160,8 +191,34 @@ public class ReserveRoomPanel extends JPanel {
         return baseRate;
     }
 
-    private int assignRoomNumber(String hotelType) {
+    private Reservation assignRoom(String hotelType) {
         List<Room> roomOptions;
+        Reservation match = null;;
+        BufferedReader reader = null;
+        List<Reservation> curRevs = new ArrayList<Reservation>();
+        
+        try {
+        	reader = new BufferedReader(new FileReader(new File("./src/main/resources/reservations.csv")));
+        	
+        	String line = null;
+        	while ((line = reader.readLine()) != null) {
+        		String[] split = line.split(",");
+        		try {
+        			curRevs.add(new Reservation(Integer.valueOf(split[0]), split[2], split[3], null));
+        		} catch (IllegalArgumentException e) {
+        			System.out.println(e.getMessage());
+        		} catch (ArrayIndexOutOfBoundsException e) {
+        			System.out.println(e.getMessage());
+        		} catch (Exception e) {
+        			System.out.println(e.getStackTrace());
+        		}
+        	}
+        } catch (FileNotFoundException e) {
+        	System.out.println(e.getStackTrace());
+        } catch (IOException e) {
+        	System.out.println(e.getStackTrace());
+        }
+        
     	if ("Nature Retreat".equals(hotelType)) {
             roomOptions = reservations.getFirstFloorRooms();
         } else if ("Urban Elegance".equals(hotelType)) {
@@ -174,11 +231,24 @@ public class ReserveRoomPanel extends JPanel {
     	
     	for (Room rm : roomOptions) {
         	if (rm.match(roomNeeds)) {
-        		return rm.getRoomNumber();
+        		boolean conflict = false;
+        		try {
+					match = new Reservation(rm.getRoomNumber(), checkInDateField.getText(), checkOutDateField.getText(), guest);
+	        		for (Reservation rev : curRevs) {
+	        			if (match.conflicts(rev)) {
+	        				conflict = true;
+	        			}
+	        		}
+	        		if (!conflict) {
+	        			return match;
+	        		}
+				} catch (ParseException e) {
+					JOptionPane.showMessageDialog(this, "Invalid date format. Please use MM/DD/YYYY");
+				}
         	}
         }
     	
-        return 0;
+        return null;
     }
 
     private MaskFormatter createFormatter(String s) {

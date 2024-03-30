@@ -74,9 +74,7 @@ public class LoginFrame extends JFrame implements ActionListener {
 
             if (authenticateUser(username, password)) {
                 JOptionPane.showMessageDialog(this, "Login successful!");
-                //JFrame GHF = new GuestHomeFrame(username);
-                //GHF.setVisible(true);
-                new GuestHomeFrame(username);
+                new GuestHomeFrame(username, password);
                 dispose();
             } else {
                 JOptionPane.showMessageDialog(this, "Invalid username or password. Please try again.");

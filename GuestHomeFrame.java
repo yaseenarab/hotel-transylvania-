@@ -4,18 +4,23 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-import static java.awt.GridBagConstraints.*;
 public class GuestHomeFrame extends JFrame {
-    //private GuestHomeController GHC;
-    private JPanel content;
+    private GuestProfile guest;
+    public CardLayout cl;
+    public JPanel container;
+    private JPanel homePanel;
+    private JPanel reservePanel;
+    private JPanel editPanel;
     private JLabel welcomeLabel;
     private GridBagConstraints gbc;
-    private JButton EditReservation;
-    private JButton ReserveRoom;
-    private JButton Logout;
+    private JButton EditReservationBtn;
+    private JButton ReserveRoomBtn;
+    private JButton LogoutBtn;
 
-    public GuestHomeFrame (String username) throws IllegalArgumentException {
+    public GuestHomeFrame (String username, String password) throws IllegalArgumentException {
         if(username == null || username.isEmpty()) {
             throw new IllegalArgumentException("ERR: Invalid Guest username");
         }
@@ -24,36 +29,57 @@ public class GuestHomeFrame extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null); // Center the frame on the screen
 
-        content = new JPanel(new GridBagLayout());
+        // DUMMY DATA, REPLACE LATER!
+        try {
+            guest = new GuestProfile(
+                    "Ben",
+                    "Doverson",
+                    "bendoverson@yahoo.com",
+                    "0000000000");
+        }
+        catch (Exception e) {
+            Logger log = Logger.getLogger("edu.baylor.hoteltransylvania");
+            log.log(Level.SEVERE, "ERR: Guest profile information could not be set for GuestHomeProfile, closing...");
+            dispose();
+        }
 
+        // Panel that holds all potential panels
+        cl = new CardLayout();
+        container = new JPanel(cl);
+
+        // Home page, can Reserve / Edit / Logout
+        homePanel = new JPanel(new GridBagLayout());
+
+        // "Welcome, [username]"
         welcomeLabel = new JLabel("Welcome, " + username);
-        //welcomeLabel.setText("Welcome, " + username);
         welcomeLabel.setFont(new Font("Helvetica", Font.PLAIN, 40));
-        //welcomeLabel.setMinimumSize(new Dimension(200, 100));
         welcomeLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
-        EditReservation = new JButton("Edit Reservation");
-        EditReservation.addActionListener(new ActionListener() {
-            // edit page stuff
+        // Updates frame to EditReservationPanel
+        EditReservationBtn = new JButton("Edit Reservation");
+        EditReservationBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // logic to go to edit / see reservations
+                // editPanel = new EditReseervationPanel();
+                // mainPanel.add(editPanel, "Edit");
+                // cl.show(editPanel, "Edit");
             }
         });
 
-        ReserveRoom = new JButton("Reserve Room");
-        ReserveRoom.addActionListener(new ActionListener() {
+        // Updates frame to ReserveRoomPanel
+        ReserveRoomBtn = new JButton("Reserve Room");
+        ReserveRoomBtn.addActionListener(new ActionListener() {
             // Load reserve room panel into frame
             public void actionPerformed(ActionEvent e) {
-                //remove(content);
-                remove(content);
-                //add(new ReserveRoomPanel( , username));
-                //revalidate();
-                //repaint();
+                reservePanel = new ReserveRoomPanel((GuestHomeFrame) SwingUtilities.windowForComponent((JButton) e.getSource()), guest);
+                container.add(reservePanel, "Reserve");
+                cl.show(container, "Reserve");
             }
         });
 
-        Logout = new JButton("Logout");
-        Logout.addActionListener(new ActionListener() {
+        // Closes GuestHomeFrame and opens new LoginFrame
+        LogoutBtn = new JButton("Logout");
+        LogoutBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Logic to save user information / updates, controller?
                 new LoginFrame();
@@ -61,107 +87,41 @@ public class GuestHomeFrame extends JFrame {
             }
         });
 
+        // Layout of HomePanel
         gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5);
-        //gbc.fill = BOTH;
-        //gbc.fill = HORIZONTAL;
         gbc.gridx = gbc.gridy = 0;
-        content.add(welcomeLabel, gbc);
+        homePanel.add(welcomeLabel, gbc);
 
+        // Layout of JButtons
         JPanel buttons = new JPanel(new FlowLayout());
-        //++gbc.gridy;
-        //content.add(EditReservation, gbc);
-        buttons.add(EditReservation, gbc);
+        buttons.add(EditReservationBtn, gbc);
         ++gbc.gridx;
-        //content.add(ReserveRoom, gbc);
-        buttons.add(ReserveRoom, gbc);
+        buttons.add(ReserveRoomBtn, gbc);
         ++gbc.gridx;
-        //content.add(Logout, gbc);
-        buttons.add(Logout, gbc);
+        buttons.add(LogoutBtn, gbc);
 
-        //setLayout(null);
+        // Reusing GridBagConstraints for layout of homePanel
         gbc.gridx = 0;
         gbc.gridy = 1;
-        content.add(buttons, gbc);
-        add(content);
+        homePanel.add(buttons, gbc);
+
+        container.add(homePanel, "Home");
+        add(container);
+        cl.show(container, "Home");
+        //add(homePanel);
         //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
         //revalidate();
         //repaint();
     }
 
-    public JPanel GuestHomePanel(String username) {
-        JPanel GHP = new JPanel(new GridBagLayout());
-
-        JLabel welcomeLabel = new JLabel("Welcome, " + username);
-        //welcomeLabel.setText("Welcome, " + username);
-        welcomeLabel.setFont(new Font("Helvetica", Font.PLAIN, 40));
-        //welcomeLabel.setMinimumSize(new Dimension(200, 100));
-        welcomeLabel.setHorizontalAlignment(SwingConstants.CENTER);
-
-        JButton EditReservation = new JButton("Edit Reservation");
-        EditReservation.addActionListener(new ActionListener() {
-            // edit page stuff
-            public void actionPerformed(ActionEvent e) {
-                // logic to go to edit / see reservations
-            }
-        });
-
-        JButton ReserveRoom = new JButton("Reserve Room");
-        ReserveRoom.addActionListener(new ActionListener() {
-            // Load reserve room panel into frame
-            public void actionPerformed(ActionEvent e) {
-                //remove(content);
-                remove(content);
-                //add(new ReserveRoomPanel(content, username));
-                revalidate();
-                repaint();
-            }
-        });
-
-        JButton Logout = new JButton("Logout");
-        Logout.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // Logic to save user information / updates, controller?
-                new LoginFrame();
-                dispose();
-            }
-        });
-
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(5, 5, 5, 5);
-        //gbc.fill = BOTH;
-        //gbc.fill = HORIZONTAL;
-        gbc.gridx = gbc.gridy = 0;
-        GHP.add(welcomeLabel, gbc);
-
-        JPanel buttons = new JPanel(new FlowLayout());
-        //++gbc.gridy;
-        //content.add(EditReservation, gbc);
-        buttons.add(EditReservation, gbc);
-        ++gbc.gridx;
-        //content.add(ReserveRoom, gbc);
-        buttons.add(ReserveRoom, gbc);
-        ++gbc.gridx;
-        //content.add(Logout, gbc);
-        buttons.add(Logout, gbc);
-
-        //setLayout(null);
-        gbc.gridx = 0;
-        gbc.gridy = 1;
-        GHP.add(buttons, gbc);
-
-        return GHP;
-    }
-
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                GuestHomeFrame GHF = new GuestHomeFrame("username");
+                GuestHomeFrame GHF = new GuestHomeFrame("username", "password");
                 GHF.setVisible(true);
             }
         });
     }
-
-    //public JPanel getPanel() {return this.content;}
 }

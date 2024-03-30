@@ -8,10 +8,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.baylor.hoteltransylvania.BedType;
-import edu.baylor.hoteltransylvania.QualityLevel;
-import edu.baylor.hoteltransylvania.RoomStatus;
-import edu.baylor.hoteltransylvania.RoomType;
+//import RoomEnums.BedType;
+//import RoomEnums.QualityLevel;
+//import RoomEnums.RoomStatus;
+//import RoomEnums.RoomType;
 
 
 public class Reservations {
@@ -37,17 +37,11 @@ public class Reservations {
         	while ((line = reader.readLine()) != null) {
         		String[] split = line.split(",");
         		try {
-        			System.out.println("Start of new line");
         			roomNumber = Integer.valueOf(split[0]);
-        			System.out.println("Room number read: " + roomNumber);
         			roomStatus = RoomStatus.valueOf(split[1]);
-        			System.out.println("Room status read");
         			roomType = RoomType.getEnum(split[2]);
-        			System.out.println("Room type read");
         			bedType = BedType.getEnum(split[3]);
-        			System.out.println("Bed type read");
         			qualityLevel = QualityLevel.getEnum(split[4]);
-        			System.out.println("Quality level read");
         			if (split[5].toLowerCase().contains("tr")) {
         				smokingAllowed = true;
         			} else if (split[5].toLowerCase().contains("fa")) {
@@ -55,32 +49,27 @@ public class Reservations {
         			} else {
         				throw new IllegalArgumentException("Invalid smokingAllowed");
         			}
-        			System.out.println("Smoking read");
  
         			if (roomNumber < 200) {
         				firstFloorRooms.add(new Room(roomStatus, bedType, roomType, qualityLevel, smokingAllowed, roomNumber));
-        				System.out.println("First floor room added");
         			} else if (roomNumber < 300) {
         				secondFloorRooms.add(new Room(roomStatus, bedType, roomType, qualityLevel, smokingAllowed, roomNumber));
-        				System.out.println("Second floor room added");
         			} else if (roomNumber < 400){
         				thirdFloorRooms.add(new Room(roomStatus, bedType, roomType, qualityLevel, smokingAllowed, roomNumber));
-        				System.out.println("Third floor room added");
         			} else {
-        				System.out.println("Invalid room number");
-        			}
+        				throw new IllegalArgumentException("Invalid room number");        			}
         		} catch (IllegalArgumentException e) {
-        			System.out.println(e.getMessage());
+        			//System.out.println(e.getMessage());
         		} catch (ArrayIndexOutOfBoundsException e) {
-        			System.out.println(e.getMessage());
+        			//System.out.println(e.getMessage());
         		} catch (Exception e) {
-        			System.out.println(e.getStackTrace());
+        			//System.out.println(e.getStackTrace());
         		}
         	}
         } catch (FileNotFoundException e) {
-        	System.out.println(e.getStackTrace());
+        	//System.out.println(e.getStackTrace());
         } catch (IOException e) {
-        	System.out.println(e.getStackTrace());
+        	//System.out.println(e.getStackTrace());
         }
 
     }
