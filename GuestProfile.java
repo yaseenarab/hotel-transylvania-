@@ -71,16 +71,16 @@ public class GuestProfile  extends Reservations {
     }
 
 
-    public void reserveRoom(Integer [] roomNumbers, Date startDate, Date endDate) throws Exception {
+    /*public void reserveRoom(Integer [] roomNumbers, Date startDate, Date endDate) throws Exception {
         roomNights = new Room[roomNumbers.length];
         for(int i = 0 ; i < roomNumbers.length; i++){
-            //roomNights[i] = getRoom(roomNumbers[i]);
+            roomNights[i] = getRoom(roomNumbers[i]);
 
         }
 
-        reservation = new Reservation(roomNights, startDate, endDate);
+        reservation = new Reservation(roomNights, startDate, endDate, this);
 
-    }
+    }*/
 
     // Get Methods
     protected String getFirstName() {

@@ -59,7 +59,7 @@ public class Main {
                     
                     frame.setEnabled(false);
                     frame.setVisible(false);
-                    HotelReservationSystem reservationSystem = new HotelReservationSystem();
+                    HotelReservationSystem reservationSystem = new HotelReservationSystem(guest);
                 }
                 else{;
                     System.out.println("Invalid");
@@ -106,15 +106,5 @@ public class Main {
 
 
         return login;
-    }
-    
-    public static void reservationWindow() {
-    	ReserveRoomPanel reservationPanel = new ReserveRoomPanel();
-    	JFrame frame = new JFrame();
-        frame.setSize(400,400);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.add(reservationPanel);
-        System.out.println("Here");
-    	
     }
 }

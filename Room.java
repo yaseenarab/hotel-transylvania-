@@ -141,8 +141,8 @@ class Room {
     }
     
     public boolean match(Room rm) {
-    	if (roomStatus.equals(rm.roomStatus) && bedType.equals(rm.bedType) 
-    	 && roomType.equals(rm.roomType) && qualityLevel.equals(rm.qualityLevel) && smokingAllowed.equals(rm.smokingAllowed)) {
+    	if (bedType.equals(rm.bedType) && roomType.equals(rm.roomType) && 
+    		qualityLevel.equals(rm.qualityLevel) && smokingAllowed.equals(rm.smokingAllowed)) {
     		return true;
     	}
     	return false;
