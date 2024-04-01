@@ -1,183 +1,104 @@
-import RoomEnums.BedType;
-import RoomEnums.QualityLevel;
-import RoomEnums.RoomStatus;
-import RoomEnums.RoomType;
+package ReservationSystem.Dependencies;
 
-//import java.util.Date;
+import ReservationSystem.RoomEnums.BedType;
+import ReservationSystem.RoomEnums.QualityLevel;
+import ReservationSystem.RoomEnums.RoomStatus;
+import ReservationSystem.RoomEnums.RoomType;
 
-class Room extends Reservations {
-    // Constants (inclusive values)
-    public static final Integer
-            FIRST_FLOOR_MIN = 100, FIRST_FLOOR_MAX = 135,
-            SECOND_FLOOR_MIN = 200, SECOND_FLOOR_MAX = 235,
-            THIRD_FLOOR_MIN = 300, THIRD_FLOOR_MAX = 335;
+interface IRoom {
+    void setBedType(BedType bedType) throws Exception;
+    void setRoomStatus(RoomStatus roomStatus) throws Exception;
+    void setSmokingStatus(Boolean smokingStatus) throws Exception;
+    void setRoomNumber(Integer roomNumber) throws Exception;
 
-    // Class Variables
-    private RoomStatus roomStatus;
-    private BedType bedType;
-    private RoomType roomType;
-    private QualityLevel qualityLevel;
-    private Boolean smokingAllowed;
-    private Integer roomNumber;
+    BedType getBedType();
+    RoomStatus getRoomStatus();
+    Boolean getSmokingStatus();
+    Integer getRoomNumber();
+}
+
+public class Room implements IRoom {
+    // Private Variables
+    protected RoomStatus roomStatus;
+    protected BedType bedType;
+    protected Boolean smokingStatus;
+    protected Integer roomNumber;
 
     // Constructors
-    Room(RoomStatus roomStatus, BedType bedType, RoomType roomType,
-         QualityLevel qualityLevel, Boolean smokingAllowed, Integer roomNumber) throws Exception {
-        this.setRoomStatus(roomStatus);
-        this.setBedType(bedType);
-        this.setRoomType(roomType);
-        this.setQualityLevel(qualityLevel);
-        this.setSmokingAllowed(smokingAllowed);
-        this.setRoomNumber(roomNumber);
+    public Room(RoomStatus roomStatus, BedType bedType, Boolean smokingStatus, Integer roomNumber) throws Exception {
+        try {
+            this.setRoomStatus(roomStatus);
+            this.setBedType(bedType);
+            this.setSmokingStatus(smokingStatus);
+            this.setRoomNumber(roomNumber);
+            System.out.println("Successfully initialized Room");
+        }
+        catch(Exception e) {
+            throw new Exception("Exception caught in Room constructor.", e);
+        }
     }
 
-    // Set Methods
-    protected void setRoomStatus(RoomStatus roomStatus) throws Exception {
-        if (roomStatus == null) {
-            throw new NullPointerException("Room status not provided");
+    // Set Functions
+    public void setBedType(BedType bedType) throws Exception {
+        if(bedType == null) {
+            throw new Exception("Fatal error thrown in setBedType, value is NULL");
         }
-        boolean found = false;
-        for (RoomStatus check : RoomStatus.values()) {
-            if (check.equals(roomStatus)) {
-                found = true;
-                break;
-            }
+        try {
+            this.bedType = bedType;
         }
-        if (!found) {
-            throw new IllegalArgumentException("Valid room statuses: VaCl,VaDi,OcCl,OcDi,OOO");
+        catch (Exception e) {
+            throw new Exception("Fatal error thrown in setBedType", e);
         }
-
-        this.roomStatus = roomStatus;
     }
-    protected void setBedType(BedType bedType) throws Exception {
-        if (bedType == null) {
-            throw new NullPointerException("Bed type not provided");
+    public void setRoomStatus(RoomStatus roomStatus) throws Exception {
+        if(roomStatus == null) {
+            throw new Exception("Fatal error thrown in setRoomStatus, value is NULL");
         }
-        boolean found = false;
-        for (BedType check : BedType.values()) {
-            if (check.equals(bedType)) {
-                found = true;
-                break;
-            }
+        try {
+            this.roomStatus = roomStatus;
         }
-        if (!found) {
-            throw new IllegalArgumentException("Valid bed types: TW,FL,QN,KG");
+        catch (Exception e) {
+            throw new Exception("Fatal error thrown in setRoomStatus", e);
         }
-
-        this.bedType = bedType;
     }
-    protected void setRoomType(RoomType roomType) throws Exception {
-        if (roomType == null) {
-            throw new NullPointerException("Room type not provided");
+    public void setSmokingStatus(Boolean smokingStatus) throws Exception {
+        if(smokingStatus == null) {
+            throw new Exception("Fatal error thrown in setSmokingStatus, value is NULL");
         }
-        boolean found = false;
-        for (RoomType check : RoomType.values()) {
-            if (check.equals(roomType)) {
-                found = true;
-                break;
-            }
+        try {
+            this.smokingStatus = smokingStatus;
         }
-        if (!found) {
-            throw new IllegalArgumentException("Valid room types: NR,UE,VC");
+        catch (Exception e) {
+            throw new Exception("Fatal error thrown in setSmokingStatus", e);
         }
-
-        this.roomType = roomType;
     }
-    protected void setQualityLevel(QualityLevel qualityLevel) throws Exception {
-        if (qualityLevel == null) {
-            throw new NullPointerException("Quality level not provided");
-        }
-        boolean found = false;
-        for (QualityLevel check : QualityLevel.values()) {
-            if (check.equals(qualityLevel)) {
-                found = true;
-                break;
-            }
-        }
-        if (!found) {
-            throw new IllegalArgumentException("Valid quality levels: ExL,BuL,CoL,EcL");
-        }
-
-        this.qualityLevel = qualityLevel;
-    }
-    protected void setSmokingAllowed(Boolean smokingAllowed) throws Exception {
-        if (smokingAllowed == null) {
-            throw new NullPointerException("Smoking status not provided");
-        }
-        this.smokingAllowed = smokingAllowed;
-    }
-    protected void setRoomNumber(Integer roomNumber) throws Exception {
+    public void setRoomNumber(Integer roomNumber) throws Exception {
         if(roomNumber == null) {
-            throw new NullPointerException("Room number not provided");
+            throw new Exception("Fatal error thrown in setRoomNumber, value is NULL");
         }
-        boolean validRoomNumber = false;
-        if(roomNumber < FIRST_FLOOR_MAX) {
-            if(roomNumber > FIRST_FLOOR_MIN) {
-                validRoomNumber = true;
-            }
+        try {
+            this.roomNumber = roomNumber;
         }
-        else if(roomNumber < SECOND_FLOOR_MAX) {
-            if(roomNumber > SECOND_FLOOR_MIN) {
-                validRoomNumber = true;
-            }
+        catch (Exception e) {
+            throw new Exception("Fatal error thrown in setRoomNumber", e);
         }
-        else if(roomNumber < THIRD_FLOOR_MAX) {
-            if(roomNumber > THIRD_FLOOR_MIN) {
-                validRoomNumber = true;
-            }
-        }
-        if(!validRoomNumber) {
-            throw new IllegalArgumentException("Room number format: [1,3][00,35]");
-        }
-        this.roomNumber = roomNumber;
-    }
-    @Override
-    public boolean equals(Object obj) {
-        if (!(obj instanceof Room)) {
-            return false;
-        }
-        return this.roomStatus.equals(((Room) obj).roomStatus) &&
-                this.bedType.equals(((Room) obj).bedType) &&
-                this.roomType.equals(((Room) obj).roomType) &&
-                this.qualityLevel.equals(((Room) obj).qualityLevel) &&
-                this.smokingAllowed.equals(((Room) obj).smokingAllowed) &&
-                this.roomNumber.equals(((Room) obj).roomNumber);
     }
 
-    // Get Methods
-    public static Integer getFirstFloorMin() {return FIRST_FLOOR_MIN; }
-    public static Integer getFirstFloorMax() {
-        return FIRST_FLOOR_MAX;
-    }
-    public static Integer getSecondFloorMin() {
-        return SECOND_FLOOR_MIN;
-    }
-    public static Integer getSecondFloorMax() {
-        return SECOND_FLOOR_MAX;
-    }
-    public static Integer getThirdFloorMin() {
-        return THIRD_FLOOR_MIN;
-    }
-    public static Integer getThirdFloorMax() {
-        return THIRD_FLOOR_MAX;
-    }
-    protected RoomStatus getRoomStatus() {
-        return this.roomStatus;
-    }
-    protected BedType getBedType() {
+    // Get Functions
+    public BedType getBedType() {
         return this.bedType;
     }
-    protected RoomType getRoomType() {
-        return this.roomType;
+    public RoomStatus getRoomStatus() {
+        return this.roomStatus;
     }
-    protected QualityLevel getQualityLevel() {
-        return this.qualityLevel;
+    public Boolean getSmokingStatus() {
+        return this.smokingStatus;
     }
-    protected Boolean getSmokingAllowed() {
-        return this.smokingAllowed;
-    }
-    protected Integer getRoomNumber() {
+    public Integer getRoomNumber() {
         return this.roomNumber;
     }
-
+    public String toString() {
+        return this.roomNumber + ", " + this.roomStatus + ", " + this.bedType + ", " + this.smokingStatus;
+    }
 }
+
