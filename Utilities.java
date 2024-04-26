@@ -19,8 +19,7 @@ public class Utilities {
     /**
      * <p>
      *     Creates a BufferedImage instance from a resource url (to file in ./resources folder).
-     *     If the image cannot be found in the directory or the given string is null / empty, a default image,
-     *     "missing_texture.png", is loaded instead.
+     *     If the given string is null / empty, a default image, "missing_texture.png", is loaded instead.
      * </p>
      * @param obj Class that is currently attempting to generate an image
      * @param url Name of the image to get from ./resources
