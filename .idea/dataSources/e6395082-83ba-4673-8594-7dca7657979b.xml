@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="EmployeeProfilesData">
   <database-model serializer="dbm" dbms="DERBY" family-id="DERBY" format-version="4.51">
-    <root id="1"/>
+    <root id="1">
+      <ServerVersion>10.16.1.1</ServerVersion>
+    </root>
     <schema id="2" parent="1" name="APP">
       <Current>1</Current>
       <LastIntrospectionLocalTimestamp>2024-04-27.18:15:24</LastIntrospectionLocalTimestamp>

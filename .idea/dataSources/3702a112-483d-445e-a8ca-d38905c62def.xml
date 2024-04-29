@@ -6,7 +6,7 @@
     </root>
     <schema id="2" parent="1" name="APP">
       <Current>1</Current>
-      <LastIntrospectionLocalTimestamp>2024-04-29.22:26:47</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2024-04-24.01:41:21</LastIntrospectionLocalTimestamp>
     </schema>
     <schema id="3" parent="1" name="NULLID"/>
     <schema id="4" parent="1" name="SQLJ"/>
@@ -18,67 +18,28 @@
     <schema id="10" parent="1" name="SYSIBM"/>
     <schema id="11" parent="1" name="SYSPROC"/>
     <schema id="12" parent="1" name="SYSSTAT"/>
-    <schema id="13" parent="1" name="APP">
-      <Current>1</Current>
-      <LastIntrospectionLocalTimestamp>2024-04-29.22:26:47</LastIntrospectionLocalTimestamp>
-    </schema>
-    <schema id="14" parent="1" name="NULLID"/>
-    <schema id="15" parent="1" name="SQLJ"/>
-    <schema id="16" parent="1" name="SYS"/>
-    <schema id="17" parent="1" name="SYSCAT"/>
-    <schema id="18" parent="1" name="SYSCS_DIAG"/>
-    <schema id="19" parent="1" name="SYSCS_UTIL"/>
-    <schema id="20" parent="1" name="SYSFUN"/>
-    <schema id="21" parent="1" name="SYSIBM"/>
-    <schema id="22" parent="1" name="SYSPROC"/>
-    <schema id="23" parent="1" name="SYSSTAT"/>
-    <table id="24" parent="2" name="ROOMS"/>
-    <table id="25" parent="13" name="ROOMS"/>
-    <column id="26" parent="24" name="ROOMNUMBER">
+    <table id="13" parent="2" name="ROOMS"/>
+    <column id="14" parent="13" name="ROOMNUMBER">
       <DasType>INTEGER|4s</DasType>
       <Position>1</Position>
     </column>
-    <column id="27" parent="24" name="ROOMSTATUS">
+    <column id="15" parent="13" name="ROOMSTATUS">
       <DasType>VARCHAR(25)|12s</DasType>
       <Position>2</Position>
     </column>
-    <column id="28" parent="24" name="ROOMTYPE">
+    <column id="16" parent="13" name="ROOMTYPE">
       <DasType>VARCHAR(25)|12s</DasType>
       <Position>3</Position>
     </column>
-    <column id="29" parent="24" name="BEDTYPE">
+    <column id="17" parent="13" name="BEDTYPE">
       <DasType>VARCHAR(25)|12s</DasType>
       <Position>4</Position>
     </column>
-    <column id="30" parent="24" name="QUALITYLEVEL">
+    <column id="18" parent="13" name="QUALITYLEVEL">
       <DasType>VARCHAR(25)|12s</DasType>
       <Position>5</Position>
     </column>
-    <column id="31" parent="24" name="SMOKINGALLOWED">
-      <DasType>BOOLEAN|16s</DasType>
-      <Position>6</Position>
-    </column>
-    <column id="32" parent="25" name="ROOMNUMBER">
-      <DasType>INTEGER|4s</DasType>
-      <Position>1</Position>
-    </column>
-    <column id="33" parent="25" name="ROOMSTATUS">
-      <DasType>VARCHAR(25)|12s</DasType>
-      <Position>2</Position>
-    </column>
-    <column id="34" parent="25" name="ROOMTYPE">
-      <DasType>VARCHAR(25)|12s</DasType>
-      <Position>3</Position>
-    </column>
-    <column id="35" parent="25" name="BEDTYPE">
-      <DasType>VARCHAR(25)|12s</DasType>
-      <Position>4</Position>
-    </column>
-    <column id="36" parent="25" name="QUALITYLEVEL">
-      <DasType>VARCHAR(25)|12s</DasType>
-      <Position>5</Position>
-    </column>
-    <column id="37" parent="25" name="SMOKINGALLOWED">
+    <column id="19" parent="13" name="SMOKINGALLOWED">
       <DasType>BOOLEAN|16s</DasType>
       <Position>6</Position>
     </column>
