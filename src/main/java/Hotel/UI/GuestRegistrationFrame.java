@@ -3,6 +3,7 @@ package Hotel.UI;
 
 import Hotel.AccountService.Guest;
 import Hotel.AccountService.Person;
+import Hotel.Central.CentralProfiles;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class GuestRegistrationFrame extends JFrame implements ActionListener {
+
     private JTextField firstNameField, lastNameField, emailField, phoneField, usernameField, passwordField;
     private JButton registerButton;
 
@@ -55,10 +57,9 @@ public class GuestRegistrationFrame extends JFrame implements ActionListener {
         add(formPanel, BorderLayout.CENTER);
     }
 
-    private boolean registerGuest(Guest guest) {
+    private boolean registerGuest(String firstname,String lastName, String email, String phoneNumber, String username, String password) {
         try {
-            Person.writePerson(guest);
-            Person.Arlow.addGuest(guest);
+            CentralProfiles.makeGuestProfile(firstname,lastName,email,phoneNumber,username,password);
             return true;
         }
         catch (Exception e) {
@@ -68,28 +69,49 @@ public class GuestRegistrationFrame extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == registerButton) {
-            try {
-                Guest guest = new Guest(
-                        firstNameField.getText(),
-                        lastNameField.getText(),
-                        emailField.getText(),
-                        phoneField.getText(),
-                        usernameField.getText(),
-                        passwordField.getText());
 
-                if (!Person.personInFile(guest) && registerGuest(guest)) {
-                    JOptionPane.showMessageDialog(this, "Registration successful!");
-                    new GuestHomeFrame(usernameField.getText(), passwordField.getText());
-                    dispose();
-                } else {
-                    JOptionPane.showMessageDialog(this, "Username or Password already exists. Please try again.");
-                }
+
+
+
+        if (e.getSource() == registerButton) {
+
+            boolean skip = false;
+            String firstName =  firstNameField.getText();
+            String lastName = lastNameField.getText();
+            String email = emailField.getText();
+            String phoneNumber = phoneField.getText();
+            String username = usernameField.getText();
+            String password = passwordField.getText();
+
+            if(!emailField.getText().contains("@") || !emailField.getText().substring(emailField.getText().length()-4, emailField.getText().length()).equals(".com")){
+                JOptionPane.showMessageDialog(this, "Please enter email correctly with the @ and .com and the end");
+                skip = true;
             }
-            catch (Exception ex) {
-                JOptionPane.showMessageDialog(this, "Please fill all fields correctly: \n" + ex.getLocalizedMessage());
+
+            if(phoneField.getText().length() != 10){
+                JOptionPane.showMessageDialog(this, "please enter a valid Phone number Length XXXXXXXXXX");
+                skip = true;
+            }
+
+
+            if(!skip) {
+                try {
+
+
+                    if (!CentralProfiles.guestisIn(usernameField.getText(), passwordField.getText(), emailField.getText(), phoneField.getText()) && registerGuest(firstName, lastName, email, phoneNumber, username, password)) {
+                        JOptionPane.showMessageDialog(this, "Registration successful!");
+                        new GuestHomeFrame(usernameField.getText(), passwordField.getText());
+                        dispose();
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Username or Password already exists. Please try again.");
+                    }
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(this, "Please fill all fields correctly: \n" + ex.getLocalizedMessage());
+                }
             }
 
         }
     }
+
+
 }

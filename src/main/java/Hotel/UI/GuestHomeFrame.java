@@ -2,7 +2,7 @@ package Hotel.UI;
 
 
 import Hotel.AccountService.Guest;
-import Hotel.AccountService.Person;
+import Hotel.Central.CentralProfiles;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,18 +16,22 @@ public class GuestHomeFrame extends JFrame {
     private JPanel homePanel;
     private JPanel reservePanel;
     private JPanel editPanel;
+    private JPanel shoppingPanel;
     private JLabel welcomeLabel;
     private GridBagConstraints gbc;
     private JButton EditReservationBtn;
     private JButton ReserveRoomBtn;
+    private JButton ShoppingBtn;
     private JButton LogoutBtn;
+
+    public Guest getGuest() { return guest; }
 
     public GuestHomeFrame(String username, String password) throws IllegalArgumentException {
         if(username == null || username.isEmpty()) {
             throw new IllegalArgumentException("ERR: Invalid Guest username");
         }
 
-        this.guest = Person.Arlow.getGuest(username, password);
+        this.guest = CentralProfiles.getGuest(username, password);
         //System.out.println(guest.getFirstName());
 
         setTitle("Hotel Transylvania");
@@ -51,10 +55,7 @@ public class GuestHomeFrame extends JFrame {
         EditReservationBtn = new JButton("Edit Reservation");
         EditReservationBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // logic to go to edit / see reservations
-                JFrame editPanel = new ReservationFrame(guest);
-                //container.add(editPanel, "Edit");
-                //cl.show(editPanel, "Edit");
+                JFrame editPanel = new EditReservationFrame(guest);
                 editPanel.setVisible(true);
             }
         });
@@ -65,14 +66,34 @@ public class GuestHomeFrame extends JFrame {
             // Load reserve room panel into frame
             public void actionPerformed(ActionEvent e) {
                 try {
-                    reservePanel = new ReserveRoomPanel((GuestHomeFrame) SwingUtilities.windowForComponent((JButton) e.getSource()),  guest);
+                    //reservePanel = new ReserveRoomPanel((GuestHomeFrame) SwingUtilities.windowForComponent((JButton) e.getSource()),  guest);
+                    reservePanel = new ReserveRoomPanel(GuestHomeFrame.this, guest);
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 }
                 container.add(reservePanel, "Reserve");
+                container.revalidate();
+                //cl.addLayoutComponent(reservePanel, "Reserve");
                 cl.show(container, "Reserve");
             }
         });
+
+        ShoppingBtn = new JButton("Shop");
+        ShoppingBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                shoppingPanel = new ShoppingMainPanel(GuestHomeFrame.this);
+                container.add(shoppingPanel, "Shop");
+                //cl.addLayoutComponent(shoppingPanel, "Shop");
+                //container.revalidate();
+                cl.show(container, "Shop");
+                container.repaint();
+            }
+        });
+                /*e -> {
+            shoppingPanel = new ShoppingMainPanel((GuestHomeFrame) SwingUtilities.windowForComponent((JButton) e.getSource()));
+            container.add(shoppingPanel, "Shop");
+            cl.show(container, "Shop");
+        }*/
 
         // Closes GuestHomeFrame and opens new LoginFrame
         LogoutBtn = new JButton("Logout");
@@ -95,6 +116,8 @@ public class GuestHomeFrame extends JFrame {
         buttons.add(EditReservationBtn, gbc);
         ++gbc.gridx;
         buttons.add(ReserveRoomBtn, gbc);
+        ++gbc.gridx;
+        buttons.add(ShoppingBtn, gbc);
         ++gbc.gridx;
         buttons.add(LogoutBtn, gbc);
 

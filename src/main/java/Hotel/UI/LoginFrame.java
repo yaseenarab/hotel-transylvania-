@@ -1,21 +1,28 @@
 package Hotel.UI;
 
+import Hotel.Central.CentralProfiles;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
+import java.sql.*;
 import java.util.Scanner;
 
 public class LoginFrame extends JFrame implements ActionListener {
+
     private JLabel userLabel, passwordLabel, titleLabel;
     private JTextField userTextField;
     private JPasswordField passwordField;
+    private JCheckBox isEmployee;
+    private JLabel questionEmployee,questionAdmin;
+    private JCheckBox isAdmin;
+    private String connectionStr;
     private JButton loginButton, registerButton;
 
     public LoginFrame() {
         setTitle("Login Page");
-
         setSize(400, 250);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null); // Center the frame on the screen
@@ -45,14 +52,34 @@ public class LoginFrame extends JFrame implements ActionListener {
         registerButton.setBackground(Color.decode("#008CBA")); // Blue color
         registerButton.setForeground(Color.black); // White text color
 
+
+        questionEmployee = new JLabel("Are you an Employee?");
+        questionEmployee.setFont(new Font("Arial", Font.PLAIN, 14));
+        isEmployee = new JCheckBox();
+        isEmployee.addActionListener(e ->employeeCheckbox());
+
+
+        questionAdmin = new JLabel("Are you an Admin?");
+        questionAdmin.setFont(new Font("Arial", Font.PLAIN, 14));
+        isAdmin = new JCheckBox();
+        isAdmin.setVisible(false);
+        questionAdmin.setVisible(false);
+
+
+
         // Creating panel for better layout
         JPanel panel = new JPanel(new BorderLayout());
-        JPanel formPanel = new JPanel(new GridLayout(3, 2, 5, 10));
+        JPanel formPanel = new JPanel(new GridLayout(7, 2, 5, 10));
         formPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         formPanel.add(userLabel);
         formPanel.add(userTextField);
         formPanel.add(passwordLabel);
         formPanel.add(passwordField);
+
+        formPanel.add(questionEmployee);
+        formPanel.add(isEmployee);
+        formPanel.add(questionAdmin);
+        formPanel.add(isAdmin);
         formPanel.add(new JLabel()); // Empty label for spacing
 
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 10)); // Adjust spacing
@@ -63,26 +90,49 @@ public class LoginFrame extends JFrame implements ActionListener {
         panel.add(formPanel, BorderLayout.CENTER);
         panel.add(buttonPanel, BorderLayout.SOUTH);
 
+
         // Adding panel to the frame
         add(panel);
 
         // Registering action listeners
         loginButton.addActionListener(this);
         registerButton.addActionListener(this);
+        pack();
         setVisible(true);
     }
 
+
     public void actionPerformed(ActionEvent e) {
+
         String username = userTextField.getText();
         String password = new String(passwordField.getPassword());
 
+        boolean loggedIn = false;
         if (e.getSource() == loginButton) {
-            if (authenticateUser(username, password)) {
-                JOptionPane.showMessageDialog(this, "Login successful!");
 
-                new GuestHomeFrame(username, password);
-                dispose();
-            } else {
+            if(!isEmployee.isSelected()) {
+                if (CentralProfiles.authenticateUser(username, password, "Guest")) {
+                    new GuestHomeFrame(username, password);
+                    dispose();
+                    loggedIn = true;
+
+                }
+            }
+            else if(isEmployee.isSelected() && !isAdmin.isSelected()){
+                if(CentralProfiles.authenticateUser(username, password, "Employee")){
+                    new EmployeeHomeFrame(username,password);
+                    dispose();
+                    loggedIn = true;
+                }
+
+
+            }
+            else if(isEmployee.isSelected() && isAdmin.isSelected()){
+                if(CentralProfiles.authenticateUser(username, password, "Admin")){
+                    loggedIn = true;
+                }
+            }
+            if(!loggedIn){
                 JOptionPane.showMessageDialog(this, "Invalid username or password. Please try again.");
             }
         } else if (e.getSource() == registerButton) {
@@ -92,21 +142,40 @@ public class LoginFrame extends JFrame implements ActionListener {
         }
     }
 
+    private void employeeCheckbox(){
+        if(isEmployee.isSelected()){
+            isAdmin.setVisible(true);
+            questionAdmin.setVisible(true);
+        }
+        else {
+            isAdmin.setVisible(false);
+            questionAdmin.setVisible(false);
+            isAdmin.setSelected(false);
+        }
+
+    }
+
     private boolean authenticateUser(String username, String password) {
-        try (Scanner scanner = new Scanner(new File("Person_Profiles.csv"))) {
-            while (scanner.hasNextLine()) {
-                String line = scanner.nextLine();
-                String[] parts = line.split(",");
-                if (parts.length == 7 &&
-                        parts[0].contains("TVGI") &&
-                        parts[5].equals(username) &&
-                        parts[6].equals(password)) {
-                    return true;
-                }
+        Connection con = null;
+        String connectionStr;
+
+        try {
+
+            con = DriverManager.getConnection("jdbc:derby:PersonProfilesData;");
+            Statement stmt = con.createStatement();
+            ResultSet res = stmt.executeQuery("SELECT * FROM PersonProfiles WHERE Username = '" + username + "'");
+
+
+            if (res.next() && res.getString("Password").equals(password)) {
+                return true;
             }
-        } catch (FileNotFoundException ex) {
-            ex.printStackTrace();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
         return false;
     }
+
+
+
 }
