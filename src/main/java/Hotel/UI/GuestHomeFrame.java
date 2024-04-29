@@ -89,11 +89,6 @@ public class GuestHomeFrame extends JFrame {
                 container.repaint();
             }
         });
-                /*e -> {
-            shoppingPanel = new ShoppingMainPanel((GuestHomeFrame) SwingUtilities.windowForComponent((JButton) e.getSource()));
-            container.add(shoppingPanel, "Shop");
-            cl.show(container, "Shop");
-        }*/
 
         // Closes GuestHomeFrame and opens new LoginFrame
         LogoutBtn = new JButton("Logout");

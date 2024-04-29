@@ -19,7 +19,7 @@ public class ShoppingItemPanel extends JPanel {
 
     private ItemSpec item;
 
-    public ShoppingItemPanel(ShoppingMainPanel SMP, ItemSpec is) {
+    public ShoppingItemPanel(ShoppingMainPanel shoppingPanel, ItemSpec is) {
         item = is;
         itemContent = new JPanel();
         itemContent.setLayout(new BoxLayout(itemContent, BoxLayout.X_AXIS));
@@ -53,9 +53,11 @@ public class ShoppingItemPanel extends JPanel {
         itemInformation.add(itemPrice);
         JButton addBtn = new JButton("Add to cart");
         addBtn.addActionListener(e -> {
-            SMP.getGuest().getCart().addItem(item);
+            shoppingPanel.getGuest().getCart().addItem(item);
             JOptionPane.showMessageDialog(null, "Item added to cart!");
-            SMP.getShoppingCL().show(SMP.getShoppingContent(), "");
+            shoppingPanel.getShoppingCL().show(shoppingPanel.getSMP(), "ShoppingMain");
         });
+
+        //shoppingPanel.getShoppingCL
     }
 }

@@ -1,7 +1,8 @@
 package Hotel.ShoppingService;
 
-import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Class that stores items (ItemSpec) that the customer has added to while shopping
@@ -15,11 +16,26 @@ public class Cart {
      */
     HashMap<ItemSpec, Integer> items = new HashMap<>(0);
 
+    public Set<Map.Entry<ItemSpec, Integer>> getEntries() { return items.entrySet(); }
+
+    public boolean containsKey(ItemSpec i) {
+        return items.containsKey(i);
+    }
+
+    public Integer remove(ItemSpec i) { return items.remove(i); }
+
     /**
      * @return Integer representing total quantity of items
      */
     public Integer getTotalItems() {
         return items.values().stream().mapToInt(Integer::intValue).sum();
+    }
+
+    /**
+     * Completely removes all items in the cart
+     */
+    public void removeAllItems() {
+        items.clear();
     }
 
     /**

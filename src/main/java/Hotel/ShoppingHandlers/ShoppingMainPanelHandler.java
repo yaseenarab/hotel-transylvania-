@@ -1,10 +1,8 @@
 package Hotel.ShoppingHandlers;
 
-
 import Hotel.ShoppingService.Cart;
 import Hotel.ShoppingService.Catalogue;
 import Hotel.ShoppingService.ItemSpec;
-
 
 import java.util.*;
 import java.util.logging.Logger;

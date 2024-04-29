@@ -16,6 +16,13 @@ import java.util.logging.Logger;
 
 // When shopping section is first entered
 // Avenue to cart, items and checkout, or back to home
+
+/**
+ * Class serving as the main panel of the shopping system. Any transitions to other shopping panels are handled within
+ * this panel through it's CardLayout member, shoppingCL. Aside from serving as the master panel, it also contains
+ * the initial menu users guests will see when entering the shopping menu, the available items they can purchase and browse.
+ * @author Rafe Loya
+ */
 public class ShoppingMainPanel extends JPanel {
     /**
      * Extension of MouseAdapter allowing a panel transition from the ShoppingMainPanel's
@@ -136,6 +143,15 @@ public class ShoppingMainPanel extends JPanel {
 
     public JPanel getShoppingContent() { return shoppingContent; }
 
+    public JPanel getSMP() { return SMP; }
+
+    public JPanel getSCOP() { return SCOP; }
+
+    public void setSCOP(ShoppingCheckoutPanel scop) {
+        SCOP = scop;
+    }
+
+
     public ShoppingMainPanel(GuestHomeFrame frame) {
         // Container initialization
         guest = frame.getGuest();
@@ -192,7 +208,7 @@ public class ShoppingMainPanel extends JPanel {
                 + ")"
         );
         cartBtn.addActionListener(e -> {
-            SCP = new ShoppingCartPanel(this, frame.getGuest());
+            SCP = new ShoppingCartPanel(this);
             shoppingContent.add(SCP, "Cart");
             shoppingCL.show(shoppingContent, "Cart");
         });
@@ -200,8 +216,7 @@ public class ShoppingMainPanel extends JPanel {
 
         // Container - Adding header
         header.setSize(new Dimension(720, 80));
-
-        //frame.container.add(header, BorderLayout.NORTH);
+        header.setBackground(new Color(21, 71, 52));
         add(header, BorderLayout.NORTH);
 
         // itemContainer & itemPanel initialization(s)
