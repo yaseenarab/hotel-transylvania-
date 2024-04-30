@@ -7,6 +7,10 @@ import Hotel.DataBaseManipulation.DataGetSet;
 import Hotel.Misc.DateProcessor;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.awt.event.*;
 import java.math.BigDecimal;
@@ -18,9 +22,11 @@ public class EditReservationFrame extends JFrame implements ActionListener {
     private JLabel futureLabel, activeLabel;
     private JTextField reservationTextField;
     private JButton addReservationButton, editReservationButton, cancelReservationButton, addOneMoreButton;
-    private JTextArea reservationsTextArea, activeReservationsTextArea; // Added JTextArea for displaying reservations
+    //private JTextArea reservationsTextArea, activeReservationsTextArea; // Added JTextArea for displaying reservations
     private Guest guest;
     private ReserveRoomPanel reserveRoomPanel2;
+    private JTable activeReservationsTable, futureReservationsTable;
+    private DefaultTableModel activeModel,futureModel;
 
     private ArrayList<String> futureReservations, activeReservations; // Store reservations for the user
 
@@ -28,8 +34,6 @@ public class EditReservationFrame extends JFrame implements ActionListener {
 
 
         this.guest = guest;
-
-
 
 
         // JTextArea for displaying reservations
@@ -41,6 +45,47 @@ public class EditReservationFrame extends JFrame implements ActionListener {
     private void defaultPanel(){
         setSize(900, 500);
         // Initialize reservations ArrayList
+
+        activeModel = new DefaultTableModel();
+        futureModel = new DefaultTableModel();
+        activeModel.addColumn("ReservationId");
+        activeModel.addColumn("RoomID");
+        activeModel.addColumn("Start Date");
+        activeModel.addColumn("End Date");
+
+        futureModel.addColumn("ReservationId");
+        futureModel.addColumn("RoomID");
+        futureModel.addColumn("Start Date");
+        futureModel.addColumn("End Date");
+
+
+        activeReservationsTable = new JTable(activeModel);
+        futureReservationsTable = new JTable(futureModel);
+        activeReservationsTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        futureReservationsTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+        activeReservationsTable.getSelectionModel().addListSelectionListener(this::deselectFuture);
+        futureReservationsTable.getSelectionModel().addListSelectionListener(this::deselectActive);
+
+        activeReservationsTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        futureReservationsTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
+
+        futureReservationsTable.setPreferredSize(new Dimension(450,250));
+        activeReservationsTable.setPreferredSize(new Dimension(432,250));
+
+
+        TableColumnModel tableColumnActive = activeReservationsTable.getColumnModel();
+        tableColumnActive.getColumn(1).setPreferredWidth(30);
+        tableColumnActive.getColumn(2).setPreferredWidth(40);
+        tableColumnActive.getColumn(3).setPreferredWidth(40);
+
+        TableColumnModel tableColumnFuture = futureReservationsTable.getColumnModel();
+        tableColumnFuture.getColumn(1).setPreferredWidth(30);
+        tableColumnFuture.getColumn(2).setPreferredWidth(40);
+        tableColumnFuture.getColumn(3).setPreferredWidth(40);
+        giveReservaitons();
+
 
         futureReservations = new ArrayList<>();
         activeReservations = new ArrayList<>();
@@ -83,27 +128,33 @@ public class EditReservationFrame extends JFrame implements ActionListener {
         editReservationButton = new JButton("Edit Reservation");
         editReservationButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String selectedReservation = reservationsTextArea.getSelectedText(); // Get the highlighted text
-                boolean futureSelected = !(selectedReservation == null);
+                JTable theTable = futureReservationsTable;
+                int selectedReservation = futureReservationsTable.getSelectedRow(); // Get the highlighted text
+
+                boolean futureSelected = (selectedReservation >-1);
                 if(!futureSelected){
-                    selectedReservation = activeReservationsTextArea.getSelectedText();
+
+                    selectedReservation = activeReservationsTable.getSelectedRow();
+                    theTable = activeReservationsTable;
                 }
 
-                if (selectedReservation != null && !selectedReservation.isEmpty()) {
-                    int index = futureSelected ? futureReservations.indexOf(selectedReservation) : activeReservations.indexOf(selectedReservation);
-                    if (index != -1) {
+
+                if (selectedReservation > -1) {
+                    int index = selectedReservation;//futureSelected ? futureReservationsTable.indexOf(selectedReservation) : activeReservations.indexOf(selectedReservation);
+                    if (index > -1) {
                         int response = JOptionPane.showConfirmDialog(EditReservationFrame.this, "Are you sure you want to edit this reservation?", "Edit Reservation", JOptionPane.YES_NO_OPTION);
                         if (response == JOptionPane.YES_OPTION) {
                             try {
                                 // Parse the selected reservation string to extract room number and start date
-                                String[] parts = selectedReservation.split("\\|\\|");
-                                String roomNumber = parts[0].substring(parts[0].indexOf(":") + 1).trim();
-                                String startDate = parts[1].substring(parts[1].indexOf(":") + 1, parts[1].indexOf("End Date:")).trim();
+                                //String[] parts = selectedReservation.split("\\|\\|");
+                                Integer roomNumber = (Integer) theTable.getValueAt(selectedReservation,1);//parts[0].substring(parts[0].indexOf(":") + 1).trim();
+                                String startDate = (String)theTable.getValueAt(selectedReservation,2);//parts[1].substring(parts[1].indexOf(":") + 1, parts[1].indexOf("End Date:")).trim();
+                                String reservationID = (String)theTable.getValueAt(selectedReservation,0);
 
                                 // Delete the current reservation
                                 Connection con = DriverManager.getConnection("jdbc:derby:ReservationsData;");
                                 Statement stmt = con.createStatement();
-                                String saveData = "Select * from Reservations where RoomNumber = "+Integer.parseInt(roomNumber);
+                                String saveData = "Select * from Reservations where ReservationId = '"+reservationID + "'";
 
                                 ResultSet res = stmt.executeQuery(saveData);
 
@@ -112,13 +163,15 @@ public class EditReservationFrame extends JFrame implements ActionListener {
                                 String roomType;
                                 String bedType;
                                 String qualityLevel;
-
                                 boolean smoking;
+
+
                                 BigDecimal startToNow = null;
                                 BigDecimal startToEnd= null;
                                 String endDate = null;
                                 BigDecimal perNight = null;
                                 String originalResID = null;
+                                boolean checkedIn;
                                 double cost = 0;
 
 
@@ -133,34 +186,36 @@ public class EditReservationFrame extends JFrame implements ActionListener {
                                     startToEnd = new BigDecimal(DateProcessor.differenceinDays(DateProcessor.stringToDate(startDate),DateProcessor.stringToDate(endDate)));
                                     perNight = CentralRoom.calculatorCost(res.getInt("roomNumber"));
                                     originalResID = res.getString("ReservationID");
+                                    checkedIn = res.getBoolean("checkedin");
 
-                                    saveData = "INSERT INTO Reservations(Roomnumber, username,startDate,EndDate,ReservationId,cost) values(" + roomID +",'" + res.getString("Username") +"','"+ res.getString("StartDate") +"','"+ res.getString("EndDate") +"','"+ res.getString("ReservationId") +"',"+ res.getDouble("Cost") +")";
+                                    saveData = "INSERT INTO Reservations(Roomnumber, username,startDate,EndDate,ReservationId,cost,checkedin) values(" + roomID +",'" + res.getString("Username") +"','"+ res.getString("StartDate") +"','"+ res.getString("EndDate") +"','"+ res.getString("ReservationId") +"',"+ res.getDouble("Cost") +"," +checkedIn + ")";
+                                } else {
+                                    checkedIn = false;
                                 }
                                 BigDecimal totalCost = new BigDecimal(cost);
                                 BigDecimal souvenierCost = startToEnd.multiply(perNight);
                                 souvenierCost = totalCost.subtract(souvenierCost);
 
-                                System.out.println("STARTNOW BIG DECI : " + startToNow);
-                                System.out.println("PERNIGHT BIG DECI : " + perNight);
-                                System.out.println("Souvenier Cost: ");
+
                                 BigDecimal firstHalf = startToNow.multiply(perNight);
                                 double firstHalfCost = firstHalf.doubleValue();
-                                System.out.println( "The first HALF: " + firstHalfCost);
 
 
-                                String deleteQuery = "DELETE FROM Reservations WHERE RoomNumber = ? AND StartDate = ?";
+                                String deleteQuery = "DELETE FROM Reservations WHERE ReservationId = '" + originalResID+"'";
                                 PreparedStatement pstmt = con.prepareStatement(deleteQuery);
-                                pstmt.setInt(1, Integer.parseInt(roomNumber));
-                                pstmt.setString(2, startDate);
+                                //pstmt.executeUpdate();
+                                //pstmt.setInt(1, roomNumber);
+                                //pstmt.setString(2, startDate);
                                 int rowsAffected = pstmt.executeUpdate();
 
                                 if (rowsAffected > 0) {
-                                    // Reservation canceled successfully
                                     if(futureSelected){
-                                        futureReservations.remove(index);
+
+                                        ((DefaultTableModel)futureReservationsTable.getModel()).removeRow(index);
                                     }
                                     else{
-                                        activeReservations.remove(index);
+
+                                        ((DefaultTableModel)activeReservationsTable.getModel()).removeRow(index);
                                     }
 
                                     displayReservations();
@@ -192,7 +247,7 @@ public class EditReservationFrame extends JFrame implements ActionListener {
                                     else{
                                         String finalOriginalResID = originalResID;
                                         BigDecimal finalSouvenierCost = souvenierCost;
-                                        reserveButton.addActionListener(ex ->finalizeEdit(resID[0], finalOriginalResID, firstHalfCost, finalSouvenierCost));
+                                        reserveButton.addActionListener(ex ->finalizeEdit(resID[0], finalOriginalResID, firstHalfCost, finalSouvenierCost, checkedIn));
                                     }
 
                                     addWindowListener(new WindowAdapter()
@@ -201,10 +256,12 @@ public class EditReservationFrame extends JFrame implements ActionListener {
                                         public void windowClosing(WindowEvent e)
                                         {
                                             System.out.println("Closed");
+                                            System.out.println("HAAAAILL HITTLER");
                                             exit(finalSaveData, finalStmt);
                                             e.getWindow().dispose();
                                         }
                                     });
+                                    System.out.println("awe shit");
 
                                     reserveButton.addActionListener(ex -> {
                                        resID[0] = reserveRoomPanel2.performReservation();
@@ -245,27 +302,33 @@ public class EditReservationFrame extends JFrame implements ActionListener {
         cancelReservationButton = new JButton("Cancel Reservation");
         cancelReservationButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String selectedReservation = reservationsTextArea.getSelectedText(); // Get the highlighted text
-                boolean futureSelected = !(selectedReservation == null);
+                JTable theTable = futureReservationsTable;
+                int selectedReservation = futureReservationsTable.getSelectedRow(); // Get the highlighted text
+
+                boolean futureSelected = (selectedReservation >-1);
                 if(!futureSelected){
-                    selectedReservation = activeReservationsTextArea.getSelectedText();
+
+                    selectedReservation = activeReservationsTable.getSelectedRow();
+                    theTable = activeReservationsTable;
                 }
 
-                if (selectedReservation != null && !selectedReservation.isEmpty()) {
-                    int index = futureSelected ? futureReservations.indexOf(selectedReservation) : activeReservations.indexOf(selectedReservation);
-                    if (index != -1) {
-                        int response = JOptionPane.showConfirmDialog(EditReservationFrame.this, "Are you sure you want to cancel this reservation?", "Cancel Reservation", JOptionPane.YES_NO_OPTION);
+                System.out.println("SELECTECT: " + selectedReservation);
+                if (selectedReservation > -1) {
+                    int index = selectedReservation;//futureSelected ? futureReservationsTable.indexOf(selectedReservation) : activeReservations.indexOf(selectedReservation);
+                    if (index > -1) {
+                        int response = JOptionPane.showConfirmDialog(EditReservationFrame.this, "Are you sure you want to edit this reservation?", "Edit Reservation", JOptionPane.YES_NO_OPTION);
                         if (response == JOptionPane.YES_OPTION) {
                             try {
                                 // Parse the selected reservation string to extract room number and start date
-                                String[] parts = selectedReservation.split("\\|\\|");
-                                String roomNumber = parts[0].substring(parts[0].indexOf(":") + 1).trim();
-                                String startDate = parts[1].substring(parts[1].indexOf(":") + 1, parts[1].indexOf("End Date:")).trim();
+                                //String[] parts = selectedReservation.split("\\|\\|");
+                                Integer roomNumber = (Integer) theTable.getValueAt(selectedReservation,1);//parts[0].substring(parts[0].indexOf(":") + 1).trim();
+                                String startDate = (String)theTable.getValueAt(selectedReservation,2);//parts[1].substring(parts[1].indexOf(":") + 1, parts[1].indexOf("End Date:")).trim();
+
                                 Connection con = null;
                                 con = DriverManager.getConnection("jdbc:derby:ReservationsData;");
                                 Statement stmt = con.createStatement();
                                 // Prepare the delete statement
-                                ResultSet res = stmt.executeQuery("Select * FROM Reservations where StartDate = '" + startDate + "' AND Roomnumber = " + Integer.parseInt(roomNumber));
+                                ResultSet res = stmt.executeQuery("Select * FROM Reservations where StartDate = '" + startDate + "' AND Roomnumber = " + roomNumber);
                                 boolean checkedIn = false;
                                 if(res.next()){
                                     checkedIn = res.getBoolean("checkedin");
@@ -277,7 +340,7 @@ public class EditReservationFrame extends JFrame implements ActionListener {
                                     PreparedStatement pstmt = con.prepareStatement(deleteQuery);
 
                                     // Set parameters
-                                    pstmt.setInt(1, Integer.parseInt(roomNumber)); // Assuming roomNumber is an integer
+                                    pstmt.setInt(1, roomNumber); // Assuming roomNumber is an integer
                                     pstmt.setString(2, startDate); // Assuming startDate is a string in 'YYYY-MM-DD' format
                                     rowsAffected= pstmt.executeUpdate();
                                 }
@@ -293,13 +356,16 @@ public class EditReservationFrame extends JFrame implements ActionListener {
                                 if (rowsAffected > 0) {
                                     // Remove the reservation from the list
                                     if(futureSelected){
-                                        futureReservations.remove(index);
+
+                                        ((DefaultTableModel)futureReservationsTable.getModel()).removeRow(index);
                                     }
                                     else{
-                                        activeReservations.remove(index);
+
+                                        ((DefaultTableModel)activeReservationsTable.getModel()).removeRow(index);
                                     }
 
                                     displayReservations(); // Update reservations display
+                                    //defaultPanel();
                                     JOptionPane.showMessageDialog(EditReservationFrame.this, "Reservation canceled successfully!");
                                 } else {
                                     JOptionPane.showMessageDialog(EditReservationFrame.this, "Failed to cancel reservation!");
@@ -318,16 +384,16 @@ public class EditReservationFrame extends JFrame implements ActionListener {
         });
 
 
-        reservationsTextArea = new JTextArea(20, 40);
-        reservationsTextArea.setEditable(false); // Make it non-editable
-        JScrollPane scrollPane = new JScrollPane(reservationsTextArea); // Add scroll functionality
+        //reservationsTextArea = new JTextArea(20, 40);
+        //reservationsTextArea.setEditable(false); // Make it non-editable
+        JScrollPane scrollPane = new JScrollPane(futureReservationsTable); // Add scroll functionality
 
 
-        activeReservationsTextArea = new JTextArea(20, 40);
-        activeReservationsTextArea.setEditable(false); // Make it non-editable
-        JScrollPane scrollPaneActive = new JScrollPane(activeReservationsTextArea); // Add scroll functionality
+        //activeReservationsTextArea = new JTextArea(20, 40);
+        //activeReservationsTextArea.setEditable(false); // Make it non-editable
+        JScrollPane scrollPaneActive = new JScrollPane(activeReservationsTable); // Add scroll functionality
 
-        giveReservaitons();
+
         displayReservations();
 
 
@@ -348,7 +414,7 @@ public class EditReservationFrame extends JFrame implements ActionListener {
         panel.add(titlePanel, BorderLayout.NORTH);
         //panel.add(formPanel, BorderLayout.CENTER);
         panel.add(scrollPane, BorderLayout.WEST);
-        panel.add(scrollPaneActive,BorderLayout.EAST);
+        panel.add(scrollPaneActive);
         panel.add(buttonPanel, BorderLayout.SOUTH);
 
         // Adding panel to the frame
@@ -357,8 +423,21 @@ public class EditReservationFrame extends JFrame implements ActionListener {
         repaint();
     }
 
-    private void finalizeEdit(String s, String finalOriginalResID, double firstHalfCost, BigDecimal rest) {
-        System.out.println("SHIT");
+
+    private void deselectFuture(ListSelectionEvent listSelectionEvent) {
+
+        futureReservationsTable.getSelectionModel().clearSelection();
+
+
+    }
+    private void deselectActive(ListSelectionEvent listSelectionEvent) {
+        activeReservationsTable.getSelectionModel().clearSelection();
+
+
+
+    }
+
+    private void finalizeEdit(String s, String finalOriginalResID, double firstHalfCost, BigDecimal rest, boolean checkedIn) {
         try {
             DataGetSet d = new DataGetSet();
             Connection con = d.getConReservationDatabase();
@@ -371,7 +450,10 @@ public class EditReservationFrame extends JFrame implements ActionListener {
                 pstmt = con.prepareStatement("UPDATE reservations SET ReservationId = '" + finalOriginalResID + "'"+  " where ReservationID = '" +s + "'");
                 pstmt.executeUpdate();
                 System.out.println(firstHalfCost);
-                pstmt = con.prepareStatement("UPDATE reservations SET Cost = " + (double)(res.getDouble("Cost") +rest.doubleValue() + firstHalfCost )+  " where ReservationID = '" +s + "'");
+                pstmt = con.prepareStatement("UPDATE reservations SET Cost = " + (double)(res.getDouble("Cost") +rest.doubleValue() + firstHalfCost )+  " where ReservationID = '" +finalOriginalResID + "'");
+                pstmt.executeUpdate();
+                System.out.println("FINALIZED");
+                pstmt = con.prepareStatement("UPDATE reservations SET checkedIn = " + checkedIn + " where ReservationID = '" +finalOriginalResID + "'");
                 pstmt.executeUpdate();
             }
 
@@ -383,11 +465,6 @@ public class EditReservationFrame extends JFrame implements ActionListener {
         }
 
         exit(null,null);
-    }
-
-    private void finalizeEdit(String s) {
-        System.out.println(s);
-
     }
 
 
@@ -418,7 +495,6 @@ public class EditReservationFrame extends JFrame implements ActionListener {
     }
     private void giveReservaitons(){
         Connection con = null;
-
         try {
             DataGetSet d = new DataGetSet();
 
@@ -427,18 +503,31 @@ public class EditReservationFrame extends JFrame implements ActionListener {
             ResultSet res = stmt.executeQuery("SELECT * FROM Reservations where Username = '" + guest.getUsername()+"'");
 
 
-            System.out.println("THE RESERVATIONS: BITHC");
+
             while(res.next()){
                 System.out.println(res.getString("Roomnumber"));
 
                 Date start = DateProcessor.stringToDate(res.getString("StartDate"));
                 Date end = DateProcessor.stringToDate(res.getString("endDate"));
 
+                Object [] obj = new Object[4];
+
+
+
+                obj[0] = res.getString("ReservationID");
+                obj[1] = res.getInt("RoomNumber");
+                obj[2] = res.getString("StartDate");
+                obj[3] = res.getString("endDate");
+
+                System.out.println("adding");
                 if(DateProcessor.inBetweenToday(start,end)){
-                    activeReservations.add("RoomNumber: " + res.getString("RoomNumber") + " || Start Date: " + res.getString("StartDate") + "    End Date: " + res.getString("EndDate"));
+                    System.out.println("ADD DMAN ROW");
+                    activeModel.addRow(obj);
+                    //activeReservations.add("RoomNumber: " + res.getString("RoomNumber") + " || Start Date: " + res.getString("StartDate") + "    End Date: " + res.getString("EndDate"));
                 }
                 else{
-                    futureReservations.add("RoomNumber: " + res.getString("RoomNumber") + " || Start Date: " + res.getString("StartDate") + "    End Date: " + res.getString("EndDate"));
+                    futureModel.addRow(obj);
+                    //futureReservations.add("RoomNumber: " + res.getString("RoomNumber") + " || Start Date: " + res.getString("StartDate") + "    End Date: " + res.getString("EndDate"));
                 }
 
             }
@@ -453,17 +542,17 @@ public class EditReservationFrame extends JFrame implements ActionListener {
     }
 
     private void displayReservations() {
-        reservationsTextArea.setText(""); // Clear the text area
-        activeReservationsTextArea.setText(""); // Clear the text area
+        //reservationsTextArea.setText(""); // Clear the text area
+        //activeReservationsTextArea.setText(""); // Clear the text area
         for (String reservation : futureReservations) {
             //if(){
-            reservationsTextArea.append(reservation + "\n");
+          //  reservationsTextArea.append(reservation + "\n");
             //}
             // Append each reservation to the text area
         }
         for (String reservation : activeReservations) {
             //if(){
-            activeReservationsTextArea.append(reservation + "\n");
+           // activeReservationsTextArea.append(reservation + "\n");
             //}
             // Append each reservation to the text area
         }
@@ -472,8 +561,14 @@ public class EditReservationFrame extends JFrame implements ActionListener {
     private void exit(String SQL, Statement stmt){
 
         //getContentPane().removeAll();
+
         if(SQL != null){
+            System.out.println("CALLLLLLEEDDDDD");
+
             CentralReservations.exectueSQL(SQL,stmt);
+        }
+        for(WindowListener al : this.getWindowListeners()){
+            this.removeWindowListener(al);
         }
         defaultPanel();
 
