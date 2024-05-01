@@ -2,27 +2,18 @@ package UI.Frames.Admin;
 
 
 import AccountService.Admin;
-import AccountService.Employee;
-import AccountService.Guest;
-import Central.CentralDatabase;
 import Central.CentralProfiles;
 import Central.CentralRoom;
-import UI.Frames.Employee.EmployeeHomeFrame;
 import UI.Frames.Employee.EmployeeRegistrationFrame;
-import UI.Frames.Guest.GuestHomeFrame;
-import UI.Panels.ReserveRoomPanel;
 import UI.Panels.UpdateRoomsPanel;
 import UI.Frames.LoginFrame;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
 
+@SuppressWarnings("serial")
 public class AdminHomeFrame extends JFrame {
     private Admin admin;
     public CardLayout cl;
@@ -32,7 +23,6 @@ public class AdminHomeFrame extends JFrame {
     private JButton processCheckBtn, roomStatusBtn, reservationStatusBtn,
             billingBtn, LogoutBtn, createAccountBtn, resetAccountPasswordBtn,
             initBtn;
-    private static EmployeeHomeFrame employeeFrame;
 
     public AdminHomeFrame(String username, String password) throws IllegalArgumentException {
         this.admin = CentralProfiles.getAdmin(username, password);
@@ -67,52 +57,24 @@ public class AdminHomeFrame extends JFrame {
         roomStatusBtn = new JButton("Rooms Status");
         roomStatusBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	try {
-                    //reservePanel = new ReserveRoomPanel((GuestHomeFrame) SwingUtilities.windowForComponent((JButton) e.getSource()),  guest);
+            	try {                   
                     updateRoomPanel = new UpdateRoomsPanel();
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 }
                 container.add(updateRoomPanel, "Rooms");
                 container.revalidate();
-                //cl.addLayoutComponent(reservePanel, "Reserve");
                 cl.show(container, "Rooms");
             }
         });
 
-        //TODO: Add edit functionality
         // Opens new frame that displays reservations
         reservationStatusBtn = new JButton("Reservations");
         reservationStatusBtn.addActionListener(new ActionListener() {
             // Load reserve room panel into frame
-            public void actionPerformed(ActionEvent e) {
-                JFrame tableFrame = new JFrame();
-                JPanel tablePanel= new JPanel();
-
-                String[] columnNames = {"Rm #", "Guest", "Start Date", "End Date"};
-                DefaultTableModel reservationModel = new DefaultTableModel();
-                for(String name : columnNames) {
-                    reservationModel.addColumn(name);
-                }
-
-                try {
-                    Scanner s = new Scanner(new File("./src/main/resources/reservations.csv"));
-                    while(s.hasNextLine()) {
-                        String line = s.nextLine();
-                        String[] split = line.split(",");
-                        reservationModel.addRow(split);
-
-                    }
-                } catch (FileNotFoundException e1) {
-                    throw new RuntimeException(e1);
-                }
-                JTable availRooms = new JTable(reservationModel);
-                tableFrame.getContentPane().add(new JScrollPane(availRooms));
-                availRooms.setFillsViewportHeight(true);
-
-                tablePanel.setLayout(new BorderLayout());
-                tableFrame.setSize(500,500);
-                tableFrame.setVisible(true);
+        	public void actionPerformed(ActionEvent e) {
+                JFrame reservationFrame = new updateReservationsFrame();
+                reservationFrame.setVisible(true);
             }
         });
 

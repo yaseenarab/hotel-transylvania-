@@ -37,9 +37,7 @@ public class UpdateRoomsPanel extends JPanel {
 
         super();
         this.setLayout(new BorderLayout());
-        //this.setLayout(null);
         model = new DefaultTableModel();
-        //reservationSummary = new JLabel();
 
 
         JPanel textPanel = new JPanel();

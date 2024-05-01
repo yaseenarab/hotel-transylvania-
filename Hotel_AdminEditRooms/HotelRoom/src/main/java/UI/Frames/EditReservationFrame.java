@@ -380,11 +380,6 @@ public class EditReservationFrame extends JFrame implements ActionListener {
         exit(null,null);
     }
 
-    private void finalizeEdit(String s) {
-        System.out.println(s);
-
-    }
-
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == addReservationButton) {

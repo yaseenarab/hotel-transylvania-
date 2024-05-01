@@ -56,6 +56,17 @@ public class CentralDatabase {
 
         return res;
     }
+    public static ResultSet getGuest(String username) {
+        ResultSet res = null;
+        try {
+            Connection con = conGuest;
+            Statement stmt = con.createStatement();
+            res = stmt.executeQuery("SELECT * FROM personprofiles WHERE Username = '"
+                    + username + "'");
+        } catch (Exception e) {}
+
+        return res;
+    }
     public static ResultSet getRoom(int roomNumber) {
         ResultSet res = null;
         try {
