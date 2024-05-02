@@ -63,7 +63,7 @@ public class ShoppingCartPanel extends JPanel {
 
     /**
      * @param shoppingPanel Main shopping panel containing the ShoppingCartPanel
-     * @return Button allowing for the transition to checkout
+     * @return Button allowing for the transition to check out
      */
     private JButton getCheckoutBtn(ShoppingMainPanel shoppingPanel) {
         JButton checkoutBtn = new JButton("Checkout");
@@ -90,6 +90,18 @@ public class ShoppingCartPanel extends JPanel {
         JPanel topPanel = new JPanel();
         JLabel cartLabel = new JLabel(shoppingPanel.getGuest().getFirstName() + "'s Cart");
         topPanel.add(cartLabel);
+        JButton backBtn = new JButton("Back");
+        backBtn.addActionListener(e -> shoppingPanel.getShoppingCL().show(shoppingPanel.getShoppingContent(), "ShoppingMain"));
+        topPanel.add(backBtn);
+        JButton removeAllBtn = getRemoveAllBtn(shoppingPanel, cartItems);
+        if (shoppingPanel.getGuest().getCart().getTotalItems() <= 0) {
+            removeAllBtn.setEnabled(false);
+        }
+        topPanel.add(removeAllBtn);
+        return topPanel;
+    }
+
+    private JButton getRemoveAllBtn(ShoppingMainPanel shoppingPanel, JPanel cartItems) {
         JButton removeAllBtn = new JButton("Remove All");
         removeAllBtn.addActionListener(e -> {
             int choice = JOptionPane.showConfirmDialog(null, "Are you sure you would like to remove all items from your cart?", "Confirmation", JOptionPane.YES_NO_OPTION);
@@ -102,10 +114,6 @@ public class ShoppingCartPanel extends JPanel {
                 cartItems.repaint();
             }
         });
-        if (shoppingPanel.getGuest().getCart().getTotalItems() <= 0) {
-            removeAllBtn.setEnabled(false);
-        }
-        topPanel.add(removeAllBtn);
-        return topPanel;
+        return removeAllBtn;
     }
 }

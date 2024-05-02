@@ -34,11 +34,11 @@ public class Utilities {
      */
     public static BufferedImage generateImage(Object obj, String url) throws IOException {
         if (url == null || url.isEmpty()) { url = "missing_texture.png"; }
-        return ImageIO.read(
-                new File(
-                        Objects.requireNonNull(
-                                obj.getClass()
-                                        .getResource("/" + url)).getFile()));
+            return ImageIO.read(
+                    new File(
+                            Objects.requireNonNull(
+                                    obj.getClass()
+                                            .getResource("/" + url)).getFile()));
     }
 
     /**

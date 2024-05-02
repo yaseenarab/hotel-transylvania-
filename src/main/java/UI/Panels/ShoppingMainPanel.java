@@ -213,7 +213,6 @@ public class ShoppingMainPanel extends JPanel {
         searchBar = new JTextField();
         //searchBar.setMinimumSize(new Dimension(100, 30));
         searchBar.setColumns(20);
-        //header.add(search);
         searchPanel = new JPanel(new FlowLayout());
         searchPanel.add(searchBar);
 
@@ -224,10 +223,13 @@ public class ShoppingMainPanel extends JPanel {
             SMP_Logger.warning("Could not load search icon");
         }
         searchBtn = new JButton(new ImageIcon(searchIcon));
+        searchBtn.addActionListener(e -> {
+
+        });
         SMP_Logger.info("Successfully loaded search icon");
         //searchBtn.setMinimumSize(new Dimension(50, 50));
         searchPanel.add(searchBtn);
-        header.add(searchPanel);
+        //header.add(searchPanel);
 
         // Header - Cart button
         cartBtn = new JButton("Cart");
@@ -246,6 +248,28 @@ public class ShoppingMainPanel extends JPanel {
         // itemContainer & itemPanel initialization(s)
         ArrayList<ItemSpec> isl = ShoppingMainPanelHandler.loadItems();
         ArrayList<JPanel> itemPanels = new ArrayList<>();
+        createItemPanels(isl, itemPanels);
+
+        itemContainers = new JPanel(new GridBagLayout());
+        itemContainers.setSize(new Dimension(720, 1000));
+        GridBagConstraints gbc =  new GridBagConstraints();
+        gbc.insets = new Insets(10, 10, 10, 10);
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        for (JPanel itemPanel : itemPanels) {
+            itemContainers.add(itemPanel, gbc);
+            gbc.gridx = (gbc.gridx + 1) % itemsPerRow;
+            if (gbc.gridx == 0) { ++gbc.gridy; }
+        }
+        SMP.add(itemContainers, BorderLayout.CENTER);
+        SMP.setSize(new Dimension(720, 1000));
+
+        add(shoppingContent, BorderLayout.CENTER);
+        shoppingContent.add(new JScrollPane(SMP), "ShoppingMain");
+        shoppingCL.show(shoppingContent, "ShoppingMain");
+    }
+
+    private void createItemPanels(ArrayList<ItemSpec> isl, ArrayList<JPanel> itemPanels) {
         for (var is : isl) {
             JPanel itemPanel = new JPanel();
             itemPanel.setLayout(new BoxLayout(itemPanel, BoxLayout.Y_AXIS));
@@ -287,23 +311,5 @@ public class ShoppingMainPanel extends JPanel {
 
             itemPanels.add(itemPanel);
         }
-
-        itemContainers = new JPanel(new GridBagLayout());
-        itemContainers.setSize(new Dimension(720, 1000));
-        GridBagConstraints gbc =  new GridBagConstraints();
-        gbc.insets = new Insets(10, 10, 10, 10);
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        for (JPanel itemPanel : itemPanels) {
-            itemContainers.add(itemPanel, gbc);
-            gbc.gridx = (gbc.gridx + 1) % itemsPerRow;
-            if (gbc.gridx == 0) { ++gbc.gridy; }
-        }
-        SMP.add(itemContainers, BorderLayout.CENTER);
-        SMP.setSize(new Dimension(720, 1000));
-
-        add(shoppingContent, BorderLayout.CENTER);
-        shoppingContent.add(new JScrollPane(SMP), "ShoppingMain");
-        shoppingCL.show(shoppingContent, "ShoppingMain");
     }
 }
