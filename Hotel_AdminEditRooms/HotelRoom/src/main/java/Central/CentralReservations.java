@@ -232,15 +232,25 @@ public class CentralReservations {
 
             Object[] obj = new Object[6];
 
-
-            obj[0] = resultSet.getInt("RoomNumber")+"";
-            obj[1] = resultSet.getString("Roomstatus");
-            obj[2] = resultSet.getString("roomtype");
-            obj[3] = resultSet.getString("bedtype");
-            String quality = resultSet.getString("Qualitylevel");
-            obj[4] = quality.substring(0, quality.length()-5);
-            obj[5] = resultSet.getString("smokingallowed");
-            model.insertRow(0, obj);
+            try {
+	            obj[0] = resultSet.getInt("RoomNumber")+"";
+	            obj[1] = resultSet.getString("Roomstatus");
+	            obj[2] = resultSet.getString("roomtype");
+	            obj[3] = resultSet.getString("bedtype");
+	            String quality = resultSet.getString("Qualitylevel");
+	            if (quality.toLowerCase().contains("level")) {
+	            	obj[4] = quality.substring(0, quality.toLowerCase().indexOf("level"));
+	            } else if (quality.toLowerCase().contains("executive") || quality.toLowerCase().contains("economy") || quality.toLowerCase().contains("comfort") || quality.toLowerCase().contains("business")) {
+	            	obj[4] = quality;
+	            } else {
+	            	throw new Exception("invalid data");
+	            }
+	            obj[5] = resultSet.getString("smokingallowed");
+	            model.insertRow(0, obj);
+            } catch(Exception e) {
+            	System.out.println("Failed to add room");
+            	e.printStackTrace();
+            }
 
         }
     }

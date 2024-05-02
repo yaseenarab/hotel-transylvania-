@@ -28,20 +28,18 @@ public class UpdateRoomsPanel extends JPanel {
     private TableRowSorter<DefaultTableModel> sorter;
     private DefaultTableModel model;
     private JTable table;
-    private Integer id;
+    private Integer id = -1;
     private JScrollPane scrollPane;
-    private JButton addRoom, editRoom;
+    private JButton addRoom, editRoom, goBack;
     
     
-    public UpdateRoomsPanel() {
+    public UpdateRoomsPanel(Container container, CardLayout cl) {
 
         super();
-        this.setLayout(new BorderLayout());
+        this.setLayout(new GridBagLayout());
+        GridBagConstraints c = new GridBagConstraints();
         model = new DefaultTableModel();
 
-
-        JPanel textPanel = new JPanel();
-        textPanel.setLayout(new BoxLayout(textPanel,BoxLayout.Y_AXIS));
         
         addRoom = new JButton("Add Room");
         addRoom.addActionListener(new ActionListener() {
@@ -53,16 +51,23 @@ public class UpdateRoomsPanel extends JPanel {
         	
         });
         editRoom = new JButton("Edit Selected Room");
-        addRoom.addActionListener(new ActionListener() {
+        editRoom.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (id < 0) {
+				if (table.getSelectedRow() < 0) {
 					JOptionPane.showMessageDialog(addRoom, "No room selected");
 				} else {
 					EditDialog editRoom = new EditDialog(table);
 				}
 			}
         	
+        });
+        goBack = new JButton("Back to Home");
+        goBack.addActionListener(new ActionListener() {
+        	@Override
+        	public void actionPerformed(ActionEvent e) {
+        		cl.show(container, "Home");
+        	}
         });
 
         model.addColumn("Room ID");
@@ -84,19 +89,30 @@ public class UpdateRoomsPanel extends JPanel {
 
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         table.getSelectionModel().addListSelectionListener(this::valueChanged);
+        table.setDefaultEditor(getClass(), null);
 
         scrollPane = new JScrollPane(table);
         scrollPane.setVisible(true);
         updateTable("SELECT * FROM Rooms");
 
-        add(scrollPane,BorderLayout.CENTER);
-        add(textPanel,BorderLayout.SOUTH);
-        add(addRoom, BorderLayout.SOUTH);
-        add(editRoom, BorderLayout.SOUTH);
-
-
-
-
+        c.gridheight = 3;
+        c.gridwidth = 5;
+        c.gridx = 0;
+        c.gridy = 0;
+        c.weightx = 1;
+        c.weightx = 0.75;
+        add(scrollPane, c);
+        c.gridheight = 1;
+        c.gridwidth = 1;
+        c.gridx = 1;
+        c.gridy = 4;
+        c.weightx = 0.5;
+        c.weightx = 0.5;
+        add(addRoom, c);
+        c.gridx = 3;
+        add(editRoom, c);
+        c.gridx = 4;
+        add(goBack, c);
     }
 
     public boolean roomIsSelected() {
@@ -131,9 +147,7 @@ public class UpdateRoomsPanel extends JPanel {
         int viewRow = table.getSelectedRow();
 
         if(viewRow >= 0){
-            int modelRow = table.convertRowIndexToModel(viewRow);
-            String idStr = (String) model.getValueAt(modelRow, 0);
-            id = Integer.parseInt(idStr);
+            id = table.convertRowIndexToModel(viewRow);
         }
     }
 
@@ -175,7 +189,7 @@ public class UpdateRoomsPanel extends JPanel {
 	        formPanel.add(new JLabel("Qualitylevel"));
 	        formPanel.add(new JLabel("smokingallowed"));
 	        
-	        JSpinner roomNumber = new JSpinner(new SpinnerNumberModel(100, 100, 399, 1));
+	        roomNumber = new JSpinner(new SpinnerNumberModel(100, 100, 399, 1));
 	        //Remove increment buttons
 	        for (Component component : roomNumber.getComponents()) {
 	            if (component.getName() != null && component.getName().endsWith("Button")) {
@@ -185,7 +199,6 @@ public class UpdateRoomsPanel extends JPanel {
 	        formPanel.add(roomNumber);
 	        
 	        roomTypeComboBox = new JComboBox<String>();
-	        updateRoomTypes();
 	        roomNumber.addChangeListener(e -> updateRoomTypes());
 	        formPanel.add(roomTypeComboBox);
 	        
@@ -204,6 +217,8 @@ public class UpdateRoomsPanel extends JPanel {
 			listPane.add(formPanel);
 			JButton addButton;
 			if (id < 0) {
+		        roomNumber.setValue(100);
+		        updateRoomTypes();
 				addButton = new JButton("Add Room");
 				addButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 				addButton.addActionListener(new ActionListener() {
@@ -215,6 +230,8 @@ public class UpdateRoomsPanel extends JPanel {
 							try {
 								CentralDatabase.insertIntoHotelRoomsData(roomData);
 								JOptionPane.showMessageDialog(formPanel, "Room has been added");
+								updateTable("SELECT * FROM Rooms");
+								dispose();
 							} catch(Exception e1) {
 								JOptionPane.showMessageDialog(formPanel, "Room could not be added - " + e1.getCause());
 							}
@@ -226,7 +243,8 @@ public class UpdateRoomsPanel extends JPanel {
 				
 			} else {
 				addButton = new JButton("Edit Room");
-				roomNumber.setValue(dialogTable.getValueAt(id, 0));
+				System.out.println(table.getModel().getValueAt(id, 0));
+				roomNumber.setValue(Integer.valueOf((String) table.getModel().getValueAt(id, 0)));
 				roomNumber.setEnabled(false);
 				updateRoomTypes();
 				setRoomTypeComboBox();
@@ -238,14 +256,24 @@ public class UpdateRoomsPanel extends JPanel {
 				addButton.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						//TODO: Add check to prevent adding an existing room number
-						String roomData = roomNumber.getValue() + ",VaCl," + roomTypeComboBox.getSelectedItem() + "," + bedTypeComboBox.getSelectedItem() + ","  + qualityLevelComboBox.getSelectedItem() + ","  + smokingCheckBox.isSelected();
+						String roomData = roomNumber.getValue() + ",VaCl," + roomTypeComboBox.getSelectedItem() + "," + bedTypeComboBox.getSelectedItem() + ","  + qualityLevelComboBox.getSelectedItem() + ","  + Boolean.toString(smokingCheckBox.isSelected());
 						if (JOptionPane.showConfirmDialog(formPanel, "Are you sure you want to edit room #" + roomNumber.getValue() + "?", "Confirm Room Details", JOptionPane.YES_NO_OPTION) == 0) {
+							System.out.println(smokingCheckBox.isSelected());
+							if (smokingCheckBox.isSelected()) {
+								System.out.println("Box is checked");
+								System.out.println(Boolean.toString(smokingCheckBox.isSelected()));
+								if (Boolean.getBoolean(Boolean.toString(smokingCheckBox.isSelected()))) {
+									System.out.println("Should work");
+								}
+							}
 							try {
 								CentralDatabase.updateHotelRoomsData(roomData);
 								JOptionPane.showMessageDialog(formPanel, "Room # " + roomNumber.getValue() + " has been edited");
+								updateTable("SELECT * FROM Rooms");
+								dispose();
 							} catch(Exception e1) {
-								JOptionPane.showMessageDialog(formPanel, "Room could not be edited - " + e1.getCause());
+								JOptionPane.showMessageDialog(formPanel, "Room could not be edited");
+								e1.printStackTrace();
 							}
 						} else {
 							JOptionPane.showMessageDialog(formPanel, "Room was not edited");
@@ -278,7 +306,7 @@ public class UpdateRoomsPanel extends JPanel {
 	    }
 		
 		private void setRoomTypeComboBox() {
-			String input = (String) dialogTable.getModel().getValueAt(id, 1);
+			String input = (String) dialogTable.getModel().getValueAt(id, 2);
 			if ((int) roomNumber.getValue() >= 100 && (int) roomNumber.getValue() < 200) {
 	            if (input.equals("Single")) {
 	            	roomTypeComboBox.setSelectedIndex(0);
@@ -303,7 +331,7 @@ public class UpdateRoomsPanel extends JPanel {
 		}
 		
 		private void setBedTypeComboBox() {
-			String input = (String) dialogTable.getModel().getValueAt(id, 2);
+			String input = (String) dialogTable.getModel().getValueAt(id, 3);
 			if (input.equals("Twin")) {
 				bedTypeComboBox.setSelectedIndex(0);
 			} else if (input.equals("Full")) {
@@ -316,7 +344,7 @@ public class UpdateRoomsPanel extends JPanel {
 		}
 		
 		private void setQualityLevelComboBox() {
-			String input = (String) dialogTable.getModel().getValueAt(id, 3);
+			String input = (String) dialogTable.getModel().getValueAt(id, 4);
 			if (input.equals("Executive")) {
 				qualityLevelComboBox.setSelectedIndex(0);
 			} else if (input.equals("Business")) {
@@ -329,7 +357,7 @@ public class UpdateRoomsPanel extends JPanel {
 		}
 		
 		private void setSmokingCheckbox() {
-			String input = (String) dialogTable.getModel().getValueAt(id, 6);
+			String input = (String) dialogTable.getModel().getValueAt(id, 5);
 			Boolean check = Boolean.valueOf(input);
 			smokingCheckBox.setSelected(check);
 		}

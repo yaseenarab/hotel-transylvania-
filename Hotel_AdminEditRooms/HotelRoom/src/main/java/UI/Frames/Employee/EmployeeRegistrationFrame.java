@@ -59,7 +59,7 @@ public class EmployeeRegistrationFrame extends JFrame implements ActionListener 
 
     private boolean registerEmployee(String firstname,String lastName, String email, String phoneNumber, String username, String password) {
         try {
-            CentralProfiles.makeGuestProfile(firstname,lastName,email,phoneNumber,username,password);
+            CentralProfiles.makeEmployeeProfile(firstname,lastName,email,phoneNumber,username,password);
             return true;
         } catch (Exception e) {
             return false;

@@ -58,7 +58,7 @@ public class AdminHomeFrame extends JFrame {
         roomStatusBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	try {                   
-                    updateRoomPanel = new UpdateRoomsPanel();
+                    updateRoomPanel = new UpdateRoomsPanel(container, cl);
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 }

@@ -3,11 +3,11 @@ package Central;
 import java.sql.*;
 
 public class CentralDatabase {
-    final static private String DB_URLRes = "jdbc:derby:/Users/desirablehemlock/Software Engineering/Hotel_Final/HotelRoom/src/main/java/Databases/ReservationsData";
-    final static private String DB_URLPer = "jdbc:derby:/Users/desirablehemlock/Software Engineering/Hotel_Final/HotelRoom/src/main/java/Databases/PersonProfilesData";
-    final static private String DB_URLEmployee = "jdbc:derby:/Users/desirablehemlock/Software Engineering/Hotel_Final/HotelRoom/src/main/java/Databases/EmployeeProfilesData";
-    final static private String DB_URLAdmin = "jdbc:derby:/Users/desirablehemlock/Software Engineering/Hotel_Final/HotelRoom/src/main/java/Databases/AdminProfilesData";
-    final static private String DB_URLHot = "jdbc:derby:/Users/desirablehemlock/Software Engineering/Hotel_Final/HotelRoom/src/main/java/Databases/HotelRoomsData";
+    final static private String DB_URLRes = "jdbc:derby:/Users/chris/CS Files/Software Engineering/Group Project/hotel-transylvania-/Hotel_AdminEditRooms/HotelRoom/src/main/java/Databases/ReservationsData";
+    final static private String DB_URLPer = "jdbc:derby:/Users/chris/CS Files/Software Engineering/Group Project/hotel-transylvania-/Hotel_AdminEditRooms/HotelRoom/src/main/java/Databases/PersonProfilesData";
+    final static private String DB_URLEmployee = "jdbc:derby:/Users/chris/CS Files/Software Engineering/Group Project/hotel-transylvania-/Hotel_AdminEditRooms/HotelRoom/src/main/java/Databases/EmployeeProfilesData";
+    final static private String DB_URLAdmin = "jdbc:derby:/Users/chris/CS Files/Software Engineering/Group Project/hotel-transylvania-/Hotel_AdminEditRooms/HotelRoom/src/main/java/Databases/AdminProfilesData";
+    final static private String DB_URLHot = "jdbc:derby:/Users/chris/CS Files/Software Engineering/Group Project/hotel-transylvania-/Hotel_AdminEditRooms/HotelRoom/src/main/java/Databases/HotelRoomsData";
     private static Connection conRes;
     private static Connection conGuest;
     private static Connection conEmployee;
@@ -16,6 +16,7 @@ public class CentralDatabase {
     public static boolean init() {
         try {
             conRes = DriverManager.getConnection(DB_URLRes);
+            System.out.println("Here");
             conGuest = DriverManager.getConnection(DB_URLPer);
             conEmployee = DriverManager.getConnection(DB_URLEmployee);
             conAdmin = DriverManager.getConnection(DB_URLAdmin);
@@ -117,7 +118,7 @@ public class CentralDatabase {
             String [] split = line.split(",");
 
             int roomNum = Integer.parseInt(split[0]);
-            boolean smoking = Boolean.getBoolean(split[5]);
+            boolean smoking = Boolean.valueOf(split[5]);
             stmt.executeUpdate("insert into ROOMS(ROOMNUMBER, ROOMSTATUS, ROOMTYPE, BEDTYPE, QUALITYLEVEL, SMOKINGALLOWED) values(" + roomNum + ",'" + split[1] + "','"+ split[2]+ "','" + split[3] + "','" + split[4] + "'," + smoking +")");
 
         } catch (SQLException e) {
@@ -130,8 +131,10 @@ public class CentralDatabase {
             String [] split = line.split(",");
 
             int roomNum = Integer.parseInt(split[0]);
-            boolean smoking = Boolean.getBoolean(split[4]);
-            stmt.executeUpdate("UPDATE ROOMS SET ROOMSTATUS = " + split[1] + ", ROOMTYPE = " + split[2] + ", QUALITYLEVEL = " + split[3] + ", SMOKINGALLOWED = " + smoking + " WHERE ROOMNUMBER = " + roomNum);
+            boolean smoking = Boolean.valueOf(split[5]);
+            System.out.println(split[5]);
+            System.out.println(smoking);
+            stmt.executeUpdate("UPDATE ROOMS SET ROOMSTATUS = '" + split[1] + "', ROOMTYPE = '" + split[2] + "', BEDTYPE = '" + split[3] + "', QUALITYLEVEL = '" + split[4] + "', SMOKINGALLOWED = " + smoking + " WHERE ROOMNUMBER = " + roomNum);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

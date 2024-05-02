@@ -2,6 +2,7 @@ package UI.Frames.Admin;
 
 import AccountService.Guest;
 import Central.CentralDatabase;
+import Central.CentralProfiles;
 import Central.CentralReservations;
 import Central.CentralRoom;
 import Utilities.DateProcessor;
@@ -103,7 +104,7 @@ public class updateReservationsFrame extends JFrame implements ActionListener {
                                 String startDate = parts[1].substring(parts[1].indexOf(":") + 1, parts[1].indexOf("End Date:")).trim();
 
                                 // Delete the current reservation
-                                Connection con = DriverManager.getConnection("jdbc:derby:ReservationsData;");
+                                Connection con = CentralDatabase.getConReservationDatabase();
                                 Statement stmt = con.createStatement();
                                 String saveData = "Select * from Reservations where RoomNumber = "+Integer.parseInt(roomNumber);
 
@@ -138,6 +139,7 @@ public class updateReservationsFrame extends JFrame implements ActionListener {
                                     perNight = CentralRoom.calculatorCost(res.getInt("roomNumber"));
                                     originalResID = res.getString("ReservationID");
                                     guestUsername = res.getString("Username");
+                                    System.out.println(guestUsername);
 
                                     saveData = "INSERT INTO Reservations(Roomnumber, username,startDate,EndDate,ReservationId,cost) values(" + roomID +",'" + res.getString("Username") +"','"+ res.getString("StartDate") +"','"+ res.getString("EndDate") +"','"+ res.getString("ReservationId") +"',"+ res.getDouble("Cost") +")";
                                 }
@@ -158,7 +160,7 @@ public class updateReservationsFrame extends JFrame implements ActionListener {
                                 pstmt.setInt(1, Integer.parseInt(roomNumber));
                                 pstmt.setString(2, startDate);
                                 int rowsAffected = pstmt.executeUpdate();
-
+                                
                                 if (rowsAffected > 0) {
                                     // Reservation canceled successfully
                                     if(futureSelected){
@@ -173,7 +175,10 @@ public class updateReservationsFrame extends JFrame implements ActionListener {
 
 
                                     // Take the user to the reservation page
+                                    System.out.println(CentralProfiles.guestisIn(guestUsername));
+                                    
                                     ResultSet guestData = CentralDatabase.getGuest(guestUsername);
+                                    guestData.next();
                                     guest = new Guest(guestData.getString("PersonID"), guestData.getString("FirstName"), guestData.getString("LastName"), guestData.getString("Email"), guestData.getString("PhoneNumber"), guestData.getString("Username"), guestData.getString("Password"));
                                     reserveRoomPanel2 = new ReserveRoomPanel(guest);
                                     setContentPane(reserveRoomPanel2);
@@ -219,7 +224,7 @@ public class updateReservationsFrame extends JFrame implements ActionListener {
 
 
 
-                                    con = DriverManager.getConnection("jdbc:derby:HotelRoomsData;");
+                                    con = CentralDatabase.getConReservationDatabase();
                                     stmt = con.createStatement();
                                     res = stmt.executeQuery("Select * from Rooms where Roomnumber = "+ roomID);
                                     res.next();
@@ -269,7 +274,7 @@ public class updateReservationsFrame extends JFrame implements ActionListener {
                                 String roomNumber = parts[0].substring(parts[0].indexOf(":") + 1).trim();
                                 String startDate = parts[1].substring(parts[1].indexOf(":") + 1, parts[1].indexOf("End Date:")).trim();
                                 Connection con = null;
-                                con = DriverManager.getConnection("jdbc:derby:ReservationsData;");
+                                con = CentralDatabase.getConReservationDatabase();
                                 Statement stmt = con.createStatement();
                                 // Prepare the delete statement
                                 ResultSet res = stmt.executeQuery("Select * FROM Reservations where StartDate = '" + startDate + "' AND Roomnumber = " + Integer.parseInt(roomNumber));
@@ -365,7 +370,6 @@ public class updateReservationsFrame extends JFrame implements ActionListener {
     }
 
     private void finalizeEdit(String s, String finalOriginalResID, double firstHalfCost, BigDecimal rest) {
-        System.out.println("SHIT");
         try {
             Connection con = CentralDatabase.getConReservationDatabase();
             Statement stmt = con.createStatement();
@@ -421,22 +425,23 @@ public class updateReservationsFrame extends JFrame implements ActionListener {
         Connection con = null;
 
         try {
-            con = DriverManager.getConnection("jdbc:derby:ReservationsData;");
+            con = CentralDatabase.getConReservationDatabase();
             Statement stmt = con.createStatement();
             ResultSet res = stmt.executeQuery("SELECT * FROM Reservations");
 
 
-            System.out.println("THE RESERVATIONS:");
-            while(res.next()){
+            while(res.next()) {
                 System.out.println(res.getString("Roomnumber"));
 
                 Date start = DateProcessor.stringToDate(res.getString("StartDate"));
                 Date end = DateProcessor.stringToDate(res.getString("endDate"));
 
                 if(DateProcessor.inBetweenToday(start,end)){
+                	System.out.println("Adding to current");
                     activeReservations.add("RoomNumber: " + res.getString("RoomNumber") + " || Start Date: " + res.getString("StartDate") + "    End Date: " + res.getString("EndDate"));
                 }
-                else{
+                else if (DateProcessor.inFuture(start)) {
+                	System.out.println("Adding to future");
                     futureReservations.add("RoomNumber: " + res.getString("RoomNumber") + " || Start Date: " + res.getString("StartDate") + "    End Date: " + res.getString("EndDate"));
                 }
 
@@ -476,14 +481,5 @@ public class updateReservationsFrame extends JFrame implements ActionListener {
         }
         defaultPanel();
 
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                //ReservationFrame reservationFrame = new ReservationFrame();
-                //reservationFrame.setVisible(true);
-            }
-        });
     }
 }

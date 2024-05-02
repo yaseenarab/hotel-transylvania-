@@ -426,6 +426,7 @@ public class EditReservationFrame extends JFrame implements ActionListener {
                     activeReservations.add("RoomNumber: " + res.getString("RoomNumber") + " || Start Date: " + res.getString("StartDate") + "    End Date: " + res.getString("EndDate"));
                 }
                 else{
+                	System.out.println("Adding to future");
                     futureReservations.add("RoomNumber: " + res.getString("RoomNumber") + " || Start Date: " + res.getString("StartDate") + "    End Date: " + res.getString("EndDate"));
                 }
 

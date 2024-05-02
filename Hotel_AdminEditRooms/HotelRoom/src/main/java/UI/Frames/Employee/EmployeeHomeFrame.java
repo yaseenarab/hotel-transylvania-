@@ -26,8 +26,6 @@ public class EmployeeHomeFrame extends JFrame {
     private JButton reservationStatusBtn;
     private JButton billingBtn;
     private JButton LogoutBtn;
-    private JButton createAccountBtn;
-    private JButton resetAccountPasswordBtn;
 
     public EmployeeHomeFrame(String username, String password) throws IllegalArgumentException {
         this.employee = CentralProfiles.getEmployee(username, password);
@@ -63,7 +61,7 @@ public class EmployeeHomeFrame extends JFrame {
         roomStatusBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	try {                   
-                    updateRoomPanel = new UpdateRoomsPanel();
+                    updateRoomPanel = new UpdateRoomsPanel(container, cl);
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 }
@@ -118,12 +116,6 @@ public class EmployeeHomeFrame extends JFrame {
         ++gbc.gridx;
         buttons.add(billingBtn, gbc);
         ++gbc.gridx;
-        if (employee.getEmployeeID().contains("TVAI")) {
-            buttons.add(createAccountBtn, gbc);
-            ++gbc.gridx;
-            buttons.add(resetAccountPasswordBtn, gbc);
-            ++gbc.gridx;
-        }
         buttons.add(LogoutBtn, gbc);
 
         // Reusing GridBagConstraints for layout of homePanel
