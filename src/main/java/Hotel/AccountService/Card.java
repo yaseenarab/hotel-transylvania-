@@ -1,37 +1,63 @@
-package Hotel.AccountService;
+package AccountService;
 
-import java.time.ZonedDateTime;
-
+import LoggerPackage.MyLogger;
+import java.util.Date;
+import java.util.logging.Level;
 public class Card {
+    private final int ACCOUNT_NUM_LENGTH = 16;
     private String accountNumber;
-    private ZonedDateTime expiration;
-    private Double funds;
-    Card (String accountNumber, ZonedDateTime expiration, Double funds) {
+    private Date expiration;
+    public Card(String accountNumber, Date expiration) throws Exception {
+        try {
+            this.setAccountNumber(accountNumber);
+            this.setExpiration(expiration);
+        }
+        catch (Exception e) {
+            MyLogger.logger.log(Level.SEVERE, "Error in Card constructor: Passed values were " + accountNumber + "," + expiration);
+            throw new Exception();
+        }
         this.accountNumber = accountNumber;
         this.expiration = expiration;
-        this.funds = funds;
     }
-    public void updateCard (Card card) {
-        this.accountNumber = card.accountNumber;
-        this.expiration = card.expiration;
-        this.funds = card.funds;
-    }
-    public boolean chargeCard (Double amount) {
-        if (this.funds - amount > 0.01 && this.expiration.compareTo(java.time.ZonedDateTime.now()) >= 0) {
-            this.funds -= amount;
-            return true;
+    private void setAccountNumber(String accountNumber) throws Exception {
+        if(accountNumber == null) {
+            MyLogger.logger.log(Level.SEVERE, "Error in Card.setAccountNumber: accountNumber is null");
+            throw new Exception();
         }
-        return false;
+        else if(accountNumber.length() != ACCOUNT_NUM_LENGTH) {
+            MyLogger.logger.log(Level.SEVERE, "Error in Card.setAccountNumber: " +
+                    "accountNumber is incorrect length. Should be " + ACCOUNT_NUM_LENGTH + " characters, received " + accountNumber.length());
+            throw new Exception();
+        }
+        this.accountNumber = accountNumber;
+    }
+    private void setExpiration(Date expiration) throws Exception {
+        if(expiration == null) {
+            MyLogger.logger.log(Level.SEVERE, "Error in Card.setExpiration: expiration is null");
+            throw new Exception();
+        }
+        else if(expiration.compareTo(new Date()) <= 0) {
+            MyLogger.logger.log(Level.SEVERE, "Error in Card.setExpiration: " + expiration + " is before or today expiring");
+            throw new Exception();
+        }
+        this.expiration = expiration;
     }
 
     public String getAccountNumber() {
         return this.accountNumber;
     }
-    public ZonedDateTime getExpiration() {
+    public Date getExpiration() {
         return this.expiration;
     }
-    public Double getFunds() {
-        return this.funds;
+    public void updateCard (Card card) throws Exception {
+        try {
+            this.setAccountNumber(card.getAccountNumber());
+            this.setExpiration(card.getExpiration());
+        }
+        catch (Exception e) {
+            MyLogger.logger.log(Level.SEVERE, "Error caught in Card.updateCard: Passed value was " + card);
+            throw new Exception();
+        }
     }
 
     @Override
@@ -40,7 +66,9 @@ public class Card {
             return false;
         }
         return this.accountNumber.equals(((Card) obj).accountNumber) &&
-                this.funds.equals(((Card) obj).funds) &&
                 this.expiration.equals(((Card) obj).expiration);
+    }
+    public String toString() {
+        return this.accountNumber + "," + this.expiration;
     }
 }

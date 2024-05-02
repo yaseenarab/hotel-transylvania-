@@ -1,12 +1,10 @@
-package Hotel.AccountService;
-
-import Hotel.ReservationService.Reservations;
+package AccountService;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class GuestProfile extends Reservations {
+public class GuestProfile  {
     // Constants (inclusive)
     final int
             NAME_MAX_LENGTH = 16,
