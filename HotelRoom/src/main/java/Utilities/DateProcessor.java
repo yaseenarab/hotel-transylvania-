@@ -38,6 +38,14 @@ public class DateProcessor {
         return currentDate.before(end) && currentDate.after(start);
 
     }
+    
+    public static boolean inFuture(Date start){
+
+        Date currentDate = new Date();
+
+        return currentDate.before(start);
+
+    }
 
     public static String dateToString(Date date) {
         try {

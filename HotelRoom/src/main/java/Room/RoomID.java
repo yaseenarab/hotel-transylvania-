@@ -8,7 +8,6 @@ import LoggerPackage.MyLogger;
 import java.util.logging.Level;
 
 public class RoomID implements RoomData {
-
     public static String buildRoomID(RoomTheme theme, RoomSize size, QualityLevel quality, Boolean smoking, Integer roomNumber) throws Exception {
         if(theme == null) {
             MyLogger.logger.log(Level.SEVERE, "Error in RoomID.RoomIDEval.buildRoomID: theme is null");
@@ -216,6 +215,4 @@ public class RoomID implements RoomData {
             throw new Exception();
         }
     }
-
-
 }

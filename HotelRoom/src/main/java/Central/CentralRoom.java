@@ -42,7 +42,6 @@ public class CentralRoom {
     public static BigDecimal calculatorCost(Integer roomId){
         BigDecimal b = null;
 
-
         try {
 
             Connection con = CentralDatabase.getConHotelRoomsDatabase();
@@ -180,5 +179,4 @@ public class CentralRoom {
         }
         return null;
     }
-
 }

@@ -45,10 +45,9 @@ public class ReserveRoomPanel extends JPanel {
     //private RoomQuality roomNeeds;
     private Guest guest;
     private Date reservationStart,reservationEnd;
-
-
-
-
+    
+    
+    
     public ReserveRoomPanel( Guest guest) throws Exception {
         //reservations = new Reservations();
         this.guest = guest;
@@ -62,7 +61,8 @@ public class ReserveRoomPanel extends JPanel {
         formPanel.add(guestLabel);
         guestNameField = new JTextField(guest.getFirstName() + " " + guest.getLastName());
         formPanel.add(guestNameField);
-
+        
+        
         JLabel member = new JLabel("Member Number (optional):");
         member.setBorder(new EmptyBorder(0, 0, 0, 0));
         //member.setFont(new Font("hel", Font.BOLD,10));
@@ -74,7 +74,6 @@ public class ReserveRoomPanel extends JPanel {
         formPanel.add(new JLabel("Credit Card Number:"));
         cardNumberField = new JTextField();
         formPanel.add(cardNumberField);
-
         formPanel.add(new JLabel("Hotel Type:"));
         hotelTypeComboBox = new JComboBox<>(new String[]{"Any","Nature Retreat", "Urban Elegance", "Vintage Charm"});
         hotelTypeComboBox.addActionListener(e -> updateTable());
@@ -179,7 +178,6 @@ public class ReserveRoomPanel extends JPanel {
         formPanel.add(new JLabel("Credit Card Number:"));
         cardNumberField = new JTextField();
         formPanel.add(cardNumberField);
-
         formPanel.add(new JLabel("Hotel Type:"));
         hotelTypeComboBox = new JComboBox<>(new String[]{"Any","Nature Retreat", "Urban Elegance", "Vintage Charm"});
         hotelTypeComboBox.addActionListener(e -> updateTable());
@@ -254,8 +252,6 @@ public class ReserveRoomPanel extends JPanel {
         exitButton.addActionListener(e -> {
             frame.cl.show(frame.container, "Home");
         });
-
-
     }
 
     private void updateTable() {
@@ -263,10 +259,7 @@ public class ReserveRoomPanel extends JPanel {
         reservationEnd = (Date)checkOutDatePicker.getModel().getValue();
 
 
-
         boolean noConflict = DateProcessor.dateTimeConflict(reservationStart,reservationEnd);
-
-
         if(reservationStart != null && reservationEnd != null && noConflict){
             String hotelType = (String)hotelTypeComboBox.getSelectedItem();
             String roomType = (String)roomTypeComboBox.getSelectedItem();
@@ -319,14 +312,12 @@ public class ReserveRoomPanel extends JPanel {
                 throw new NullPointerException();
             }
 
-
             Integer roomID = availableRoomsPanel.getRoomID();
             reserve = CentralReservations.makeReservation(roomID, guest.getUsername(),guest.getGuestID(),reservationStart,reservationEnd);
             guest.addReservation(reserve);
 
 
             System.out.println("ADDING THISKR ROOM NUMBER ASFWEABVJHU" + roomID);
-
 
             JOptionPane.showMessageDialog(this, "Reservation Successfully made!");
             updateTable();
@@ -356,7 +347,6 @@ public class ReserveRoomPanel extends JPanel {
             roomAvailModel.addColumn(name);
         }
         try {
-
             Connection con = CentralDatabase.getConHotelRoomsDatabase();
             Statement stmt = con.createStatement();
             ResultSet res = stmt.executeQuery("SELECT * from Rooms");
@@ -395,7 +385,6 @@ public class ReserveRoomPanel extends JPanel {
         }
         return baseRate;
     }
-
 
     public void fillBoxes(Integer roomID, String roomType, String bedType, String qualityLevel, boolean smoking, String startDate, String endDate) {
 
@@ -439,7 +428,6 @@ public class ReserveRoomPanel extends JPanel {
         checkOutDateModel.setDate(DateProcessor.getYear(endDate),DateProcessor.getMonth(endDate),DateProcessor.getDay(endDate));
         checkOutDateModel.setSelected(true);
         updateTable();
-
     }
 
 

@@ -28,7 +28,7 @@ public class RentableRoom extends Room implements RoomData {
     }
 
     // Set Functions
-    private void setRoomID(Integer roomID) throws Exception {
+private void setRoomID(Integer roomID) throws Exception {
         if(roomID == null) {
             MyLogger.logger.log(Level.SEVERE, "Error in RentableRoom.setRoomID: roomID is null");
             throw new Exception();

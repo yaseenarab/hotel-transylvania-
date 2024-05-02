@@ -65,7 +65,11 @@ public class ShoppingMainPanel extends JPanel {
     private static JPanel shoppingContent;
 
     /**
+<<<<<<< HEAD
      * JPanel for browsing items on the main panel of the Shopping system
+=======
+     *
+>>>>>>> editRooms
      */
     private static JPanel SMP;
 
@@ -125,7 +129,7 @@ public class ShoppingMainPanel extends JPanel {
      * CardLayout responsible for updating content JPanel when transitioning between Shopping UI JPanels.
      */
     public static CardLayout shoppingCL;
-
+    
     /**
      * Information of guest in shopping system
      */

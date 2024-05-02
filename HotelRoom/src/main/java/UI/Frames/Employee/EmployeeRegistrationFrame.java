@@ -2,6 +2,7 @@ package UI.Frames.Employee;
 
 import AccountService.Person;
 import Central.CentralProfiles;
+import UI.Frames.Employee.EmployeeHomeFrame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -86,7 +87,7 @@ public class EmployeeRegistrationFrame extends JFrame implements ActionListener 
                 }
 
                 if (!skip && !CentralProfiles.EmployeeisIn(usernameField.getText()) &&
-                        registerEmployee(firstName,lastName,email,phoneNumber,username,password)) {
+                    registerEmployee(firstName,lastName,email,phoneNumber,username,password)) {
 
                     JOptionPane.showMessageDialog(this, "Registration successful!");
                     dispose();

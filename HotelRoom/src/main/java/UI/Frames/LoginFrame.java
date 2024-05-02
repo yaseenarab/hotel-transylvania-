@@ -66,8 +66,6 @@ public class LoginFrame extends JFrame implements ActionListener {
         isAdmin.setVisible(false);
         questionAdmin.setVisible(false);
 
-
-
         // Creating panel for better layout
         JPanel panel = new JPanel(new BorderLayout());
         JPanel formPanel = new JPanel(new GridLayout(7, 2, 5, 10));
@@ -90,8 +88,6 @@ public class LoginFrame extends JFrame implements ActionListener {
         panel.add(titleLabel, BorderLayout.NORTH);
         panel.add(formPanel, BorderLayout.CENTER);
         panel.add(buttonPanel, BorderLayout.SOUTH);
-
-
         // Adding panel to the frame
         add(panel);
 
@@ -101,8 +97,6 @@ public class LoginFrame extends JFrame implements ActionListener {
         pack();
         setVisible(true);
     }
-
-
     public void actionPerformed(ActionEvent e) {
 
         String username = userTextField.getText();
@@ -178,7 +172,4 @@ public class LoginFrame extends JFrame implements ActionListener {
         }
         return false;
     }
-
-
-
 }

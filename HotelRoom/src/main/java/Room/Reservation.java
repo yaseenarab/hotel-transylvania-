@@ -66,6 +66,4 @@ public class Reservation {
     public Date getEndDate() { return this.endDate; }
     public BigDecimal getCost() { return this.cost; }
     public void setCost(double cost) {this.cost = new BigDecimal(""+cost); }
-
-
 }

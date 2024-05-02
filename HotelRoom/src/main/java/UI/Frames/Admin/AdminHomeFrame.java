@@ -3,30 +3,26 @@ package UI.Frames.Admin;
 
 import AccountService.Admin;
 import Central.CentralProfiles;
-import Central.CentralReservations;
 import Central.CentralRoom;
 import UI.Frames.Employee.EmployeeRegistrationFrame;
-import UI.Frames.Employee.EmployeeHomeFrame;
+import UI.Panels.UpdateRoomsPanel;
 import UI.Frames.LoginFrame;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
+@SuppressWarnings("serial")
 public class AdminHomeFrame extends JFrame {
     private Admin admin;
     public CardLayout cl;
-    public JPanel container, homePanel;
+    public JPanel container, homePanel, updateRoomPanel;
     private JLabel welcomeLabel;
     private GridBagConstraints gbc;
     private JButton processCheckBtn, roomStatusBtn, reservationStatusBtn,
             billingBtn, LogoutBtn, createAccountBtn, resetAccountPasswordBtn,
             initBtn;
-    private static EmployeeHomeFrame employeeFrame;
 
     public AdminHomeFrame(String username, String password) throws IllegalArgumentException {
         this.admin = CentralProfiles.getAdmin(username, password);
@@ -56,72 +52,28 @@ public class AdminHomeFrame extends JFrame {
                 JOptionPane.showMessageDialog(container, "Not implemented yet");
             }
         });
-
-        //TODO: Add edit functionality
         // Opens new frame that displays room status
         roomStatusBtn = new JButton("Rooms Status");
         roomStatusBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                JFrame tableFrame = new JFrame();
-                JPanel tablePanel= new JPanel();
-
-                String[] columnNames = {"Rm #", "Rm Typ", "Qual Lvl", "Rm Stat", "Bd Typ", "Smokng"};
-                DefaultTableModel roomAvailModel = new DefaultTableModel();
-                for(String name : columnNames) {
-                    roomAvailModel.addColumn(name);
+            	try {                   
+                    updateRoomPanel = new UpdateRoomsPanel(container, cl);
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
                 }
-
-
-                JTable availRooms = new JTable(roomAvailModel);
-                tableFrame.getContentPane().add(new JScrollPane(availRooms));
-                availRooms.setFillsViewportHeight(true);
-
-                tablePanel.setLayout(new BorderLayout());
-                tableFrame.setSize(500,500);
-                tableFrame.setVisible(true);
+                container.add(updateRoomPanel, "Rooms");
+                container.revalidate();
+                cl.show(container, "Rooms");
             }
         });
-
-        //TODO: Add edit functionality
+        
         // Opens new frame that displays reservations
         reservationStatusBtn = new JButton("Reservations");
         reservationStatusBtn.addActionListener(new ActionListener() {
             // Load reserve room panel into frame
-            public void actionPerformed(ActionEvent e) {
-                JFrame tableFrame = new JFrame();
-                JPanel tablePanel= new JPanel();
-
-                String[] columnNames = {"Rm #", "Guest", "Start Date", "End Date"};
-                DefaultTableModel reservationModel = new DefaultTableModel();
-                for(String name : columnNames) {
-                    reservationModel.addColumn(name);
-                }
-
-                try {
-                    ResultSet res = CentralReservations.getReservaions();
-
-                    while(res.next()) {
-
-                        String[] split =  new String[4];
-
-                        split[0]= res.getInt("roomnumber") +"";
-                        split[1]= res.getString("username") +"";
-                        split[2]= res.getString("startdate") +"";
-                        split[3]= res.getString("enddate") +"";
-
-                        reservationModel.addRow(split);
-
-                    }
-                } catch (SQLException ex) {
-                    throw new RuntimeException(ex);
-                }
-                JTable availRooms = new JTable(reservationModel);
-                tableFrame.getContentPane().add(new JScrollPane(availRooms));
-                availRooms.setFillsViewportHeight(true);
-
-                tablePanel.setLayout(new BorderLayout());
-                tableFrame.setSize(500,500);
-                tableFrame.setVisible(true);
+        	public void actionPerformed(ActionEvent e) {
+                JFrame reservationFrame = new updateReservationsFrame();
+                reservationFrame.setVisible(true);
             }
         });
 
@@ -131,9 +83,8 @@ public class AdminHomeFrame extends JFrame {
         billingBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String guestUsername = JOptionPane.showInputDialog("Enter the guest's username");
-                String accountID = getAccountIDFromUsername(guestUsername);
 
-                if (accountID != null) {
+                if (CentralProfiles.guestisIn(guestUsername)) {
                     JOptionPane.showMessageDialog(container, guestUsername + ": some balance", "Balance", JOptionPane.PLAIN_MESSAGE);
                 } else {
                     JOptionPane.showMessageDialog(container, "No account matching that username could be found");
@@ -150,31 +101,40 @@ public class AdminHomeFrame extends JFrame {
                 registrationFrame.setVisible(true);
             }
         });
-
-        //TODO: Reset password in database, not just in Arlow
         // Resets the password of a given guest to the default "password"
         resetAccountPasswordBtn = new JButton("Reset User Password");
         resetAccountPasswordBtn.addActionListener(new ActionListener() {
             // Load reserve room panel into frame
             public void actionPerformed(ActionEvent e) {
                 String accountUsername = JOptionPane.showInputDialog("Enter the username whose password you would like to reset");
-                String accountID = getAccountIDFromUsername(accountUsername);
-
-                if (accountID != null) {
-                    try {
-                        if (JOptionPane.showConfirmDialog(container, "Are you sure you want to reset " + accountUsername + "'s password?", "Confirm Password Reset", JOptionPane.YES_NO_OPTION) == 0) {
-                            //Doesn't change password in csv, didn't want to waste time figuring that out when we're using a database anyway -C
-                            //Person.Arlow.resetPassword(accountID);
-                            JOptionPane.showMessageDialog(container, "Password reset for " + accountUsername);
-                        }  else {
-                            JOptionPane.showMessageDialog(container, "Password was not reset");
-                        }
-                    } catch (Exception e1) {
-                        System.out.println("Unable to reset account password");
-                        e1.printStackTrace();
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(container, "No account matching that username could be found");
+                try {
+	                if (CentralProfiles.AdminisIn(accountUsername)) {
+	                	if (JOptionPane.showConfirmDialog(container, "Are you sure you want to reset " + accountUsername + "'s password?", "Confirm Password Reset", JOptionPane.YES_NO_OPTION) == 0) {
+	                		CentralProfiles.resetAdminPassword(accountUsername);
+	                		JOptionPane.showMessageDialog(container, "Password reset for " + accountUsername);
+	                	}  else {
+	                		JOptionPane.showMessageDialog(container, "Password was not reset");
+	                	}
+	                } else if (CentralProfiles.EmployeeisIn(accountUsername)) {
+	                	if (JOptionPane.showConfirmDialog(container, "Are you sure you want to reset " + accountUsername + "'s password?", "Confirm Password Reset", JOptionPane.YES_NO_OPTION) == 0) {
+	                		CentralProfiles.resetEmployeePassword(accountUsername);
+	                		JOptionPane.showMessageDialog(container, "Password reset for " + accountUsername);
+	                	}  else {
+	                		JOptionPane.showMessageDialog(container, "Password was not reset");
+	                	}
+	                } else if (CentralProfiles.guestisIn(accountUsername)) {
+	                	if (JOptionPane.showConfirmDialog(container, "Are you sure you want to reset " + accountUsername + "'s password?", "Confirm Password Reset", JOptionPane.YES_NO_OPTION) == 0) {
+	                		CentralProfiles.resetGuestPassword(accountUsername);
+	                		JOptionPane.showMessageDialog(container, "Password reset for " + accountUsername);
+	                	}  else {
+	                		JOptionPane.showMessageDialog(container, "Password was not reset");
+	                	}
+	                } else {
+	                	JOptionPane.showMessageDialog(container, "No account matching that username could be found");
+	                }
+                } catch(Exception e1) {
+                    System.out.println("Unable to reset account password");
+                    e1.printStackTrace();
                 }
             }
         });
@@ -235,11 +195,6 @@ public class AdminHomeFrame extends JFrame {
         add(container);
         cl.show(container, "Home");
         setVisible(true);
-    }
-
-    private static String getAccountIDFromUsername(String accountUsername) {
-
-        return CentralProfiles.getGuestID(accountUsername);
     }
 }
 

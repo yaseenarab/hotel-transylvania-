@@ -8,7 +8,6 @@ import AccountService.Guest;
 //import Hotel.Databases.EmployeeDatabase;
 //import Hotel.Databases.GuestDatabase;
 import LoggerPackage.MyLogger;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,7 +16,6 @@ import java.util.logging.Level;
 
 public class CentralProfiles {
     private static final Arlow ARLOW = new Arlow();
-
 
 
     public static Guest getGuest(String username, String password) {
@@ -38,10 +36,7 @@ public class CentralProfiles {
                 String email = res.getString("email");
                 String phonenumber = res.getString("phonenumber");
                 guest = new Guest(guestId,firstName,lastName,email,phonenumber,username,password);
-
             }
-
-
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -50,7 +45,6 @@ public class CentralProfiles {
         }
         return guest;
     }
-
 
 
 
@@ -84,8 +78,6 @@ public class CentralProfiles {
         String SQL = null;
         Connection con = null;
         try{
-
-
             if(type.equals("Guest")){
                 con = CentralDatabase.getConGuestProfileDataBase();
                 SQL = "Select * from PersonProfiles where Username = '" + username+"' And password = '" + password +"'";
@@ -119,10 +111,8 @@ public class CentralProfiles {
         return false;
     }
     public static Boolean guestisIn(String username) {
-
         Guest guest = null;
         try{
-
             Connection con = CentralDatabase.getConGuestProfileDataBase();
             Statement stmt = con.createStatement();
 
@@ -141,7 +131,6 @@ public class CentralProfiles {
 
         Guest guest = null;
         try{
-
             Connection con = CentralDatabase.getConEmployeeProfileDataBase();
             Statement stmt = con.createStatement();
 
@@ -159,7 +148,6 @@ public class CentralProfiles {
                                           String email, String phoneNumber,
                                           String username, String password ) {
         try {
-
             Connection con = CentralDatabase.getConGuestProfileDataBase();
             Statement stmt = con.createStatement();
             ResultSet res = stmt.executeQuery("SELECT * FROM personprofiles WHERE personid=(SELECT max(Personid) FROM Personprofiles)");
@@ -187,16 +175,13 @@ public class CentralProfiles {
             return null;
         }
     }
-
-
-
+    
     public static Employee getEmployee(String username, String password){
         Employee employee = null;
         try {
-
             Connection con = CentralDatabase.getConGuestProfileDataBase();
             Statement stmt = con.createStatement();
-            ResultSet res = stmt.executeQuery("SELECT * FROM personprofiles WHERE personid=(SELECT max(Personid) FROM Personprofiles where personId LiKE '%TVEI%')");
+            ResultSet res = stmt.executeQuery("SELECT * FROM PersonProfiles WHERE personid=(SELECT max(Personid) FROM Personprofiles where personId LiKE '%TVEI%')");
 
 
             while(res.next()){
@@ -244,8 +229,6 @@ public class CentralProfiles {
                 System.out.println(res.getString("Personid"));
 
             }
-
-
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } catch (Exception e) {
@@ -253,6 +236,7 @@ public class CentralProfiles {
         }
         return admin;
     }
+    
     public static String makeEmployeeProfile(String firstName, String lastName,
                                              String email, String phoneNumber,
                                              String username, String password ) {
@@ -330,6 +314,96 @@ public class CentralProfiles {
                     phoneNumber + "," + username + "," + password);
             return null;
         }
+    }
 
+    
+    public static boolean resetGuestPassword(String username) {
+	    if (guestisIn(username)) {
+    		try {
+	            Connection con = CentralDatabase.getConGuestProfileDataBase();
+	            Statement stmt = con.createStatement();
+	            ResultSet res = stmt.executeQuery("UPDATE PersonProfiles SET password='password' WHERE username = " + username + " RETURNING personid, username, password");
+	
+	
+	            while(res.next()){
+	
+	                String guestid = res.getString("personid");
+	                String guestUsername = res.getString("firstname");
+	                String password = res.getString("lastname");
+	                
+	                if (guestUsername.equals(username) && password.equals("password")) {
+	                	System.out.println("Reset " + guestid + ": " + guestUsername + " password");
+	                	return true;
+	                }
+	
+	            }
+	        } catch (SQLException e) {
+	            throw new RuntimeException(e);
+	        } catch (Exception e) {
+	            throw new RuntimeException(e);
+	        }
+	    }
+    	
+    	return false;
+    }
+    
+    public static boolean resetEmployeePassword(String username) {
+	    if (EmployeeisIn(username)) {
+    		try {
+	            Connection con = CentralDatabase.getConEmployeeProfileDataBase();
+	            Statement stmt = con.createStatement();
+	            ResultSet res = stmt.executeQuery("UPDATE PersonProfiles SET password='password' WHERE username = " + username + " RETURNING personid, username, password");
+	
+	
+	            while(res.next()){
+	
+	                String employeeid = res.getString("personid");
+	                String employeeUsername = res.getString("firstname");
+	                String password = res.getString("lastname");
+	                
+	                if (employeeUsername.equals(username) && password.equals("password")) {
+	                	System.out.println("Reset " + employeeid + ": " + employeeUsername + " password");
+	                	return true;
+	                }
+	
+	            }
+	        } catch (SQLException e) {
+	            throw new RuntimeException(e);
+	        } catch (Exception e) {
+	            throw new RuntimeException(e);
+	        }
+	    }
+    	
+    	return false;
+    }
+    
+    public static boolean resetAdminPassword(String username) {
+    	if (AdminisIn(username)) {
+	    	try {
+	            Connection con = CentralDatabase.getConGuestProfileDataBase();
+	            Statement stmt = con.createStatement();
+	            ResultSet res = stmt.executeQuery("UPDATE PersonProfiles SET password='password' WHERE username = " + username + " RETURNING personid, username, password");
+	
+	
+	            while(res.next()){
+	
+	                String adminid = res.getString("personid");
+	                String adminUsername = res.getString("firstname");
+	                String password = res.getString("lastname");
+	                
+	                if (adminUsername.equals(username) && password.equals("password")) {
+	                	System.out.println("Reset " + adminid + ": " + adminUsername + " password");
+	                	return true;
+	                }
+	
+	            }
+	        } catch (SQLException e) {
+	            throw new RuntimeException(e);
+	        } catch (Exception e) {
+	            throw new RuntimeException(e);
+	        }
+    	}
+    	
+    	return false;
     }
 }

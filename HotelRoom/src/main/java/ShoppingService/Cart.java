@@ -22,7 +22,6 @@ public class Cart {
      */
 
     // EDGE CASE: User has item in cart that is no longer in Catalogue
-
     /**
      * Container for ItemSpecs in Cart
      */
@@ -35,7 +34,6 @@ public class Cart {
     }
 
     public Integer remove(ItemSpec i) { return items.remove(i); }
-
     /**
      * @return Integer representing total quantity of items
      */
@@ -44,6 +42,7 @@ public class Cart {
     }
 
     /**
+<<<<<<< HEAD
      * Completely removes all items in the cart
      */
     public void removeAllItems() {
@@ -51,6 +50,8 @@ public class Cart {
     }
 
     /**
+=======
+>>>>>>> editRooms
      * Get quantity of specified item if it is in the Cart
      *
      * @param i ItemSpec to find quantity of

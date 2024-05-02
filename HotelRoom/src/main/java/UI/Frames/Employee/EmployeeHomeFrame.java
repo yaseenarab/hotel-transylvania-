@@ -3,24 +3,22 @@ package UI.Frames.Employee;
 
 import AccountService.Employee;
 import Central.CentralProfiles;
-import Central.CentralReservations;
 import UI.Frames.LoginFrame;
+import UI.Frames.Admin.updateReservationsFrame;
+import UI.Panels.UpdateRoomsPanel;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
+@SuppressWarnings("serial")
 public class EmployeeHomeFrame extends JFrame {
     private Employee employee;
     public CardLayout cl;
     public JPanel container;
     private JPanel homePanel;
-    private JPanel reservePanel;
-    private JPanel editPanel;
+    private JPanel updateRoomPanel;
     private JLabel welcomeLabel;
     private GridBagConstraints gbc;
     private JButton processCheckBtn;
@@ -28,8 +26,6 @@ public class EmployeeHomeFrame extends JFrame {
     private JButton reservationStatusBtn;
     private JButton billingBtn;
     private JButton LogoutBtn;
-    private JButton createAccountBtn;
-    private JButton resetAccountPasswordBtn;
 
     public EmployeeHomeFrame(String username, String password) throws IllegalArgumentException {
         this.employee = CentralProfiles.getEmployee(username, password);
@@ -59,77 +55,29 @@ public class EmployeeHomeFrame extends JFrame {
                 JOptionPane.showMessageDialog(container, "Not implemented yet");
             }
         });
-
-        //TODO: Add edit functionality
-        // Opens new frame that displays room status
+        
+     // Opens new frame that displays room status
         roomStatusBtn = new JButton("Rooms Status");
         roomStatusBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                try {
-                    //Reservations reservations = new Reservations();
-                } catch (Exception e1) {
-                    System.out.println("Exception caught in Room Status");
+            	try {                   
+                    updateRoomPanel = new UpdateRoomsPanel(container, cl);
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
                 }
-                JFrame tableFrame = new JFrame();
-                JPanel tablePanel= new JPanel();
-
-                String[] columnNames = {"Rm #", "Rm Typ", "Qual Lvl", "Rm Stat", "Bd Typ", "Smokng"};
-                DefaultTableModel roomAvailModel = new DefaultTableModel();
-                for(String name : columnNames) {
-                    roomAvailModel.addColumn(name);
-                }
-
-
-                JTable availRooms = new JTable(roomAvailModel);
-                tableFrame.getContentPane().add(new JScrollPane(availRooms));
-                availRooms.setFillsViewportHeight(true);
-
-                tablePanel.setLayout(new BorderLayout());
-                tableFrame.setSize(500,500);
-                tableFrame.setVisible(true);
+                container.add(updateRoomPanel, "Rooms");
+                container.revalidate();
+                cl.show(container, "Rooms");
             }
         });
-
-        //TODO: Add edit functionality
+        
         // Opens new frame that displays reservations
         reservationStatusBtn = new JButton("Reservations");
         reservationStatusBtn.addActionListener(new ActionListener() {
             // Load reserve room panel into frame
-            public void actionPerformed(ActionEvent e) {
-                JFrame tableFrame = new JFrame();
-                JPanel tablePanel= new JPanel();
-
-                String[] columnNames = {"Rm #", "Guest", "Start Date", "End Date"};
-                DefaultTableModel reservationModel = new DefaultTableModel();
-                for(String name : columnNames) {
-                    reservationModel.addColumn(name);
-                }
-
-                try {
-                    ResultSet res = CentralReservations.getReservaions();
-
-                    while(res.next()) {
-
-                        String[] split =  new String[4];
-
-                        split[0]= res.getInt("roomnumber") +"";
-                        split[1]= res.getString("username") +"";
-                        split[2]= res.getString("startdate") +"";
-                        split[3]= res.getString("enddate") +"";
-
-                        reservationModel.addRow(split);
-
-                    }
-                } catch (SQLException ex) {
-                    throw new RuntimeException(ex);
-                }
-                JTable availRooms = new JTable(reservationModel);
-                tableFrame.getContentPane().add(new JScrollPane(availRooms));
-                availRooms.setFillsViewportHeight(true);
-
-                tablePanel.setLayout(new BorderLayout());
-                tableFrame.setSize(500,500);
-                tableFrame.setVisible(true);
+        	public void actionPerformed(ActionEvent e) {
+                JFrame reservationFrame = new updateReservationsFrame();
+                reservationFrame.setVisible(true);
             }
         });
 
@@ -139,38 +87,9 @@ public class EmployeeHomeFrame extends JFrame {
         billingBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String guestUsername = JOptionPane.showInputDialog("Enter the guest's username");
-                String accountID = getAccountIDFromUsername(guestUsername);
 
-                if (accountID != null) {
+                if (CentralProfiles.guestisIn(guestUsername)) {
                     JOptionPane.showMessageDialog(container, guestUsername + ": some balance", "Balance", JOptionPane.PLAIN_MESSAGE);
-                } else {
-                    JOptionPane.showMessageDialog(container, "No account matching that username could be found");
-                }
-            }
-        });
-
-        //TODO: Reset password in database, not just in Arlow
-        // Resets the password of a given guest to the default "password"
-        resetAccountPasswordBtn = new JButton("Reset User Password");
-        resetAccountPasswordBtn.addActionListener(new ActionListener() {
-            // Load reserve room panel into frame
-            public void actionPerformed(ActionEvent e) {
-                String accountUsername = JOptionPane.showInputDialog("Enter the username whose password you would like to reset");
-                String accountID = getAccountIDFromUsername(accountUsername);
-
-                if (accountID != null) {
-                    try {
-                        if (JOptionPane.showConfirmDialog(container, "Are you sure you want to reset " + accountUsername + "'s password?", "Confirm Password Reset", JOptionPane.YES_NO_OPTION) == 0) {
-                            //Doesn't change password in csv, didn't want to waste time figuring that out when we're using a database anyway -C
-                            //Person.Arlow.resetPassword(accountID);
-                            JOptionPane.showMessageDialog(container, "Password reset for " + accountUsername);
-                        }  else {
-                            JOptionPane.showMessageDialog(container, "Password was not reset");
-                        }
-                    } catch (Exception e1) {
-                        System.out.println("Unable to reset account password");
-                        e1.printStackTrace();
-                    }
                 } else {
                     JOptionPane.showMessageDialog(container, "No account matching that username could be found");
                 }
@@ -203,12 +122,6 @@ public class EmployeeHomeFrame extends JFrame {
         ++gbc.gridx;
         buttons.add(billingBtn, gbc);
         ++gbc.gridx;
-        if (employee.getEmployeeID().contains("TVAI")) {
-            buttons.add(createAccountBtn, gbc);
-            ++gbc.gridx;
-            buttons.add(resetAccountPasswordBtn, gbc);
-            ++gbc.gridx;
-        }
         buttons.add(LogoutBtn, gbc);
 
         // Reusing GridBagConstraints for layout of homePanel
@@ -220,10 +133,6 @@ public class EmployeeHomeFrame extends JFrame {
         add(container);
         cl.show(container, "Home");
         setVisible(true);
-    }
-
-    private static String getAccountIDFromUsername(String accountUsername) {
-        return CentralProfiles.getGuestID(accountUsername);
     }
 }
 

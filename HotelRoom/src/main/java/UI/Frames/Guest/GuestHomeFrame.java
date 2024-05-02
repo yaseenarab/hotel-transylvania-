@@ -56,7 +56,7 @@ public class GuestHomeFrame extends JFrame {
         welcomeLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
         // Updates frame to EditReservationPanel
-        EditReservationBtn = new JButton("Edit Reservation");
+        EditReservationBtn = new JButton("Edit Reservations");
         EditReservationBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 JFrame editPanel = new EditReservationFrame(guest);
@@ -129,14 +129,5 @@ public class GuestHomeFrame extends JFrame {
         add(container);
         cl.show(container, "Home");
         setVisible(true);
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                GuestHomeFrame GHF = new GuestHomeFrame("username", "password");
-                GHF.setVisible(true);
-            }
-        });
     }
 }

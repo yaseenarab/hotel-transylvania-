@@ -3,7 +3,6 @@ package UI.Frames.Guest;
 
 import Central.CentralProfiles;
 
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -68,10 +67,6 @@ public class GuestRegistrationFrame extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
-
-
-
         if (e.getSource() == registerButton) {
 
             boolean skip = false;
@@ -81,7 +76,6 @@ public class GuestRegistrationFrame extends JFrame implements ActionListener {
             String phoneNumber = phoneField.getText();
             String username = usernameField.getText();
             String password = passwordField.getText();
-
             if(!emailField.getText().contains("@") || !emailField.getText().substring(emailField.getText().length()-4, emailField.getText().length()).equals(".com")){
                 JOptionPane.showMessageDialog(this, "Please enter email correctly with the @ and .com and the end");
                 skip = true;

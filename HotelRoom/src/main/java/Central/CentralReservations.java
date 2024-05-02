@@ -128,8 +128,6 @@ public class CentralReservations {
         return oneNightStayMultiplier;
     }
 
-
-
     public static void exectueSQL(String SQL, Statement stmt){
 
         try {
@@ -139,7 +137,6 @@ public class CentralReservations {
             throw new RuntimeException(e);
         }
     }
-
     public static void resetEditStatus(){
         nightsStayed = 0;
     }
@@ -148,7 +145,6 @@ public class CentralReservations {
     public static String displayAvailableRooms(String hotelType, String roomType, String qualityLevel, String bedType, boolean smokingStatus, Date reservationStart, Date reservationEnd){
         String SQL = null;
         try {
-
             Connection conectRooms = CentralDatabase.getConHotelRoomsDatabase();
             Connection connectReservations = CentralDatabase.getConReservationDatabase();
             Statement roomsStatement = conectRooms.createStatement();
@@ -199,10 +195,7 @@ public class CentralReservations {
                 SQL += " And BedType = '" + bedType+"'";
             }
 
-
-
             //reservationsStatement.executeQuery();
-
 
             if(!smokingStatus){
                 SQL += " And SmokingAllowed = False ";
@@ -304,12 +297,19 @@ public class CentralReservations {
             Object[] obj = new Object[6];
 
 
+
             obj[0] = resultSet.getInt("RoomNumber")+"";
             obj[1] = resultSet.getString("Roomstatus");
             obj[2] = resultSet.getString("roomtype");
             obj[3] = resultSet.getString("bedtype");
             String quality = resultSet.getString("Qualitylevel");
-            obj[4] = quality.substring(0, quality.length()-5);
+            if (quality.toLowerCase().contains("level")) {
+            	obj[4] = quality.substring(0, quality.toLowerCase().indexOf("level"));
+            } else if (quality.toLowerCase().contains("executive") || quality.toLowerCase().contains("economy") || quality.toLowerCase().contains("comfort") || quality.toLowerCase().contains("business")) {
+            	obj[4] = quality;
+            } else {
+            	throw new SQLException("invalid data read");
+            }
             obj[5] = resultSet.getString("smokingallowed");
             model.insertRow(0, obj);
 

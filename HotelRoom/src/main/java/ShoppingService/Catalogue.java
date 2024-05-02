@@ -21,7 +21,6 @@ public class Catalogue {
      * Container for "catalogue" of items, can find by itemID & returns an ItemSpec
      */
     private static HashMap<Long, ItemSpec> items = new HashMap<>();
-
     static {
         CatalogueDTO.initCatalogue(items);
     }
@@ -32,7 +31,6 @@ public class Catalogue {
     private Catalogue() {
         throw new UnsupportedOperationException("Attempt at instantiating class Catalogue");
     }
-
     /**
      * Container for "trashbin" of items, can find by itemID & returns a HashSet of
      * all previous version of given ItemSpec

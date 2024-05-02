@@ -18,6 +18,7 @@ import java.util.logging.Logger;
  *
  * @author Rafe Loya
  */
+
 public class ShoppingItemPanel extends JPanel {
     private static final Logger SIP_Logger
             = Logger.getLogger(ShoppingMainPanel.class.getName());

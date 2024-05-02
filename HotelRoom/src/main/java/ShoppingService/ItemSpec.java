@@ -7,7 +7,11 @@ import static Utilities.Utilities.primes;
 import static java.lang.Math.abs;
 
 /**
+<<<<<<< HEAD
  * Class representing an item's specifications in-memory for the store's shopping system.
+=======
+ * Class representing an item's specifications for the store's shopping system.
+>>>>>>> editRooms
  *
  * @author Rafe Loya
  */
@@ -24,9 +28,7 @@ public class ItemSpec {
      * Name of the file in the .\resource associated with the item
      */
     private String imageURL;
-
     private Long quantity;
-
     /**
      * Default constructor
      */
@@ -53,6 +55,14 @@ public class ItemSpec {
         itemID = id;
         imageURL = url;
         quantity = q;
+    }
+    
+    public ItemSpec(String n, String d, BigDecimal p, Long id, String url) {
+        name = n;
+        description = d;
+        price = p;
+        itemID = id;
+        imageURL = url;
     }
 
     /**
@@ -98,11 +108,9 @@ public class ItemSpec {
     public String getImageURL() { return imageURL; }
 
     public void setImageURL(String i) { imageURL = i; }
-
     public Long getQuantity() { return quantity; }
 
     public void setQuantity(Long q) { quantity = q; }
-
     public int hashCode() {
         int result = 1;
 

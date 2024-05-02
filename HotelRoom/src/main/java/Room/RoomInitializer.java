@@ -4,11 +4,9 @@ import Enums.QualityLevel;
 import Enums.RoomSize;
 import Enums.RoomTheme;
 import LoggerPackage.MyLogger;
-
 import java.util.logging.Level;
 
 public class RoomInitializer implements RoomData {
-
     protected static Integer numFloors, roomsPerFloor, currRoomNumber;
     private static QualityLevel initQualityLevel;
     private static RoomSize initRoomSize;
@@ -93,6 +91,4 @@ public class RoomInitializer implements RoomData {
 
         return true;
     }
-
-
 }

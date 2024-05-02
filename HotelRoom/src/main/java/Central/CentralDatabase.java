@@ -52,11 +52,9 @@ public class CentralDatabase {
     public static Connection getConAdminProfileDataBase() {
         return conAdmin;
     }
-
     public static Connection getConCart() { return conCart; }
 
     public static Connection getConCatalogue() { return conCatalogue; }
-
     public static ResultSet getGuest(String username, String password) {
         ResultSet res = null;
         try {
@@ -64,6 +62,17 @@ public class CentralDatabase {
             Statement stmt = con.createStatement();
             res = stmt.executeQuery("SELECT * FROM personprofiles WHERE Username = '"
                     + username + "' And password = '" + password+"'");
+        } catch (Exception e) {}
+
+        return res;
+    }
+    public static ResultSet getGuest(String username) {
+        ResultSet res = null;
+        try {
+            Connection con = conGuest;
+            Statement stmt = con.createStatement();
+            res = stmt.executeQuery("SELECT * FROM personprofiles WHERE Username = '"
+                    + username + "'");
         } catch (Exception e) {}
 
         return res;
@@ -92,7 +101,6 @@ public class CentralDatabase {
 
         return rs;
     }
-
     public static void insertIntoPersonProfiles(String line)  {
         try {
             Statement stmt = conGuest.createStatement();
@@ -132,9 +140,23 @@ public class CentralDatabase {
             String [] split = line.split(",");
 
             int roomNum = Integer.parseInt(split[0]);
-            boolean smoking = Boolean.getBoolean(split[4]);
-            stmt.executeUpdate("insert into ROOMS(ROOMNUMBER, ROOMSTATUS, ROOMTYPE, QUALITYLEVEL, SMOKINGALLOWED) values(" + roomNum + ",'" + split[1] + "','"+ split[2]+ "','" + split[3] + "'," + smoking +")");
+            boolean smoking = Boolean.valueOf(split[5]);
+            stmt.executeUpdate("insert into ROOMS(ROOMNUMBER, ROOMSTATUS, ROOMTYPE, BEDTYPE, QUALITYLEVEL, SMOKINGALLOWED) values(" + roomNum + ",'" + split[1] + "','"+ split[2]+ "','" + split[3] + "','" + split[4] + "'," + smoking +")");
 
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public static void updateHotelRoomsData(String line) {
+        try {
+            Statement stmt = conHot.createStatement();
+            String [] split = line.split(",");
+
+            int roomNum = Integer.parseInt(split[0]);
+            boolean smoking = Boolean.valueOf(split[5]);
+            System.out.println(split[5]);
+            System.out.println(smoking);
+            stmt.executeUpdate("UPDATE ROOMS SET ROOMSTATUS = '" + split[1] + "', ROOMTYPE = '" + split[2] + "', BEDTYPE = '" + split[3] + "', QUALITYLEVEL = '" + split[4] + "', SMOKINGALLOWED = " + smoking + " WHERE ROOMNUMBER = " + roomNum);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

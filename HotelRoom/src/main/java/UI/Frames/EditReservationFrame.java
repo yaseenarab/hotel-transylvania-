@@ -39,13 +39,11 @@ public class EditReservationFrame extends JFrame implements ActionListener {
         // JTextArea for displaying reservations
        defaultPanel();
 
-
     }
 
     private void defaultPanel(){
         setSize(900, 500);
         // Initialize reservations ArrayList
-
         activeModel = new DefaultTableModel();
         futureModel = new DefaultTableModel();
         activeModel.addColumn("ReservationId");
@@ -85,8 +83,6 @@ public class EditReservationFrame extends JFrame implements ActionListener {
         tableColumnFuture.getColumn(2).setPreferredWidth(40);
         tableColumnFuture.getColumn(3).setPreferredWidth(40);
         giveReservaitons();
-
-
         futureReservations = new ArrayList<>();
         activeReservations = new ArrayList<>();
 
@@ -114,7 +110,7 @@ public class EditReservationFrame extends JFrame implements ActionListener {
                     try {
                         reserveRoomPanel = new ReserveRoomPanel(guest);
                         // Set the content pane of the frame to the ReserveRoomPanel
-                        JButton exitButton =reserveRoomPanel.getExitButton();
+                        JButton exitButton = reserveRoomPanel.getExitButton();
                         exitButton.addActionListener(ex -> exit(null, null));
                         setContentPane(reserveRoomPanel);
                         validate();
@@ -155,7 +151,6 @@ public class EditReservationFrame extends JFrame implements ActionListener {
                                 Connection con = DriverManager.getConnection("jdbc:derby:ReservationsData;");
                                 Statement stmt = con.createStatement();
                                 String saveData = "Select * from Reservations where ReservationId = '"+reservationID + "'";
-
                                 ResultSet res = stmt.executeQuery(saveData);
 
                                 Date currentDate = new Date();
@@ -164,8 +159,6 @@ public class EditReservationFrame extends JFrame implements ActionListener {
                                 String bedType;
                                 String qualityLevel;
                                 boolean smoking;
-
-
                                 BigDecimal startToNow = null;
                                 BigDecimal startToEnd= null;
                                 String endDate = null;
@@ -248,19 +241,12 @@ public class EditReservationFrame extends JFrame implements ActionListener {
                                     setContentPane(reserveRoomPanel2);
                                     validate();
                                     repaint();
-
-
-
                                     JButton exitButton =  reserveRoomPanel2.getExitButton();
                                     String finalSaveData = saveData;
                                     Statement finalStmt = stmt;
 
 
                                     exitButton.addActionListener(ex -> exit(finalSaveData, finalStmt));
-
-
-
-
                                     JButton reserveButton = reserveRoomPanel2.getReserveButton();
                                     for(ActionListener al : reserveButton.getActionListeners()){
                                         reserveButton.removeActionListener(al);
@@ -282,13 +268,10 @@ public class EditReservationFrame extends JFrame implements ActionListener {
                                         public void windowClosing(WindowEvent e)
                                         {
                                             System.out.println("Closed");
-
                                             exit(finalSaveData, finalStmt);
                                             e.getWindow().dispose();
                                         }
                                     });
-
-
                                     reserveButton.addActionListener(ex -> {
                                        resID[0] = reserveRoomPanel2.performReservation();
                                     });
@@ -382,7 +365,6 @@ public class EditReservationFrame extends JFrame implements ActionListener {
                                 if (rowsAffected > 0) {
                                     // Remove the reservation from the list
                                     if(futureSelected){
-
                                         ((DefaultTableModel)futureReservationsTable.getModel()).removeRow(index);
                                     }
                                     else{
@@ -449,7 +431,6 @@ public class EditReservationFrame extends JFrame implements ActionListener {
         repaint();
     }
 
-
     private void deselectFuture(ListSelectionEvent listSelectionEvent) {
 
         futureReservationsTable.getSelectionModel().clearSelection();
@@ -466,7 +447,6 @@ public class EditReservationFrame extends JFrame implements ActionListener {
     private void finalizeEdit(String s, String finalOriginalResID, double firstHalfCost, BigDecimal rest, boolean checkedIn) {
         System.out.println("FIRST HALF COST: "+ firstHalfCost);
         try {
-
             Connection con = CentralDatabase.getConReservationDatabase();
             Statement stmt = con.createStatement();
 
@@ -528,8 +508,6 @@ public class EditReservationFrame extends JFrame implements ActionListener {
             Statement stmt = con.createStatement();
             ResultSet res = stmt.executeQuery("SELECT * FROM Reservations where Username = '" + guest.getUsername()+"'");
 
-
-
             while(res.next()){
                 System.out.println(res.getString("Roomnumber"));
 
@@ -578,7 +556,6 @@ public class EditReservationFrame extends JFrame implements ActionListener {
         }
         for (String reservation : activeReservations) {
             //if(){
-           // activeReservationsTextArea.append(reservation + "\n");
             //}
             // Append each reservation to the text area
         }

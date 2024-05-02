@@ -77,6 +77,7 @@ public class Card {
             throw new Exception();
         }
     }
+    
     public void chargeCard (Double amount) throws Exception {
         try {
             if(amount == null) {

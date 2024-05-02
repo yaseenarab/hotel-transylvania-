@@ -11,6 +11,7 @@ public class Arlow {
         if (guestIDNum >= 2147483647) {
             guestIDNum = 1000000000;
         }
+
         guestIDNum++;
         return guestID + guestIDNum;
     }
@@ -20,10 +21,10 @@ public class Arlow {
         if (employeeIDNum >= 2147483647) {
             employeeIDNum = 1000000000;
         }
+        
         employeeIDNum++;
         return employeeID + employeeIDNum;
     }
-
     public static String getProfileType(String profileID) {
         String stringIdentifier = profileID.substring(0,4);
         if (stringIdentifier.contains(GUEST_ID)) {

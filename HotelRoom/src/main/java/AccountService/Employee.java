@@ -18,6 +18,7 @@ public class Employee extends Person {
             throw new Exception();
         }
     }
+
     public void setEmployeeID(String employeeID) throws Exception {
         if(employeeID == null) {
             MyLogger.logger.log(Level.SEVERE, "Error in Employee.setEmployeeID: employeeID is null");

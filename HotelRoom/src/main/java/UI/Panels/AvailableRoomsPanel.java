@@ -67,15 +67,6 @@ public class AvailableRoomsPanel extends JPanel {
         columnModel.getColumn(1).setPreferredWidth(65);
         columnModel.getColumn(2).setPreferredWidth(60);
         columnModel.getColumn(3).setPreferredWidth(30);
-
-        //columnModel.getColumn(4).setPreferredWidth(100);
-
-
-        //columnModel.getColumn(5).setPreferredWidth(120);
-
-
-
-
         table.setAutoCreateRowSorter(true);
 
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -83,9 +74,6 @@ public class AvailableRoomsPanel extends JPanel {
 
         scrollPane = new JScrollPane(table);
         scrollPane.setVisible(true);
-        //scrollPane.setSize(new Dimension(480, 100));
-
-        //
 
         add(scrollPane,BorderLayout.CENTER);
         add(textPanel,BorderLayout.SOUTH);
@@ -100,7 +88,6 @@ public class AvailableRoomsPanel extends JPanel {
     public boolean roomIsSelected() {
 
         return table.getSelectedRow() > -1;
-
     }
 
     public void updateTable(String SQL, Date start, Date end){
@@ -136,7 +123,6 @@ public class AvailableRoomsPanel extends JPanel {
                 validDate.setText("<html>Please Enter Valid Date</html>");
             }
             //scrollPane.setVisible(false);
-
         }
 
     }

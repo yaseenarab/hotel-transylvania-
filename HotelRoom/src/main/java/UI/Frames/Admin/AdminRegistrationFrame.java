@@ -3,8 +3,6 @@ package UI.Frames.Admin;
 import AccountService.Person;
 import Central.CentralProfiles;
 
-
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
