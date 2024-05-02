@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal" created-in="IU-233.15026.9">
+    <data-source name="CatalogueDatabase" uuid="6ad89d88-2787-41a7-b896-784ba974fa19">
+      <database-info product="Apache Derby" version="10.16.1.1 - (1901046)" jdbc-version="4.2" driver-name="Apache Derby Embedded JDBC Driver" driver-version="10.16.1.1 - (1901046)" dbms="DERBY" exact-version="10.16.1.1" exact-driver-version="10.16">
+        <identifier-quote-string>&quot;</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="upper" quoted-identifiers="exact" />
+      <schema-mapping>
+        <introspection-scope>
+          <node kind="schema" qname="@" />
+        </introspection-scope>
+      </schema-mapping>
+    </data-source>
+    <data-source name="ReservationsData" uuid="a0d8a50a-8333-4323-bb62-b578e9cbab97">
+      <database-info product="Apache Derby" version="10.16.1.1 - (1901046)" jdbc-version="4.2" driver-name="Apache Derby Embedded JDBC Driver" driver-version="10.16.1.1 - (1901046)" dbms="DERBY" exact-version="10.16.1.1" exact-driver-version="10.16">
+        <identifier-quote-string>&quot;</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="upper" quoted-identifiers="exact" />
+      <schema-mapping>
+        <introspection-scope>
+          <node kind="schema" qname="@" />
+        </introspection-scope>
+      </schema-mapping>
+    </data-source>
+    <data-source name="CashieringData" uuid="69e6476b-08c0-4539-af89-dc98799e3928">
+      <database-info product="Apache Derby" version="10.16.1.1 - (1901046)" jdbc-version="4.2" driver-name="Apache Derby Embedded JDBC Driver" driver-version="10.16.1.1 - (1901046)" dbms="DERBY" exact-version="10.16.1.1" exact-driver-version="10.16">
+        <identifier-quote-string>&quot;</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="upper" quoted-identifiers="exact" />
+      <secret-storage>master_key</secret-storage>
+      <schema-mapping>
+        <introspection-scope>
+          <node kind="schema" qname="@" />
+        </introspection-scope>
+      </schema-mapping>
+    </data-source>
+    <data-source name="AdminProfilesData" uuid="e9b2a24a-bfba-4080-9e14-54fd84b4b650">
+      <database-info product="Apache Derby" version="10.16.1.1 - (1901046)" jdbc-version="4.2" driver-name="Apache Derby Embedded JDBC Driver" driver-version="10.16.1.1 - (1901046)" dbms="DERBY" exact-version="10.16.1.1" exact-driver-version="10.16">
+        <identifier-quote-string>&quot;</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="upper" quoted-identifiers="exact" />
+      <secret-storage>master_key</secret-storage>
+      <schema-mapping>
+        <introspection-scope>
+          <node kind="schema" qname="@" />
+        </introspection-scope>
+      </schema-mapping>
+    </data-source>
+    <data-source name="EmployeeProfilesData" uuid="01d22578-13c3-4e65-a820-c8741b126e1f">
+      <database-info product="Apache Derby" version="10.16.1.1 - (1901046)" jdbc-version="4.2" driver-name="Apache Derby Embedded JDBC Driver" driver-version="10.16.1.1 - (1901046)" dbms="DERBY" exact-version="10.16.1.1" exact-driver-version="10.16">
+        <identifier-quote-string>&quot;</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="upper" quoted-identifiers="exact" />
+      <secret-storage>master_key</secret-storage>
+      <schema-mapping>
+        <introspection-scope>
+          <node kind="schema" qname="@" />
+        </introspection-scope>
+      </schema-mapping>
+    </data-source>
+    <data-source name="HotelRoomsData" uuid="d30ff77a-0059-45a3-a38c-9cdb3657347b">
+      <database-info product="Apache Derby" version="10.16.1.1 - (1901046)" jdbc-version="4.2" driver-name="Apache Derby Embedded JDBC Driver" driver-version="10.16.1.1 - (1901046)" dbms="DERBY" exact-version="10.16.1.1" exact-driver-version="10.16">
+        <identifier-quote-string>&quot;</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="upper" quoted-identifiers="exact" />
+      <secret-storage>master_key</secret-storage>
+      <schema-mapping>
+        <introspection-scope>
+          <node kind="schema" qname="@" />
+        </introspection-scope>
+      </schema-mapping>
+    </data-source>
+    <data-source name="PersonProfilesData" uuid="4d61745c-7bee-49f4-a77b-c1a91db2968f">
+      <database-info product="Apache Derby" version="10.16.1.1 - (1901046)" jdbc-version="4.2" driver-name="Apache Derby Embedded JDBC Driver" driver-version="10.16.1.1 - (1901046)" dbms="DERBY" exact-version="10.16.1.1" exact-driver-version="10.16">
+        <identifier-quote-string>&quot;</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="upper" quoted-identifiers="exact" />
+      <secret-storage>master_key</secret-storage>
+      <schema-mapping>
+        <introspection-scope>
+          <node kind="schema" qname="@" />
+        </introspection-scope>
+      </schema-mapping>
+    </data-source>
+    <data-source name="ShoppingCartData" uuid="ba3834df-513d-4544-b830-faa4e81507ec">
+      <database-info product="Apache Derby" version="10.16.1.1 - (1901046)" jdbc-version="4.2" driver-name="Apache Derby Embedded JDBC Driver" driver-version="10.16.1.1 - (1901046)" dbms="DERBY" exact-version="10.16.1.1" exact-driver-version="10.16">
+        <identifier-quote-string>&quot;</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="upper" quoted-identifiers="exact" />
+      <secret-storage>master_key</secret-storage>
+      <schema-mapping>
+        <introspection-scope>
+          <node kind="schema" qname="@" />
+        </introspection-scope>
+      </schema-mapping>
+    </data-source>
+  </component>
+</project>
