@@ -330,4 +330,20 @@ public class CentralReservations {
 
 
     }
+    
+    public static void updateCost(String resID, double addedCost) {
+        Connection con = CentralDatabase.getConReservationDatabase();
+        try {
+
+            PreparedStatement pstmt = con.prepareStatement("UPDATE Reservations Set cost = cost +" +  addedCost  + " where  reservationid = '" + resID + "'");
+            pstmt.executeUpdate();
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+
+
+    }
 }

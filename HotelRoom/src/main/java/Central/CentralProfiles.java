@@ -304,7 +304,7 @@ public class CentralProfiles {
             }
 
             String employeeId = Arlow.generateEmployeeID(idNum);
-            stmt.executeUpdate("INSERT INTO PersonProfiles(PersonId,firstname,lastname,email,Phonenumber,Username,password) values ('"+ employeeId + "','"+firstName + "','" +lastName + "','" + email + "','" + phoneNumber + "','" + username + "','" + password+ "')");
+            stmt.executeUpdate("INSERT INTO AdminProfiles(PersonId,firstname,lastname,email,Phonenumber,Username,password) values ('"+ employeeId + "','"+firstName + "','" +lastName + "','" + email + "','" + phoneNumber + "','" + username + "','" + password+ "')");
 
             return "employeeID";
         }
@@ -322,21 +322,13 @@ public class CentralProfiles {
     		try {
 	            Connection con = CentralDatabase.getConGuestProfileDataBase();
 	            Statement stmt = con.createStatement();
-	            ResultSet res = stmt.executeQuery("UPDATE PersonProfiles SET password='password' WHERE username = " + username + " RETURNING personid, username, password");
+	            int numAffected = stmt.executeUpdate("UPDATE PersonProfiles SET password='password' WHERE username = '" + username + "'");
 	
 	
-	            while(res.next()){
-	
-	                String guestid = res.getString("personid");
-	                String guestUsername = res.getString("firstname");
-	                String password = res.getString("lastname");
-	                
-	                if (guestUsername.equals(username) && password.equals("password")) {
-	                	System.out.println("Reset " + guestid + ": " + guestUsername + " password");
-	                	return true;
-	                }
-	
+	            if (numAffected > 0) {
+	            	return true;
 	            }
+	            return false;
 	        } catch (SQLException e) {
 	            throw new RuntimeException(e);
 	        } catch (Exception e) {

@@ -28,7 +28,7 @@ public class AdminHomeFrame extends JFrame {
         this.admin = CentralProfiles.getAdmin(username, password);
 
         setTitle("Hotel Transylvania");
-        setSize(new Dimension(1080 , 480));
+        setSize(new Dimension(1200 , 480));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null); // Center the frame on the screen
 

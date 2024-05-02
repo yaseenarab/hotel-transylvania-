@@ -23,6 +23,10 @@ public class LoginFrame extends JFrame implements ActionListener {
     private JButton loginButton, registerButton;
 
     public LoginFrame() {
+    	
+    	CentralProfiles.makeAdminProfile("Chris","Thompson","chris@ethompson.com","0987654321","ChrisT","password");
+
+    	
         setTitle("Login Page");
         setSize(400, 250);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

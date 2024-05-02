@@ -1,9 +1,14 @@
 package UI.Panels;
 
+import Central.CentralReservations;
+import UI.Frames.SelectActivereservationsFrame;
 import UI.ShoppingCartPanelHandler;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 // Panel to look at contents of cart and / or go to checkout
 
@@ -20,10 +25,27 @@ public class ShoppingCartPanel extends JPanel {
     private static JLabel subtotal;
 
     /**
+     * table showing the active reservations
+     */
+    private JTable table;
+
+    /**
+     * used to get the vlaue of its guest and checkout cost
+     */
+
+
+    /**
+     * Frame of table of active reservations
+     */
+    private SelectActivereservationsFrame activeReservations;
+
+
+    /**
      * Constructor initializing the ShoppingCartPanel inside ShoppingMainPanel
      *
      * @param shoppingPanel Main shopping panel, containing guest information
      */
+
     public ShoppingCartPanel(ShoppingMainPanel shoppingPanel) {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
@@ -48,6 +70,8 @@ public class ShoppingCartPanel extends JPanel {
 
         subtotal = new JLabel(ShoppingCartPanelHandler.getSubtotalAsString(shoppingPanel));
         subtotalAndCheckout.add(subtotal);
+
+
         gbc.gridx = 0;
         gbc.gridy++;
         JButton checkoutBtn = getCheckoutBtn(shoppingPanel);
@@ -71,12 +95,39 @@ public class ShoppingCartPanel extends JPanel {
             shoppingPanel.setSCOP(new ShoppingCheckoutPanel(shoppingPanel));
             shoppingPanel.getShoppingContent().add(shoppingPanel.getSCOP(), "ShoppingCheckout");
             shoppingPanel.getShoppingCL().show(shoppingPanel.getShoppingContent(), "ShoppingCheckout");
+
+            String cost = ShoppingCartPanelHandler.getSubtotalAsString(shoppingPanel);;
+            double addedCost = Double.parseDouble(cost.substring(1,cost.length()));
+
+            activeReservations = new SelectActivereservationsFrame(shoppingPanel,addedCost );
+            activeReservations.setVisible(true);
+
+            if(activeReservations.getAvailRooms().getModel().getRowCount() == 0){
+                activeReservations.dispatchEvent(new WindowEvent(activeReservations, WindowEvent.WINDOW_CLOSING));
+
+            }
+            activeReservations. addWindowListener(new WindowAdapter()
+            {
+                @Override
+                public void windowClosing(WindowEvent e)
+                {
+                    System.out.println("Closed");
+
+
+                    e.getWindow().dispose();
+                }
+            });
+
+
         });
         if (shoppingPanel.getGuest().getCart().getTotalItems() <= 0) {
             checkoutBtn.setEnabled(false);
         }
+
         return checkoutBtn;
     }
+
+
 
     /**
      * Creates a JPanel storing a label displaying the guest's name,

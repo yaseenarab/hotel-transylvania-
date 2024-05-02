@@ -2,42 +2,84 @@ package UI.Frames.Admin;
 
 import AccountService.Guest;
 import Central.CentralDatabase;
-import Central.CentralProfiles;
 import Central.CentralReservations;
 import Central.CentralRoom;
-import Utilities.DateProcessor;
 import UI.Panels.ReserveRoomPanel;
+import Utilities.*;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.event.*;
 import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class updateReservationsFrame extends JFrame implements ActionListener {
-	private JLabel futureLabel, activeLabel;
+    private JLabel futureLabel, activeLabel;
     private JTextField reservationTextField;
     private JButton addReservationButton, editReservationButton, cancelReservationButton, addOneMoreButton;
-    private JTextArea reservationsTextArea, activeReservationsTextArea; // Added JTextArea for displaying reservations
+    //private JTextArea reservationsTextArea, activeReservationsTextArea; // Added JTextArea for displaying reservations
     private Guest guest;
     private ReserveRoomPanel reserveRoomPanel2;
+    private JTable activeReservationsTable, futureReservationsTable;
+    private DefaultTableModel activeModel,futureModel;
 
     private ArrayList<String> futureReservations, activeReservations; // Store reservations for the user
 
     public updateReservationsFrame() {
+
+
         // JTextArea for displaying reservations
        defaultPanel();
+
     }
 
     private void defaultPanel(){
         setSize(900, 500);
         // Initialize reservations ArrayList
+        activeModel = new DefaultTableModel();
+        futureModel = new DefaultTableModel();
+        activeModel.addColumn("ReservationId");
+        activeModel.addColumn("RoomID");
+        activeModel.addColumn("Start Date");
+        activeModel.addColumn("End Date");
 
+        futureModel.addColumn("ReservationId");
+        futureModel.addColumn("RoomID");
+        futureModel.addColumn("Start Date");
+        futureModel.addColumn("End Date");
+
+
+        activeReservationsTable = new JTable(activeModel);
+        futureReservationsTable = new JTable(futureModel);
+        activeReservationsTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        futureReservationsTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+        activeReservationsTable.getSelectionModel().addListSelectionListener(this::deselectFuture);
+        futureReservationsTable.getSelectionModel().addListSelectionListener(this::deselectActive);
+
+        activeReservationsTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        futureReservationsTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
+
+        futureReservationsTable.setPreferredSize(new Dimension(450,250));
+        activeReservationsTable.setPreferredSize(new Dimension(432,250));
+
+
+        TableColumnModel tableColumnActive = activeReservationsTable.getColumnModel();
+        tableColumnActive.getColumn(1).setPreferredWidth(30);
+        tableColumnActive.getColumn(2).setPreferredWidth(40);
+        tableColumnActive.getColumn(3).setPreferredWidth(40);
+
+        TableColumnModel tableColumnFuture = futureReservationsTable.getColumnModel();
+        tableColumnFuture.getColumn(1).setPreferredWidth(30);
+        tableColumnFuture.getColumn(2).setPreferredWidth(40);
+        tableColumnFuture.getColumn(3).setPreferredWidth(40);
+        giveReservaitons();
         futureReservations = new ArrayList<>();
         activeReservations = new ArrayList<>();
 
@@ -59,7 +101,7 @@ public class updateReservationsFrame extends JFrame implements ActionListener {
         addReservationButton = new JButton("Add Reservation");
         addReservationButton.addActionListener( new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if (e.getSource() == addReservationButton) {
+            	if (e.getSource() == addReservationButton) {
                     // Create a new instance of ReserveRoomPanel passing the guest information
                     ReserveRoomPanel reserveRoomPanel;
                     try {
@@ -86,28 +128,33 @@ public class updateReservationsFrame extends JFrame implements ActionListener {
         editReservationButton = new JButton("Edit Reservation");
         editReservationButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String selectedReservation = reservationsTextArea.getSelectedText(); // Get the highlighted text
-                boolean futureSelected = !(selectedReservation == null);
+                JTable theTable = futureReservationsTable;
+                int selectedReservation = futureReservationsTable.getSelectedRow(); // Get the highlighted text
+
+                boolean futureSelected = (selectedReservation >-1);
                 if(!futureSelected){
-                    selectedReservation = activeReservationsTextArea.getSelectedText();
+
+                    selectedReservation = activeReservationsTable.getSelectedRow();
+                    theTable = activeReservationsTable;
                 }
 
-                if (selectedReservation != null && !selectedReservation.isEmpty()) {
-                    int index = futureSelected ? futureReservations.indexOf(selectedReservation) : activeReservations.indexOf(selectedReservation);
-                    if (index != -1) {
+
+                if (selectedReservation > -1) {
+                    int index = selectedReservation;//futureSelected ? futureReservationsTable.indexOf(selectedReservation) : activeReservations.indexOf(selectedReservation);
+                    if (index > -1) {
                         int response = JOptionPane.showConfirmDialog(updateReservationsFrame.this, "Are you sure you want to edit this reservation?", "Edit Reservation", JOptionPane.YES_NO_OPTION);
                         if (response == JOptionPane.YES_OPTION) {
                             try {
                                 // Parse the selected reservation string to extract room number and start date
-                                String[] parts = selectedReservation.split("\\|\\|");
-                                String roomNumber = parts[0].substring(parts[0].indexOf(":") + 1).trim();
-                                String startDate = parts[1].substring(parts[1].indexOf(":") + 1, parts[1].indexOf("End Date:")).trim();
+                                //String[] parts = selectedReservation.split("\\|\\|");
+                                Integer roomNumber = (Integer) theTable.getValueAt(selectedReservation,1);//parts[0].substring(parts[0].indexOf(":") + 1).trim();
+                                String startDate = (String)theTable.getValueAt(selectedReservation,2);//parts[1].substring(parts[1].indexOf(":") + 1, parts[1].indexOf("End Date:")).trim();
+                                String reservationID = (String)theTable.getValueAt(selectedReservation,0);
 
                                 // Delete the current reservation
-                                Connection con = CentralDatabase.getConReservationDatabase();
+                                Connection con = CentralDatabase.getConHotelRoomsDatabase();
                                 Statement stmt = con.createStatement();
-                                String saveData = "Select * from Reservations where RoomNumber = "+Integer.parseInt(roomNumber);
-
+                                String saveData = "Select * from Reservations where ReservationId = '"+reservationID + "'";
                                 ResultSet res = stmt.executeQuery(saveData);
 
                                 Date currentDate = new Date();
@@ -115,15 +162,15 @@ public class updateReservationsFrame extends JFrame implements ActionListener {
                                 String roomType;
                                 String bedType;
                                 String qualityLevel;
-
                                 boolean smoking;
                                 BigDecimal startToNow = null;
                                 BigDecimal startToEnd= null;
                                 String endDate = null;
                                 BigDecimal perNight = null;
                                 String originalResID = null;
+                                boolean checkedIn;
+                                Integer nightsStayed = 0;
                                 double cost = 0;
-                                
                                 String guestUsername = null;
 
 
@@ -138,36 +185,57 @@ public class updateReservationsFrame extends JFrame implements ActionListener {
                                     startToEnd = new BigDecimal(DateProcessor.differenceinDays(DateProcessor.stringToDate(startDate),DateProcessor.stringToDate(endDate)));
                                     perNight = CentralRoom.calculatorCost(res.getInt("roomNumber"));
                                     originalResID = res.getString("ReservationID");
-                                    guestUsername = res.getString("Username");
-                                    System.out.println(guestUsername);
+                                    checkedIn = res.getBoolean("checkedin");
+                                    nightsStayed = res.getInt("nightsstayed");
+                                    guestUsername = res.getString(guestUsername);
 
-                                    saveData = "INSERT INTO Reservations(Roomnumber, username,startDate,EndDate,ReservationId,cost) values(" + roomID +",'" + res.getString("Username") +"','"+ res.getString("StartDate") +"','"+ res.getString("EndDate") +"','"+ res.getString("ReservationId") +"',"+ res.getDouble("Cost") +")";
+                                    saveData = "INSERT INTO Reservations(Roomnumber, username,startDate,EndDate,ReservationId,cost,checkedin, nightsstayed) values(" + roomID +",'" + res.getString("Username") +"','"+ res.getString("StartDate") +"','"+ res.getString("EndDate") +"','"+ res.getString("ReservationId") +"',"+ res.getDouble("Cost") +"," +checkedIn + "," +nightsStayed +")";
+                                } else {
+                                    checkedIn = false;
                                 }
-                                BigDecimal totalCost = new BigDecimal(cost);
-                                BigDecimal souvenierCost = startToEnd.multiply(perNight);
-                                souvenierCost = totalCost.subtract(souvenierCost);
 
-                                System.out.println("STARTNOW BIG DECI : " + startToNow);
-                                System.out.println("PERNIGHT BIG DECI : " + perNight);
-                                System.out.println("Souvenier Cost: ");
+                                System.out.println("START TO NOW: " + startToNow.intValue());
+                                System.out.println("NIGHTS STAYED: " + nightsStayed);
+
+                                if(startToNow.intValue() < 0){
+                                    startToNow = new BigDecimal(0);
+;                                }
+
+                                CentralReservations.setNightsStayed(startToNow.intValue()+nightsStayed);
+
+
+                                BigDecimal totalCost = new BigDecimal(cost);
+
+                                BigDecimal stayCost = startToEnd.multiply(perNight);
+
+                                if(((startToNow.intValue() == 0 || startToNow.intValue() == 1) && nightsStayed == 0)){
+                                    stayCost = stayCost.multiply(new BigDecimal("1.25"));
+                                }
+
+                                //startToNow = startToNow.add(new BigDecimal(nightsStayed));
+                                BigDecimal souvenierCost = totalCost.subtract(stayCost);
+
+                                System.out.println("STRT TO NOW" +startToNow.intValue());
+
+
                                 BigDecimal firstHalf = startToNow.multiply(perNight);
                                 double firstHalfCost = firstHalf.doubleValue();
-                                System.out.println( "The first HALF: " + firstHalfCost);
+                                System.out.println("FIRST HALF COST: "+ firstHalfCost);
 
-
-                                String deleteQuery = "DELETE FROM Reservations WHERE RoomNumber = ? AND StartDate = ?";
+                                String deleteQuery = "DELETE FROM Reservations WHERE ReservationId = '" + originalResID+"'";
                                 PreparedStatement pstmt = con.prepareStatement(deleteQuery);
-                                pstmt.setInt(1, Integer.parseInt(roomNumber));
-                                pstmt.setString(2, startDate);
+                                //pstmt.executeUpdate();
+                                //pstmt.setInt(1, roomNumber);
+                                //pstmt.setString(2, startDate);
                                 int rowsAffected = pstmt.executeUpdate();
-                                
+
                                 if (rowsAffected > 0) {
-                                    // Reservation canceled successfully
                                     if(futureSelected){
-                                        futureReservations.remove(index);
+                                        ((DefaultTableModel)futureReservationsTable.getModel()).removeRow(index);
                                     }
                                     else{
-                                        activeReservations.remove(index);
+
+                                        ((DefaultTableModel)activeReservationsTable.getModel()).removeRow(index);
                                     }
 
                                     displayReservations();
@@ -175,8 +243,6 @@ public class updateReservationsFrame extends JFrame implements ActionListener {
 
 
                                     // Take the user to the reservation page
-                                    System.out.println(CentralProfiles.guestisIn(guestUsername));
-                                    
                                     ResultSet guestData = CentralDatabase.getGuest(guestUsername);
                                     guestData.next();
                                     guest = new Guest(guestData.getString("PersonID"), guestData.getString("FirstName"), guestData.getString("LastName"), guestData.getString("Email"), guestData.getString("PhoneNumber"), guestData.getString("Username"), guestData.getString("Password"));
@@ -184,15 +250,12 @@ public class updateReservationsFrame extends JFrame implements ActionListener {
                                     setContentPane(reserveRoomPanel2);
                                     validate();
                                     repaint();
-
                                     JButton exitButton =  reserveRoomPanel2.getExitButton();
                                     String finalSaveData = saveData;
                                     Statement finalStmt = stmt;
 
 
                                     exitButton.addActionListener(ex -> exit(finalSaveData, finalStmt));
-
-
                                     JButton reserveButton = reserveRoomPanel2.getReserveButton();
                                     for(ActionListener al : reserveButton.getActionListeners()){
                                         reserveButton.removeActionListener(al);
@@ -204,7 +267,8 @@ public class updateReservationsFrame extends JFrame implements ActionListener {
                                     else{
                                         String finalOriginalResID = originalResID;
                                         BigDecimal finalSouvenierCost = souvenierCost;
-                                        reserveButton.addActionListener(ex ->finalizeEdit(resID[0], finalOriginalResID, firstHalfCost, finalSouvenierCost));
+                                        System.out.println("FIRST HALF COST: "+ firstHalfCost);
+                                        reserveButton.addActionListener(ex ->finalizeEdit(resID[0], finalOriginalResID, firstHalfCost, finalSouvenierCost, checkedIn));
                                     }
 
                                     addWindowListener(new WindowAdapter()
@@ -217,14 +281,13 @@ public class updateReservationsFrame extends JFrame implements ActionListener {
                                             e.getWindow().dispose();
                                         }
                                     });
-
                                     reserveButton.addActionListener(ex -> {
                                        resID[0] = reserveRoomPanel2.performReservation();
                                     });
 
 
 
-                                    con = CentralDatabase.getConReservationDatabase();
+                                    con = CentralDatabase.getConHotelRoomsDatabase();
                                     stmt = con.createStatement();
                                     res = stmt.executeQuery("Select * from Rooms where Roomnumber = "+ roomID);
                                     res.next();
@@ -257,27 +320,33 @@ public class updateReservationsFrame extends JFrame implements ActionListener {
         cancelReservationButton = new JButton("Cancel Reservation");
         cancelReservationButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String selectedReservation = reservationsTextArea.getSelectedText(); // Get the highlighted text
-                boolean futureSelected = !(selectedReservation == null);
+                JTable theTable = futureReservationsTable;
+                int selectedReservation = futureReservationsTable.getSelectedRow(); // Get the highlighted text
+
+                boolean futureSelected = (selectedReservation >-1);
                 if(!futureSelected){
-                    selectedReservation = activeReservationsTextArea.getSelectedText();
+
+                    selectedReservation = activeReservationsTable.getSelectedRow();
+                    theTable = activeReservationsTable;
                 }
 
-                if (selectedReservation != null && !selectedReservation.isEmpty()) {
-                    int index = futureSelected ? futureReservations.indexOf(selectedReservation) : activeReservations.indexOf(selectedReservation);
-                    if (index != -1) {
-                        int response = JOptionPane.showConfirmDialog(updateReservationsFrame.this, "Are you sure you want to cancel this reservation?", "Cancel Reservation", JOptionPane.YES_NO_OPTION);
+                System.out.println("SELECTECT: " + selectedReservation);
+                if (selectedReservation > -1) {
+                    int index = selectedReservation;//futureSelected ? futureReservationsTable.indexOf(selectedReservation) : activeReservations.indexOf(selectedReservation);
+                    if (index > -1) {
+                        int response = JOptionPane.showConfirmDialog(updateReservationsFrame.this, "Are you sure you want to cancel this reservation?", "Edit Reservation", JOptionPane.YES_NO_OPTION);
                         if (response == JOptionPane.YES_OPTION) {
                             try {
                                 // Parse the selected reservation string to extract room number and start date
-                                String[] parts = selectedReservation.split("\\|\\|");
-                                String roomNumber = parts[0].substring(parts[0].indexOf(":") + 1).trim();
-                                String startDate = parts[1].substring(parts[1].indexOf(":") + 1, parts[1].indexOf("End Date:")).trim();
+                                //String[] parts = selectedReservation.split("\\|\\|");
+                                Integer roomNumber = (Integer) theTable.getValueAt(selectedReservation,1);//parts[0].substring(parts[0].indexOf(":") + 1).trim();
+                                String startDate = (String)theTable.getValueAt(selectedReservation,2);//parts[1].substring(parts[1].indexOf(":") + 1, parts[1].indexOf("End Date:")).trim();
+
                                 Connection con = null;
                                 con = CentralDatabase.getConReservationDatabase();
                                 Statement stmt = con.createStatement();
                                 // Prepare the delete statement
-                                ResultSet res = stmt.executeQuery("Select * FROM Reservations where StartDate = '" + startDate + "' AND Roomnumber = " + Integer.parseInt(roomNumber));
+                                ResultSet res = stmt.executeQuery("Select * FROM Reservations where StartDate = '" + startDate + "' AND Roomnumber = " + roomNumber);
                                 boolean checkedIn = false;
                                 if(res.next()){
                                     checkedIn = res.getBoolean("checkedin");
@@ -289,7 +358,7 @@ public class updateReservationsFrame extends JFrame implements ActionListener {
                                     PreparedStatement pstmt = con.prepareStatement(deleteQuery);
 
                                     // Set parameters
-                                    pstmt.setInt(1, Integer.parseInt(roomNumber)); // Assuming roomNumber is an integer
+                                    pstmt.setInt(1, roomNumber); // Assuming roomNumber is an integer
                                     pstmt.setString(2, startDate); // Assuming startDate is a string in 'YYYY-MM-DD' format
                                     rowsAffected= pstmt.executeUpdate();
                                 }
@@ -305,13 +374,15 @@ public class updateReservationsFrame extends JFrame implements ActionListener {
                                 if (rowsAffected > 0) {
                                     // Remove the reservation from the list
                                     if(futureSelected){
-                                        futureReservations.remove(index);
+                                        ((DefaultTableModel)futureReservationsTable.getModel()).removeRow(index);
                                     }
                                     else{
-                                        activeReservations.remove(index);
+
+                                        ((DefaultTableModel)activeReservationsTable.getModel()).removeRow(index);
                                     }
 
                                     displayReservations(); // Update reservations display
+                                    //defaultPanel();
                                     JOptionPane.showMessageDialog(updateReservationsFrame.this, "Reservation canceled successfully!");
                                 } else {
                                     JOptionPane.showMessageDialog(updateReservationsFrame.this, "Failed to cancel reservation!");
@@ -330,16 +401,16 @@ public class updateReservationsFrame extends JFrame implements ActionListener {
         });
 
 
-        reservationsTextArea = new JTextArea(20, 40);
-        reservationsTextArea.setEditable(false); // Make it non-editable
-        JScrollPane scrollPane = new JScrollPane(reservationsTextArea); // Add scroll functionality
+        //reservationsTextArea = new JTextArea(20, 40);
+        //reservationsTextArea.setEditable(false); // Make it non-editable
+        JScrollPane scrollPane = new JScrollPane(futureReservationsTable); // Add scroll functionality
 
 
-        activeReservationsTextArea = new JTextArea(20, 40);
-        activeReservationsTextArea.setEditable(false); // Make it non-editable
-        JScrollPane scrollPaneActive = new JScrollPane(activeReservationsTextArea); // Add scroll functionality
+        //activeReservationsTextArea = new JTextArea(20, 40);
+        //activeReservationsTextArea.setEditable(false); // Make it non-editable
+        JScrollPane scrollPaneActive = new JScrollPane(activeReservationsTable); // Add scroll functionality
 
-        giveReservaitons();
+
         displayReservations();
 
 
@@ -360,7 +431,7 @@ public class updateReservationsFrame extends JFrame implements ActionListener {
         panel.add(titlePanel, BorderLayout.NORTH);
         //panel.add(formPanel, BorderLayout.CENTER);
         panel.add(scrollPane, BorderLayout.WEST);
-        panel.add(scrollPaneActive,BorderLayout.EAST);
+        panel.add(scrollPaneActive);
         panel.add(buttonPanel, BorderLayout.SOUTH);
 
         // Adding panel to the frame
@@ -369,7 +440,21 @@ public class updateReservationsFrame extends JFrame implements ActionListener {
         repaint();
     }
 
-    private void finalizeEdit(String s, String finalOriginalResID, double firstHalfCost, BigDecimal rest) {
+    private void deselectFuture(ListSelectionEvent listSelectionEvent) {
+
+        futureReservationsTable.getSelectionModel().clearSelection();
+
+
+    }
+    private void deselectActive(ListSelectionEvent listSelectionEvent) {
+        activeReservationsTable.getSelectionModel().clearSelection();
+
+
+
+    }
+
+    private void finalizeEdit(String s, String finalOriginalResID, double firstHalfCost, BigDecimal rest, boolean checkedIn) {
+        System.out.println("FIRST HALF COST: "+ firstHalfCost);
         try {
             Connection con = CentralDatabase.getConReservationDatabase();
             Statement stmt = con.createStatement();
@@ -380,8 +465,11 @@ public class updateReservationsFrame extends JFrame implements ActionListener {
             if(res.next()){
                 pstmt = con.prepareStatement("UPDATE reservations SET ReservationId = '" + finalOriginalResID + "'"+  " where ReservationID = '" +s + "'");
                 pstmt.executeUpdate();
-                System.out.println(firstHalfCost);
-                pstmt = con.prepareStatement("UPDATE reservations SET Cost = " + (double)(res.getDouble("Cost") +rest.doubleValue() + firstHalfCost )+  " where ReservationID = '" +s + "'");
+                System.out.println("FIRST HALF COST: "+ firstHalfCost);
+                pstmt = con.prepareStatement("UPDATE reservations SET Cost = " + (double)(res.getDouble("Cost") +rest.doubleValue() + firstHalfCost )+  " where ReservationID = '" +finalOriginalResID + "'");
+                pstmt.executeUpdate();
+                System.out.println("FINALIZED");
+                pstmt = con.prepareStatement("UPDATE reservations SET checkedIn = " + checkedIn + " where ReservationID = '" +finalOriginalResID + "'");
                 pstmt.executeUpdate();
             }
 
@@ -423,26 +511,36 @@ public class updateReservationsFrame extends JFrame implements ActionListener {
     }
     private void giveReservaitons(){
         Connection con = null;
-
         try {
+
             con = CentralDatabase.getConReservationDatabase();
             Statement stmt = con.createStatement();
             ResultSet res = stmt.executeQuery("SELECT * FROM Reservations");
 
-
-            while(res.next()) {
+            while(res.next()){
                 System.out.println(res.getString("Roomnumber"));
 
                 Date start = DateProcessor.stringToDate(res.getString("StartDate"));
                 Date end = DateProcessor.stringToDate(res.getString("endDate"));
 
+                Object [] obj = new Object[4];
+
+
+
+                obj[0] = res.getString("ReservationID");
+                obj[1] = res.getInt("RoomNumber");
+                obj[2] = res.getString("StartDate");
+                obj[3] = res.getString("endDate");
+
+                System.out.println("adding");
                 if(DateProcessor.inBetweenToday(start,end)){
-                	System.out.println("Adding to current");
-                    activeReservations.add("RoomNumber: " + res.getString("RoomNumber") + " || Start Date: " + res.getString("StartDate") + "    End Date: " + res.getString("EndDate"));
+
+                    activeModel.addRow(obj);
+                    //activeReservations.add("RoomNumber: " + res.getString("RoomNumber") + " || Start Date: " + res.getString("StartDate") + "    End Date: " + res.getString("EndDate"));
                 }
-                else if (DateProcessor.inFuture(start)) {
-                	System.out.println("Adding to future");
-                    futureReservations.add("RoomNumber: " + res.getString("RoomNumber") + " || Start Date: " + res.getString("StartDate") + "    End Date: " + res.getString("EndDate"));
+                else{
+                    futureModel.addRow(obj);
+                    //futureReservations.add("RoomNumber: " + res.getString("RoomNumber") + " || Start Date: " + res.getString("StartDate") + "    End Date: " + res.getString("EndDate"));
                 }
 
             }
@@ -457,17 +555,16 @@ public class updateReservationsFrame extends JFrame implements ActionListener {
     }
 
     private void displayReservations() {
-        reservationsTextArea.setText(""); // Clear the text area
-        activeReservationsTextArea.setText(""); // Clear the text area
+        //reservationsTextArea.setText(""); // Clear the text area
+        //activeReservationsTextArea.setText(""); // Clear the text area
         for (String reservation : futureReservations) {
             //if(){
-            reservationsTextArea.append(reservation + "\n");
+          //  reservationsTextArea.append(reservation + "\n");
             //}
             // Append each reservation to the text area
         }
         for (String reservation : activeReservations) {
             //if(){
-            activeReservationsTextArea.append(reservation + "\n");
             //}
             // Append each reservation to the text area
         }
@@ -476,10 +573,25 @@ public class updateReservationsFrame extends JFrame implements ActionListener {
     private void exit(String SQL, Statement stmt){
 
         //getContentPane().removeAll();
+
         if(SQL != null){
+            System.out.println("CALLLLLLEEDDDDD");
+
             CentralReservations.exectueSQL(SQL,stmt);
+        }
+        for(WindowListener al : this.getWindowListeners()){
+            this.removeWindowListener(al);
         }
         defaultPanel();
 
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                //ReservationFrame reservationFrame = new ReservationFrame();
+                //reservationFrame.setVisible(true);
+            }
+        });
     }
 }
