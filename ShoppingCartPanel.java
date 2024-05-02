@@ -101,6 +101,11 @@ public class ShoppingCartPanel extends JPanel {
 
             activeReservations = new SelectActivereservationsFrame(shoppingPanel,addedCost );
             activeReservations.setVisible(true);
+
+            if(activeReservations.getAvailRooms().getModel().getRowCount() == 0){
+                activeReservations.dispatchEvent(new WindowEvent(activeReservations, WindowEvent.WINDOW_CLOSING));
+
+            }
             activeReservations. addWindowListener(new WindowAdapter()
             {
                 @Override

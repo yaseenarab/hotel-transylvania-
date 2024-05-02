@@ -65,6 +65,11 @@ public class SelectActivereservationsFrame extends JFrame {
                     reservationModel.addRow(split);
                 }
             }
+
+            if(reservationModel.getRowCount() == 0){
+                JOptionPane.showMessageDialog(this, "You Have no Active Reservations. Please Make a Reservation" );
+
+            }
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
         }
@@ -96,7 +101,7 @@ public class SelectActivereservationsFrame extends JFrame {
             CentralReservations.updateCost(resID,addedCost/2 );
         }
 
-        dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+
 
     }
 
