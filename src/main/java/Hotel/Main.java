@@ -7,7 +7,6 @@ import Hotel.Utilities.MyLogger;
 import java.util.logging.Level;
 
 public class Main {
-    //Hello
     public static void main(String[] args) {
         /*
         final String DB_URL = "jdbc:derby:CatalogueData;create=true";
