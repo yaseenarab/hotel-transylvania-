@@ -1,10 +1,10 @@
-package UI.Panels;
+package Hotel.UI.Panels;
 
-import AccountService.Guest;
-import UI.Frames.Guest.GuestHomeFrame;
-import UI.ShoppingMainPanelHandler;
-import ShoppingService.ItemSpec;
-import Utilities.Utilities;
+import Hotel.AccountService.Guest;
+import Hotel.UI.Frames.Guest.GuestHomeFrame;
+import Hotel.UI.ShoppingMainPanelHandler;
+import Hotel.ShoppingService.ItemSpec;
+import Hotel.Utilities.Utilities;
 
 import javax.swing.*;
 import java.awt.*;
@@ -161,12 +161,12 @@ public class ShoppingMainPanel extends JPanel {
      */
     public JPanel getSCOP() { return SCOP; }
 
-    /**
-     * Initializes the SCOP data member with a ShoppingCheckoutPanel instance.
-     *
-     * @param scop ShoppingCheckoutPanel instance to add to ShoppingMainPanel
-     */
-    public void setSCOP(ShoppingCheckoutPanel scop) { SCOP = scop; }
+    ///**
+    // * Initializes the SCOP data member with a ShoppingCheckoutPanel instance.
+    // *
+    // * @param scop ShoppingCheckoutPanel instance to add to ShoppingMainPanel
+    // */
+    //public void setSCOP(ShoppingCheckoutPanel scop) { SCOP = scop; }
 
     /**
      * Creates the header present in all shopping sub-panels, and the ShoppingMainPanel

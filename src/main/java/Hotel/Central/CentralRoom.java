@@ -1,10 +1,8 @@
-package Central;
+package Hotel.Central;
 
-//import Hotel.Databases.RoomAvailabilityDatabase;
-//import Hotel.Databases.RoomCostDatabase;
-import Room.RentableRoom;
-import LoggerPackage.MyLogger;
-import Room.RoomInitializer;
+import Hotel.Room.RentableRoom;
+import Hotel.LoggerPackage.MyLogger;
+import Hotel.Room.RoomInitializer;
 
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
@@ -15,7 +13,6 @@ import java.sql.Statement;
 import java.util.logging.Level;
 
 public class CentralRoom {
-
     private static boolean roomsInitialized;
     private static final RoomInitializer ROOM_INITIALIZER = new RoomInitializer();
     //private static final RoomAvailabilityDatabase ROOM_AVAILABILITY_DATABASE = new RoomAvailabilityDatabase();

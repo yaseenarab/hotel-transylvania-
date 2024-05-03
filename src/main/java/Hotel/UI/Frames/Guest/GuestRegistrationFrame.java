@@ -1,7 +1,7 @@
-package UI.Frames.Guest;
+package Hotel.UI.Frames.Guest;
 
 
-import Central.CentralProfiles;
+import Hotel.Central.CentralProfiles;
 
 import javax.swing.*;
 import java.awt.*;

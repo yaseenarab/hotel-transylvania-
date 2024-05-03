@@ -1,4 +1,4 @@
-package Utilities;
+package Hotel.Utilities;
 
 import java.text.SimpleDateFormat;
 import java.time.Duration;

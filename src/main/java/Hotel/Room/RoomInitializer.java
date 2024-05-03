@@ -1,9 +1,9 @@
-package Room;
+package Hotel.Room;
 
-import Enums.QualityLevel;
-import Enums.RoomSize;
-import Enums.RoomTheme;
-import LoggerPackage.MyLogger;
+import Hotel.Enums.QualityLevel;
+import Hotel.Enums.RoomSize;
+import Hotel.Enums.RoomTheme;
+import Hotel.LoggerPackage.MyLogger;
 import java.util.logging.Level;
 
 public class RoomInitializer implements RoomData {

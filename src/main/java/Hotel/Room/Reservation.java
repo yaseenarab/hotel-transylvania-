@@ -1,4 +1,4 @@
-package Room;
+package Hotel.Room;
 
 import java.math.BigDecimal;
 import java.util.Date;

@@ -1,6 +1,6 @@
-package ShoppingService;
+package Hotel.ShoppingService;
 
-import Central.CentralDatabase;
+import Hotel.Central.CentralDatabase;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

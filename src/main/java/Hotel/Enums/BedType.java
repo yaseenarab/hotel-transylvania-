@@ -1,4 +1,4 @@
-package Enums;
+package Hotel.Enums;
 
 // Twin, Full, Queen, King
 public enum BedType {

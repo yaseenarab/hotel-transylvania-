@@ -1,4 +1,4 @@
-package Enums;
+package Hotel.Enums;
 
 //Vacant Clean, Vacant Dirty, Occupied Clean, Occupied Dirty, Out Of Order
 public enum RoomStatus {

@@ -1,12 +1,10 @@
-package Central;
+package Hotel.Central;
 
-
-import AccountService.Card;
-import AccountService.Guest;
-import Utilities.DateProcessor;
+import Hotel.AccountService.Card;
+import Hotel.AccountService.Guest;
+import Hotel.Utilities.DateProcessor;
 
 import java.util.Date;
-
 
 public class CentralCashiering {
     public static boolean saveCard(String username, String password, String account, Date expiration) {

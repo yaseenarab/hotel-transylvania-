@@ -1,6 +1,6 @@
-package AccountService;
+package Hotel.AccountService;
 
-import LoggerPackage.MyLogger;
+import Hotel.LoggerPackage.MyLogger;
 import java.util.Date;
 import java.util.logging.Level;
 public class Card {

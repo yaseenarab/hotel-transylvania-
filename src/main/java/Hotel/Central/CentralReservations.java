@@ -1,15 +1,12 @@
-package Central;
+package Hotel.Central;
 
-//import Hotel.Databases.*;
-//import Hotel.Databases.GuestDatabase;
-//import Hotel.Databases.ReservationDatabase;
-import AccountService.Guest;
+import Hotel.AccountService.Guest;
 
-import LoggerPackage.MyLogger;
-import Utilities.DateProcessor;
-import Room.Marsha;
-import Room.RentableRoom;
-import Room.Reservation;
+import Hotel.LoggerPackage.MyLogger;
+import Hotel.Utilities.DateProcessor;
+import Hotel.Room.Marsha;
+import Hotel.Room.RentableRoom;
+import Hotel.Room.Reservation;
 
 import javax.swing.table.DefaultTableModel;
 import java.math.BigDecimal;

@@ -1,12 +1,12 @@
-package UI.Frames.Guest;
+package Hotel.UI.Frames.Guest;
 
 
-import AccountService.Guest;
-import Central.CentralProfiles;
-import UI.Frames.EditReservationFrame;
-import UI.Frames.LoginFrame;
-import UI.Panels.ReserveRoomPanel;
-import UI.Panels.ShoppingMainPanel;
+import Hotel.AccountService.Guest;
+import Hotel.Central.CentralProfiles;
+import Hotel.UI.Frames.EditReservationFrame;
+import Hotel.UI.Frames.LoginFrame;
+import Hotel.UI.Panels.ReserveRoomPanel;
+import Hotel.UI.Panels.ShoppingMainPanel;
 
 import javax.swing.*;
 import java.awt.*;

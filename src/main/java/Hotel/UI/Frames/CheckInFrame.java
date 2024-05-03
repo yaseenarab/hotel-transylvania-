@@ -1,12 +1,12 @@
-package UI.Frames;
+package Hotel.UI.Frames;
 
-import AccountService.Card;
-import Central.CentralCashiering;
-import Central.CentralDatabase;
-import Central.CentralReservations;
-import Enums.RoomStatus;
-import UI.Panels.ReservationPanel;
-import Utilities.DateProcessor;
+import Hotel.AccountService.Card;
+import Hotel.Central.CentralCashiering;
+import Hotel.Central.CentralDatabase;
+import Hotel.Central.CentralReservations;
+import Hotel.Enums.RoomStatus;
+import Hotel.UI.Panels.ReservationPanel;
+import Hotel.Utilities.DateProcessor;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;

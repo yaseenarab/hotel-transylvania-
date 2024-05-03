@@ -1,11 +1,11 @@
-package UI.Frames.Admin;
+package Hotel.UI.Frames.Admin;
 
-import AccountService.Guest;
-import Central.CentralDatabase;
-import Central.CentralReservations;
-import Central.CentralRoom;
-import UI.Panels.ReserveRoomPanel;
-import Utilities.*;
+import Hotel.AccountService.Guest;
+import Hotel.Central.CentralDatabase;
+import Hotel.Central.CentralReservations;
+import Hotel.Central.CentralRoom;
+import Hotel.UI.Panels.ReserveRoomPanel;
+import Hotel.Utilities.*;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;

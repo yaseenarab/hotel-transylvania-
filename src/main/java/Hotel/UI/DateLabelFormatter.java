@@ -1,4 +1,4 @@
-package UI;
+package Hotel.UI;
 
 import javax.swing.*;
 import java.text.ParseException;

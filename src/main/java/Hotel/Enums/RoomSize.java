@@ -1,4 +1,4 @@
-package Enums;
+package Hotel.Enums;
 
 public enum RoomSize {
     Single, Standard, Double, Family, Suite, Deluxe;

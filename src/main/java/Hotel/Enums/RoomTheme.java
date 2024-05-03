@@ -1,4 +1,4 @@
-package Enums;
+package Hotel.Enums;
 
 // Nature Retreat, Urban Elegance, Vintage Classic
 public enum RoomTheme {

@@ -1,10 +1,10 @@
-package Central;
+package Hotel.Central;
 
-import Enums.QualityLevel;
-import Enums.RoomSize;
-import Enums.RoomTheme;
-import LoggerPackage.MyLogger;
-import Room.RoomID;
+import Hotel.Enums.QualityLevel;
+import Hotel.Enums.RoomSize;
+import Hotel.Enums.RoomTheme;
+import Hotel.LoggerPackage.MyLogger;
+import Hotel.Room.RoomID;
 
 import java.util.logging.Level;
 

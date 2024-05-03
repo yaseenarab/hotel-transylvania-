@@ -1,9 +1,9 @@
-package ShoppingService;
+package Hotel.ShoppingService;
 
 import java.util.Arrays;
 import java.util.Date;
 
-import static Utilities.Utilities.primes;
+import static Hotel.Utilities.Utilities.primes;
 import static java.lang.Math.abs;
 
 public class Sale {

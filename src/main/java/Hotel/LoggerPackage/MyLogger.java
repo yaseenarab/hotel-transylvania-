@@ -1,4 +1,4 @@
-package LoggerPackage;
+package Hotel.LoggerPackage;
 
 public class MyLogger {
     public static java.util.logging.Logger logger =

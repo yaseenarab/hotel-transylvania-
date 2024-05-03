@@ -1,9 +1,9 @@
-package UI;
+package Hotel.UI;
 
-import AccountService.Guest;
-import ShoppingService.Cart;
-import ShoppingService.Catalogue;
-import ShoppingService.ItemSpec;
+import Hotel.AccountService.Guest;
+import Hotel.ShoppingService.Cart;
+import Hotel.ShoppingService.Catalogue;
+import Hotel.ShoppingService.ItemSpec;
 
 import java.util.ArrayList;
 import java.util.logging.Logger;

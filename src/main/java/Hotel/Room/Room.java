@@ -1,7 +1,7 @@
-package Room;
+package Hotel.Room;
 
-import Enums.BedType;
-import Enums.RoomStatus;
+import Hotel.Enums.BedType;
+import Hotel.Enums.RoomStatus;
 
 public abstract class Room {
     protected RoomStatus roomStatus;

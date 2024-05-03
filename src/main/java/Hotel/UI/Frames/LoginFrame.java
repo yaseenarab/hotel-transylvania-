@@ -1,11 +1,11 @@
-package UI.Frames;
+package Hotel.UI.Frames;
 
-import Central.CentralProfiles;
-import UI.Frames.Admin.AdminHomeFrame;
-import UI.Frames.Admin.AdminRegistrationFrame;
-import UI.Frames.Employee.EmployeeHomeFrame;
-import UI.Frames.Guest.GuestHomeFrame;
-import UI.Frames.Guest.GuestRegistrationFrame;
+import Hotel.Central.CentralProfiles;
+import Hotel.UI.Frames.Admin.AdminHomeFrame;
+import Hotel.UI.Frames.Admin.AdminRegistrationFrame;
+import Hotel.UI.Frames.Employee.EmployeeHomeFrame;
+import Hotel.UI.Frames.Guest.GuestHomeFrame;
+import Hotel.UI.Frames.Guest.GuestRegistrationFrame;
 
 import javax.swing.*;
 import java.awt.*;

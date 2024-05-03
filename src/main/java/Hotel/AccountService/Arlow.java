@@ -1,4 +1,5 @@
-package AccountService;
+package Hotel.AccountService;
+
 public class Arlow {
     private static String GUEST_ID = "TVGI", EMPLOYEE_ID = "TVEI", ADMIN_ID = "TVAI";
 

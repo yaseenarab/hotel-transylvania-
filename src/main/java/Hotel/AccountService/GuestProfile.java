@@ -1,4 +1,4 @@
-package AccountService;
+package Hotel.AccountService;
 
 import java.util.ArrayList;
 import java.util.List;

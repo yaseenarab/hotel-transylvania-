@@ -1,14 +1,14 @@
-package UI.Panels;
+package Hotel.UI.Panels;
 
 
-import AccountService.Guest;
-import Central.CentralCashiering;
-import Central.CentralDatabase;
-import Central.CentralReservations;
-import UI.DateLabelFormatter;
-import UI.Frames.Guest.GuestHomeFrame;
-import Utilities.DateProcessor;
-import Room.Reservation;
+import Hotel.AccountService.Guest;
+import Hotel.Central.CentralCashiering;
+import Hotel.Central.CentralDatabase;
+import Hotel.Central.CentralReservations;
+import Hotel.UI.DateLabelFormatter;
+import Hotel.UI.Frames.Guest.GuestHomeFrame;
+import Hotel.Utilities.DateProcessor;
+import Hotel.Room.Reservation;
 
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
@@ -17,10 +17,7 @@ import org.jdatepicker.impl.UtilDateModel;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.*;
 
 public class ReserveRoomPanel extends JPanel {

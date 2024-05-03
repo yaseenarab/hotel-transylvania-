@@ -1,11 +1,11 @@
-package UI.Frames;
+package Hotel.UI.Frames;
 
-import AccountService.Guest;
-import Central.CentralDatabase;
-import Central.CentralReservations;
-import Central.CentralRoom;
-import UI.Panels.ReserveRoomPanel;
-import Utilities.*;
+import Hotel.AccountService.Guest;
+import Hotel.Central.CentralDatabase;
+import Hotel.Central.CentralReservations;
+import Hotel.Central.CentralRoom;
+import Hotel.UI.Panels.ReserveRoomPanel;
+import Hotel.Utilities.*;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -174,8 +174,8 @@ public class EditReservationFrame extends JFrame implements ActionListener {
                                     roomID = res.getInt("Roomnumber");
                                     endDate = res.getString("EndDate");
                                     cost = res.getDouble("cost");
-                                    startToNow =new BigDecimal( DateProcessor.differenceinDays(DateProcessor.stringToDate(startDate),currentDate));
-                                    startToEnd = new BigDecimal(DateProcessor.differenceinDays(DateProcessor.stringToDate(startDate),DateProcessor.stringToDate(endDate)));
+                                    startToNow =new BigDecimal(DateProcessor.differenceinDays(DateProcessor.stringToDate(startDate),currentDate));
+                                    startToEnd = new BigDecimal(DateProcessor.differenceinDays(DateProcessor.stringToDate(startDate), DateProcessor.stringToDate(endDate)));
                                     perNight = CentralRoom.calculatorCost(res.getInt("roomNumber"));
                                     originalResID = res.getString("ReservationID");
                                     checkedIn = res.getBoolean("checkedin");
@@ -514,7 +514,7 @@ public class EditReservationFrame extends JFrame implements ActionListener {
                 obj[3] = res.getString("endDate");
 
 
-                if(DateProcessor.inBetweenToday(start,end)){
+                if(DateProcessor.inBetweenToday(start, end)){
 
                     activeModel.addRow(obj);
                     //activeReservations.add("RoomNumber: " + res.getString("RoomNumber") + " || Start Date: " + res.getString("StartDate") + "    End Date: " + res.getString("EndDate"));

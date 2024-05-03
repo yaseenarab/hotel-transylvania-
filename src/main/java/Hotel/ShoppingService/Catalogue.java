@@ -1,4 +1,4 @@
-package ShoppingService;
+package Hotel.ShoppingService;
 
 import java.util.Collection;
 import java.util.HashMap;

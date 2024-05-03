@@ -1,13 +1,10 @@
-package Central;
+package Hotel.Central;
 
-import AccountService.Admin;
-import AccountService.Arlow;
-import AccountService.Employee;
-import AccountService.Guest;
-//import DataBaseManipulation.DataGetSet;
-//import Hotel.Databases.EmployeeDatabase;
-//import Hotel.Databases.GuestDatabase;
-import LoggerPackage.MyLogger;
+import Hotel.AccountService.Admin;
+import Hotel.AccountService.Arlow;
+import Hotel.AccountService.Employee;
+import Hotel.AccountService.Guest;
+import Hotel.LoggerPackage.MyLogger;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;

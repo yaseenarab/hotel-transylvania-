@@ -1,10 +1,6 @@
-package UI.Panels;
+package Hotel.UI.Panels;
 
-import AccountService.Guest;
-import Central.CentralDatabase;
-import Central.CentralReservations;
-import Central.CentralRoom;
-import Utilities.DateProcessor;
+import Hotel.Central.CentralDatabase;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -12,18 +8,8 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableRowSorter;
 import java.awt.*;
-import java.math.BigDecimal;
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 public class ReservationPanel extends JPanel {
     private TableRowSorter<DefaultTableModel> sorter;

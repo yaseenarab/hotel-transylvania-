@@ -1,9 +1,8 @@
-package Room;
+package Hotel.Room;
 
-import Enums.*;
+import Hotel.Enums.*;
 
-import LoggerPackage.MyLogger;
-
+import Hotel.LoggerPackage.MyLogger;
 
 import java.util.logging.Level;
 

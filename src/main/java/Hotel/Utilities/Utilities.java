@@ -1,4 +1,4 @@
-package Utilities;
+package Hotel.Utilities;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

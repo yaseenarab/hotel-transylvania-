@@ -1,17 +1,13 @@
-package ShoppingService;
+package Hotel.ShoppingService;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-import static Utilities.Utilities.primes;
+import static Hotel.Utilities.Utilities.primes;
 import static java.lang.Math.abs;
 
 /**
-<<<<<<< HEAD
  * Class representing an item's specifications in-memory for the store's shopping system.
-=======
- * Class representing an item's specifications for the store's shopping system.
->>>>>>> editRooms
  *
  * @author Rafe Loya
  */

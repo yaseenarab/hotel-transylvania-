@@ -1,4 +1,4 @@
-package Room;
+package Hotel.Room;
 
 public class Marsha {
     private static Integer reservationIDNum = 1000000000;

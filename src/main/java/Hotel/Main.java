@@ -1,6 +1,8 @@
-import Central.CentralDatabase;
-import UI.Frames.LoginFrame;
-import Utilities.MyLogger;
+package Hotel;
+
+import Hotel.Central.CentralDatabase;
+import Hotel.UI.Frames.LoginFrame;
+import Hotel.Utilities.MyLogger;
 
 import java.util.logging.Level;
 

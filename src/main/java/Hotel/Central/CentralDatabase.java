@@ -1,10 +1,9 @@
-package Central;
+package Hotel.Central;
 
 import java.sql.*;
-import Enums.BedType;
-import Enums.QualityLevel;
-import Enums.RoomStatus;
-
+import Hotel.Enums.BedType;
+import Hotel.Enums.QualityLevel;
+import Hotel.Enums.RoomStatus;
 
 public class CentralDatabase {
     final static private String DB_URLRes = "jdbc:derby:ReservationsData;";

@@ -1,4 +1,4 @@
-package Enums;
+package Hotel.Enums;
 
 // Executive Level, Business Level, Comfort Level, Economy Level
 public enum QualityLevel {

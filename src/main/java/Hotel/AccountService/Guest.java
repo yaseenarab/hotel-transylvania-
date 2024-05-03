@@ -1,8 +1,8 @@
-package AccountService;
+package Hotel.AccountService;
 
-import LoggerPackage.MyLogger;
-import Room.Reservation;
-import ShoppingService.Cart;
+import Hotel.LoggerPackage.MyLogger;
+import Hotel.Room.Reservation;
+import Hotel.ShoppingService.Cart;
 
 import java.util.HashMap;
 import java.util.Map;

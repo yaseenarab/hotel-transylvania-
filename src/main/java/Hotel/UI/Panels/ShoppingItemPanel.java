@@ -1,9 +1,9 @@
-package UI.Panels;
+package Hotel.UI.Panels;
 
 import javax.swing.*;
 
-import ShoppingService.ItemSpec;
-import Utilities.Utilities;
+import Hotel.ShoppingService.ItemSpec;
+import Hotel.Utilities.Utilities;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

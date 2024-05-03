@@ -1,7 +1,7 @@
-package UI.Frames.Admin;
+package Hotel.UI.Frames.Admin;
 
-import AccountService.Person;
-import Central.CentralProfiles;
+import Hotel.AccountService.Person;
+import Hotel.Central.CentralProfiles;
 
 import javax.swing.*;
 import java.awt.*;

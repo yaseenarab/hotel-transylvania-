@@ -1,9 +1,9 @@
-package UI;
+package Hotel.UI;
 
-import ShoppingService.ItemSpec;
-import UI.Panels.ShoppingCartPanel;
-import UI.Panels.ShoppingMainPanel;
-import Utilities.Utilities;
+import Hotel.ShoppingService.ItemSpec;
+import Hotel.UI.Panels.ShoppingCartPanel;
+import Hotel.UI.Panels.ShoppingMainPanel;
+import Hotel.Utilities.Utilities;
 
 import java.awt.*;
 import java.awt.event.MouseAdapter;

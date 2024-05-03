@@ -1,8 +1,7 @@
-package UI.Frames.Employee;
+package Hotel.UI.Frames.Employee;
 
-import AccountService.Person;
-import Central.CentralProfiles;
-import UI.Frames.Employee.EmployeeHomeFrame;
+import Hotel.AccountService.Person;
+import Hotel.Central.CentralProfiles;
 
 import javax.swing.*;
 import java.awt.*;

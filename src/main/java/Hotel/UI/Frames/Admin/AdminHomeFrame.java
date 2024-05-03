@@ -1,14 +1,14 @@
-package UI.Frames.Admin;
+package Hotel.UI.Frames.Admin;
 
 
-import AccountService.Admin;
-import Central.CentralDatabase;
-import Central.CentralProfiles;
-import Central.CentralRoom;
-import UI.Frames.Employee.EmployeeRegistrationFrame;
-import UI.Panels.UpdateRoomsPanel;
-import UI.Frames.LoginFrame;
-import UI.Frames.CheckInFrame;
+import Hotel.AccountService.Admin;
+import Hotel.Central.CentralDatabase;
+import Hotel.Central.CentralProfiles;
+import Hotel.Central.CentralRoom;
+import Hotel.UI.Frames.Employee.EmployeeRegistrationFrame;
+import Hotel.UI.Panels.UpdateRoomsPanel;
+import Hotel.UI.Frames.LoginFrame;
+import Hotel.UI.Frames.CheckInFrame;
 
 
 import javax.swing.*;

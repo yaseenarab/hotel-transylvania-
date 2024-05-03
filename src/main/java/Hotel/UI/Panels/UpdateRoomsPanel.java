@@ -1,27 +1,17 @@
-package UI.Panels;
+package Hotel.UI.Panels;
 
-import AccountService.Guest;
-import Central.CentralDatabase;
-import Central.CentralReservations;
-import Central.CentralRoom;
-import Utilities.DateProcessor;
+import Hotel.Central.CentralDatabase;
+import Hotel.Central.CentralReservations;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
-import javax.swing.plaf.basic.BasicSpinnerUI;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.math.BigDecimal;
 import java.sql.SQLException;
-import java.util.Date;
-
 
 public class UpdateRoomsPanel extends JPanel {
 

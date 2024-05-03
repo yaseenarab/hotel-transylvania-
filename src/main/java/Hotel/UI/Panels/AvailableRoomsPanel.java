@@ -1,9 +1,9 @@
-package UI.Panels;
+package Hotel.UI.Panels;
 
-import AccountService.Guest;
-import Central.CentralReservations;
-import Central.CentralRoom;
-import Utilities.DateProcessor;
+import Hotel.AccountService.Guest;
+import Hotel.Central.CentralReservations;
+import Hotel.Central.CentralRoom;
+import Hotel.Utilities.DateProcessor;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -16,7 +16,6 @@ import java.awt.*;
 import java.math.BigDecimal;
 import java.sql.*;
 import java.util.Date;
-
 
 public class AvailableRoomsPanel extends JPanel {
 

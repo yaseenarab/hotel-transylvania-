@@ -1,11 +1,9 @@
-package UI.Panels;
+package Hotel.UI.Panels;
 
-import Central.CentralReservations;
-import UI.Frames.SelectActivereservationsFrame;
-import UI.ShoppingCartPanelHandler;
+import Hotel.UI.Frames.SelectActiveReservationsFrame;
+import Hotel.UI.ShoppingCartPanelHandler;
 
 import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -37,7 +35,7 @@ public class ShoppingCartPanel extends JPanel {
     /**
      * Frame of table of active reservations
      */
-    private SelectActivereservationsFrame activeReservations;
+    private SelectActiveReservationsFrame activeReservations;
 
 
     /**
@@ -92,27 +90,24 @@ public class ShoppingCartPanel extends JPanel {
     private JButton getCheckoutBtn(ShoppingMainPanel shoppingPanel) {
         JButton checkoutBtn = new JButton("Checkout");
         checkoutBtn.addActionListener(e -> {
-            shoppingPanel.setSCOP(new ShoppingCheckoutPanel(shoppingPanel));
-            shoppingPanel.getShoppingContent().add(shoppingPanel.getSCOP(), "ShoppingCheckout");
-            shoppingPanel.getShoppingCL().show(shoppingPanel.getShoppingContent(), "ShoppingCheckout");
+            //shoppingPanel.setSCOP(new ShoppingCheckoutPanel(shoppingPanel));
+            //shoppingPanel.getShoppingContent().add(shoppingPanel.getSCOP(), "ShoppingCheckout");
+            //shoppingPanel.getShoppingCL().show(shoppingPanel.getShoppingContent(), "ShoppingCheckout");
 
             String cost = ShoppingCartPanelHandler.getSubtotalAsString(shoppingPanel);;
-            double addedCost = Double.parseDouble(cost.substring(1,cost.length()));
+            double addedCost = Double.parseDouble(cost.substring(1));
 
-            activeReservations = new SelectActivereservationsFrame(shoppingPanel,addedCost );
+            activeReservations = new SelectActiveReservationsFrame(shoppingPanel,addedCost );
             activeReservations.setVisible(true);
 
             if(activeReservations.getAvailRooms().getModel().getRowCount() == 0){
                 activeReservations.dispatchEvent(new WindowEvent(activeReservations, WindowEvent.WINDOW_CLOSING));
-
             }
             activeReservations. addWindowListener(new WindowAdapter()
             {
                 @Override
                 public void windowClosing(WindowEvent e)
                 {
-
-
                     e.getWindow().dispose();
                 }
             });

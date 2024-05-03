@@ -1,7 +1,7 @@
-package Room;
+package Hotel.Room;
 
-import Enums.RoomSize;
-import Enums.RoomStatus;
+import Hotel.Enums.RoomSize;
+import Hotel.Enums.RoomStatus;
 
 public interface RoomData {
     Integer ROOM_THEME = 0;
