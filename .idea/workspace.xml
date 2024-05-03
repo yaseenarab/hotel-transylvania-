@@ -4,7 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="706720d6-6ce5-4d83-ac1a-7436f9f583d1" name="Changes" comment="nothing" />
+    <list default="true" id="706720d6-6ce5-4d83-ac1a-7436f9f583d1" name="Changes" comment="nothing">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/AccountService/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/AccountService/Card.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/AccountService/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/AccountService/Employee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/AccountService/Guest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/AccountService/Guest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/AccountService/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/AccountService/Person.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Central/CentralProfiles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Central/CentralProfiles.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Central/CentralReservations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Central/CentralReservations.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Central/CentralRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Central/CentralRoom.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Central/CentralRoomID.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Central/CentralRoomID.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/LoggerPackage/MyLogger.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Room/RentableRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Room/RentableRoom.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Room/RoomID.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Room/RoomID.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Room/RoomInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Room/RoomInitializer.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -90,6 +105,8 @@
       <workItem from="1714701890589" duration="1094000" />
       <workItem from="1714703638720" duration="1825000" />
       <workItem from="1714762266079" duration="287000" />
+      <workItem from="1714762769198" duration="343000" />
+      <workItem from="1714763612039" duration="4330000" />
     </task>
     <task id="LOCAL-00001" summary="nothing">
       <option name="closed" value="true" />
@@ -99,7 +116,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714762356141</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="nothing">
+      <option name="closed" value="true" />
+      <created>1714762790198</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1714762790198</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

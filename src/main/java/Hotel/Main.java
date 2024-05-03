@@ -3,7 +3,6 @@ package Hotel;
 import Hotel.Central.CentralDatabase;
 import Hotel.UI.Frames.LoginFrame;
 import Hotel.Utilities.MyLogger;
-
 import java.util.logging.Level;
 
 public class Main {
@@ -34,6 +33,7 @@ public class Main {
             MyLogger.logger.log(Level.SEVERE, "Cannot initialize Central Database. Exiting program...");
             System.exit(1);
         }
+
         /*
         CentralDatabase.insertIntoCatalogue(
                 "75348956",

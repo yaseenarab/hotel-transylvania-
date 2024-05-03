@@ -4,7 +4,7 @@ import Hotel.AccountService.Admin;
 import Hotel.AccountService.Arlow;
 import Hotel.AccountService.Employee;
 import Hotel.AccountService.Guest;
-import Hotel.LoggerPackage.MyLogger;
+import Hotel.Utilities.MyLogger;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;

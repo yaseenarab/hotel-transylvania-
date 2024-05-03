@@ -1,6 +1,6 @@
 package Hotel.AccountService;
 
-import Hotel.LoggerPackage.MyLogger;
+import Hotel.Utilities.MyLogger;
 import Hotel.Room.Reservation;
 import Hotel.ShoppingService.Cart;
 

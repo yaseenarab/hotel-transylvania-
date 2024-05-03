@@ -3,7 +3,7 @@ package Hotel.Room;
 import Hotel.Enums.QualityLevel;
 import Hotel.Enums.RoomSize;
 import Hotel.Enums.RoomTheme;
-import Hotel.LoggerPackage.MyLogger;
+import Hotel.Utilities.MyLogger;
 
 import java.util.logging.Level;
 

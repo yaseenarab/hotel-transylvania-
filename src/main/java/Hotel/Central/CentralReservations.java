@@ -2,7 +2,7 @@ package Hotel.Central;
 
 import Hotel.AccountService.Guest;
 
-import Hotel.LoggerPackage.MyLogger;
+import Hotel.Utilities.MyLogger;
 import Hotel.Utilities.DateProcessor;
 import Hotel.Room.Marsha;
 import Hotel.Room.RentableRoom;

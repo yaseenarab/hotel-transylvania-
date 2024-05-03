@@ -1,7 +1,7 @@
 package Hotel.Central;
 
 import Hotel.Room.RentableRoom;
-import Hotel.LoggerPackage.MyLogger;
+import Hotel.Utilities.MyLogger;
 import Hotel.Room.RoomInitializer;
 
 import java.lang.reflect.Method;
