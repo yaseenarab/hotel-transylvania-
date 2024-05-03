@@ -1,24 +1,14 @@
 package Hotel.UI.Frames;
 
 import Hotel.AccountService.Card;
-import Hotel.Central.CentralCashiering;
 import Hotel.Central.CentralDatabase;
-import Hotel.Central.CentralReservations;
 import Hotel.Enums.RoomStatus;
 import Hotel.UI.Panels.ReservationPanel;
 import Hotel.Utilities.DateProcessor;
-import org.jdatepicker.impl.JDatePanelImpl;
-import org.jdatepicker.impl.JDatePickerImpl;
-import org.jdatepicker.impl.UtilDateModel;
 
 import javax.swing.*;
 import java.awt.*;
 import java.sql.*;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.*;
-import java.util.Date;
 
 public class CheckInFrame extends JFrame {
     private static ReservationPanel resPanel;

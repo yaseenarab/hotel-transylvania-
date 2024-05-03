@@ -1,4 +1,4 @@
-package Hotel.DataBaseManipulation;
+package Hotel.Databases.DataBaseManipulation;
 
 import java.io.File;
 import java.io.FileNotFoundException;

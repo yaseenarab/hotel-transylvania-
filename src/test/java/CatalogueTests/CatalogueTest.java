@@ -1,6 +1,6 @@
 package CatalogueTests;
 
-import Central.CentralDatabase;
+import Hotel.Central.CentralDatabase;
 import Hotel.ShoppingService.Catalogue;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
