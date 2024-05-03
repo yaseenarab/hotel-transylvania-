@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Class storing the ItemSpecs stored in a database for referencing in-memory.
@@ -54,6 +55,13 @@ public class Catalogue {
      * @return Collection containing all ItemSpecs in the catalogue
      */
     public static Collection<ItemSpec> getItemSpecifications() { return items.values(); }
+
+    /**
+     * @return Set of ItemSpecs that are stocked
+     */
+    public static Set<ItemSpec> getStockedItemSpecifications() {
+        return items.values().stream().filter(x -> x.getQuantity() > 0).collect(Collectors.toSet());
+    }
 
     /**
      * Provided the ID exists and is associated with an ItemSpec, this function returns

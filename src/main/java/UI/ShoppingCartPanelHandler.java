@@ -70,85 +70,98 @@ public class ShoppingCartPanelHandler {
         LinkedHashSet<JPanel> cartItems = new LinkedHashSet<>();
 
         for (Map.Entry<ItemSpec, Integer> entry : smp.getGuest().getCart().getEntries()) {
-            JPanel itemPanel = new JPanel();
-            var item = entry.getKey();
-            var quantity = entry.getValue();
+            // Does item in catalogue in stock? if not, don't add to available panels
+            if (entry.getValue() > 0) {
+                JPanel itemPanel = new JPanel();
+                var item = entry.getKey();
+                var quantity = entry.getValue();
 
-            JLabel itemImgLabel;
-            try {
-                BufferedImage itemBI = Utilities.generateImage(smp, item.getImageURL());
-                Image itemImage = itemBI.getScaledInstance(
-                        Math.min(imageDimension, itemBI.getWidth()),
-                        Math.min(imageDimension, itemBI.getHeight()),
-                        Image.SCALE_SMOOTH);
-                itemImgLabel = new JLabel(new ImageIcon(itemImage));
-                itemPanel.add(itemImgLabel);
-            } catch (IOException e) {
-                SCPH_Logger.severe("Unable to load image for item : " + item.getName());
-            }
+                JLabel itemImgLabel;
+                try {
+                    BufferedImage itemBI = Utilities.generateImage(smp, item.getImageURL());
+                    Image itemImage = itemBI.getScaledInstance(
+                            Math.min(imageDimension, itemBI.getWidth()),
+                            Math.min(imageDimension, itemBI.getHeight()),
+                            Image.SCALE_SMOOTH);
+                    itemImgLabel = new JLabel(new ImageIcon(itemImage));
+                    itemPanel.add(itemImgLabel);
+                } catch (IOException e) {
+                    SCPH_Logger.severe("Unable to load image for item : " + item.getName());
+                }
 
-            JLabel itemName = new JLabel(item.getName());
-            itemPanel.add(itemName);
+                JLabel itemName = new JLabel(item.getName());
+                itemPanel.add(itemName);
 
-            // add / items in cart / subtract button panel
-            JPanel itemEditQuantity = new JPanel();
-            JLabel itemQuantity = new JLabel(String.valueOf(quantity));
-            JButton addMoreBtn = new JButton("+");
-            addMoreBtn.addActionListener(e ->{
-                // CHECK LATER
-                smp.getGuest().getCart().addItem(item);
-                //itemQuantity.setText(String.valueOf(quantity + 1));
-                itemQuantity.setText(String.valueOf(smp.getGuest().getCart().getItemQuantity(item)));
-                scp.getSubtotal().setText(getSubtotalAsString(smp));
-                itemPanel.repaint();
-            });
-            JButton subtractMoreBtn = new JButton("-");
-            subtractMoreBtn.addActionListener(e -> {
-                smp.getGuest().getCart().removeItem(item);
-                if (!smp.getGuest().getCart().containsKey(item)) {
+                // add / items in cart / subtract button panel
+                JPanel itemEditQuantity = new JPanel();
+                JLabel itemQuantity = new JLabel(String.valueOf(quantity));
+                JButton addMoreBtn = new JButton("+");
+                addMoreBtn.addActionListener(e -> {
                     // CHECK LATER
-                    itemPanel.removeAll();
-                    itemPanel.setEnabled(false);
-                    itemPanel.setVisible(false);
-                    //itemPanel.repaint();
-                } else {
-                    //itemQuantity.setText(String.valueOf(quantity - 1));
+                    //if () {}
+                    smp.getGuest().getCart().addItem(item);
                     itemQuantity.setText(String.valueOf(smp.getGuest().getCart().getItemQuantity(item)));
-                }
-                scp.getSubtotal().setText(getSubtotalAsString(smp));
-                itemPanel.repaint();
-            });
-            itemEditQuantity.add(subtractMoreBtn);
-            itemEditQuantity.add(itemQuantity);
-            itemEditQuantity.add(addMoreBtn);
-            itemPanel.add(itemEditQuantity);
-
-            // price / remove panel
-            JPanel priceAndRemovePanel = new JPanel();
-            priceAndRemovePanel.setLayout(new BoxLayout(priceAndRemovePanel, BoxLayout.Y_AXIS));
-            JLabel priceLabel = new JLabel(NumberFormat.getCurrencyInstance(Locale.US).format(item.getPrice()));
-            priceLabel.setFont(new Font("Arial", Font.PLAIN, 18));
-            priceAndRemovePanel.add(priceLabel);
-            JLabel removeItemLabel = new JLabel("Remove");
-            removeItemLabel.addMouseListener(new MouseAdapter() {
-                public void mouseClicked(MouseEvent e) {
-                    int choice = JOptionPane.showConfirmDialog(null, "Are you sure you would like to remove this item from your cart?", "Confirmation", JOptionPane.YES_NO_OPTION);
-                    if (choice == JOptionPane.YES_OPTION) {
-                        smp.getGuest().getCart().remove(item);
-                        itemPanel.removeAll();
-                        itemPanel.setEnabled(false);
-                        itemPanel.setVisible(false);
-                        scp.getSubtotal().setText(getSubtotalAsString(smp));
-                        itemPanel.repaint();
+                    scp.getSubtotal().setText(getSubtotalAsString(smp));
+                    itemPanel.repaint();
+                });
+                JButton subtractMoreBtn = new JButton("-");
+                subtractMoreBtn.addActionListener(e -> {
+                    int choice = -1;
+                    if (smp.getGuest().getCart().getItemQuantity(item) == 1) {
+                        choice = removeItemConfirmation(smp, scp, itemPanel, item);
+                        if (choice != JOptionPane.YES_OPTION) {
+                            //smp.getGuest().getCart().removeItem(item);
+                            //if (smp.getGuest().getCart().containsKey(item)) {
+                            itemQuantity.setText(String.valueOf(smp.getGuest().getCart().getItemQuantity(item)));
+                            //}
+                        }
+                    } else {
+                        smp.getGuest().getCart().removeItem(item);
+                        itemQuantity.setText(String.valueOf(smp.getGuest().getCart().getItemQuantity(item)));
                     }
-                }
-            });
-            priceAndRemovePanel.add(removeItemLabel);
-            itemPanel.add(priceAndRemovePanel);
+                    scp.getSubtotal().setText(getSubtotalAsString(smp));
+                    itemPanel.repaint();
+                });
+                itemEditQuantity.add(subtractMoreBtn);
+                itemEditQuantity.add(itemQuantity);
+                itemEditQuantity.add(addMoreBtn);
+                itemPanel.add(itemEditQuantity);
 
-            cartItems.add(itemPanel);
+                // price / remove panel
+                JPanel priceAndRemovePanel = new JPanel();
+                priceAndRemovePanel.setLayout(new BoxLayout(priceAndRemovePanel, BoxLayout.Y_AXIS));
+                JLabel priceLabel = new JLabel(NumberFormat.getCurrencyInstance(Locale.US).format(item.getPrice()));
+                priceLabel.setFont(new Font("Arial", Font.PLAIN, 18));
+                priceAndRemovePanel.add(priceLabel);
+                JLabel removeItemLabel = new JLabel("Remove");
+                removeItemLabel.setFont(new Font("Arial", Font.BOLD, 10));
+                removeItemLabel.setForeground(Color.RED);
+                removeItemLabel.addMouseListener(new MouseAdapter() {
+                    public void mouseClicked(MouseEvent e) {
+                        removeItemConfirmation(smp, scp, itemPanel, item);
+                    }
+                });
+                priceAndRemovePanel.add(removeItemLabel);
+                itemPanel.add(priceAndRemovePanel);
+
+                cartItems.add(itemPanel);
+            }
         }
 
         return cartItems;
+    }
+
+    private static int removeItemConfirmation(ShoppingMainPanel smp, ShoppingCartPanel scp, JPanel itemPanel, ItemSpec item) {
+        int choice = JOptionPane.showConfirmDialog(null, "Are you sure you would like to remove this item from your cart?", "Confirmation", JOptionPane.YES_NO_OPTION);
+        if (choice == JOptionPane.YES_OPTION) {
+            smp.getGuest().getCart().remove(item);
+            itemPanel.removeAll();
+            itemPanel.setEnabled(false);
+            itemPanel.setVisible(false);
+            scp.getSubtotal().setText(getSubtotalAsString(smp));
+            itemPanel.repaint();
+        }
+
+        return choice;
     }
 }
