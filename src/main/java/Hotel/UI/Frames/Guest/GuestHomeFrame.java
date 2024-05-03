@@ -13,6 +13,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Frame acting as transition between any guest functionalities
+ *
+ * @author Rafe Loya
+ */
 public class GuestHomeFrame extends JFrame {
     private Guest guest;
     public CardLayout cl;

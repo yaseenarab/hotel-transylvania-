@@ -106,8 +106,8 @@ public class AvailableRoomsPanel extends JPanel {
         try {
             CentralReservations.putValues(SQL, model);
 
-            if(model.getRowCount() == 0){
-                throw new SQLException();
+            if (model.getRowCount() == 0){
+                //throw new SQLException();
             }
 
             noRooms.setText("");
