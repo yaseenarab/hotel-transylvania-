@@ -5,6 +5,7 @@ import Hotel.Utilities.MyLogger;
 import java.util.logging.Level;
 
 public class Person {
+    //hi
     // Constants (inclusive)
     public static final Integer
             NAME_MAX_LENGTH = 16,
