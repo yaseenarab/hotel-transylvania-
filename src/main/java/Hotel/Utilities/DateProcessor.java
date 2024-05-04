@@ -80,7 +80,6 @@ public class DateProcessor {
 
 
         long diff = end.getTime() - start.getTime();
-        System.out.println ("Days: " + TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS));
         Integer in = 0;
         Long days = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
         in = days.intValue();

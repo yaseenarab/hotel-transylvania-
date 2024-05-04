@@ -27,14 +27,15 @@ public enum BedType {
         str = str.toLowerCase();
         if (str.contains("tw")) {
             return "Twin";
-        } else if (str.toLowerCase().contains("fl")) {
+        } else if (str.contains("fl")) {
             return "Full";
-        } else if (str.toLowerCase().contains("qn")) {
+        } else if (str.contains("qn")) {
             return "Queen";
-        } else if (str.toLowerCase().contains("kg")) {
+        } else if (str.contains("kg")) {
             return "King";
         } else {
             System.out.println(str);
+
             throw new IllegalArgumentException("Invalid BedType");
         }
     }

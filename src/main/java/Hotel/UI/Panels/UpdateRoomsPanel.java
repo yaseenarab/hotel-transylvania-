@@ -223,6 +223,7 @@ public class UpdateRoomsPanel extends JPanel {
 								updateTable("SELECT * FROM Rooms");
 								dispose();
 							} catch(Exception e1) {
+								e1.printStackTrace();
 								JOptionPane.showMessageDialog(formPanel, "Room could not be added - " + e1.getCause());
 							}
 						} else {

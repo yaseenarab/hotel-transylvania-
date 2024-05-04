@@ -1,81 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="CatalogueDatabase" uuid="6ad89d88-2787-41a7-b896-784ba974fa19">
+    <data-source source="LOCAL" name="ReservationsData" uuid="00248ace-fb88-4825-93c8-cf3dc9487f3d">
       <driver-ref>derby.embedded</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.apache.derby.jdbc.EmbeddedDriver</jdbc-driver>
-      <jdbc-url>jdbc:derby:$PROJECT_DIR$/src/main/java/Databases/CatalogueDatabase</jdbc-url>
+      <jdbc-url>jdbc:derby:$PROJECT_DIR$/src/main/java/Hotel/Databases/ReservationsData</jdbc-url>
       <jdbc-additional-properties>
         <property name="com.intellij.clouds.kubernetes.db.enabled" value="false" />
       </jdbc-additional-properties>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="ReservationsData" uuid="a0d8a50a-8333-4323-bb62-b578e9cbab97">
+    <data-source source="LOCAL" name="AdminProfilesData" uuid="1d9d8437-8133-423c-b730-ed4a3e4ee6f6">
       <driver-ref>derby.embedded</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.apache.derby.jdbc.EmbeddedDriver</jdbc-driver>
-      <jdbc-url>jdbc:derby:$PROJECT_DIR$/../../../Desktop/hotel-transylvania--HotelUI/HotelRoom/src/main/java/Databases/ReservationsData</jdbc-url>
+      <jdbc-url>jdbc:derby:$PROJECT_DIR$/src/main/java/Hotel/Databases/AdminProfilesData</jdbc-url>
       <jdbc-additional-properties>
         <property name="com.intellij.clouds.kubernetes.db.enabled" value="false" />
       </jdbc-additional-properties>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="CashieringData" uuid="69e6476b-08c0-4539-af89-dc98799e3928">
+    <data-source source="LOCAL" name="CashieringData" uuid="7b37d455-a043-48b2-8b74-3c0904139c1b">
       <driver-ref>derby.embedded</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.apache.derby.jdbc.EmbeddedDriver</jdbc-driver>
-      <jdbc-url>jdbc:derby:$PROJECT_DIR$/src/main/java/Databases/CashieringData</jdbc-url>
+      <jdbc-url>jdbc:derby:$PROJECT_DIR$/src/main/java/Hotel/Databases/CashieringData</jdbc-url>
       <jdbc-additional-properties>
         <property name="com.intellij.clouds.kubernetes.db.enabled" value="false" />
       </jdbc-additional-properties>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="AdminProfilesData" uuid="e9b2a24a-bfba-4080-9e14-54fd84b4b650">
+    <data-source source="LOCAL" name="CatalogueDatabase" uuid="c97255b9-a3fb-4c65-9f58-be4dec3d7261">
       <driver-ref>derby.embedded</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.apache.derby.jdbc.EmbeddedDriver</jdbc-driver>
-      <jdbc-url>jdbc:derby:$PROJECT_DIR$/src/main/java/Databases/AdminProfilesData</jdbc-url>
+      <jdbc-url>jdbc:derby:$PROJECT_DIR$/src/main/java/Hotel/Databases/CatalogueDatabase</jdbc-url>
       <jdbc-additional-properties>
         <property name="com.intellij.clouds.kubernetes.db.enabled" value="false" />
       </jdbc-additional-properties>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="EmployeeProfilesData" uuid="01d22578-13c3-4e65-a820-c8741b126e1f">
+    <data-source source="LOCAL" name="EmployeeProfilesData" uuid="a9c26495-7b57-47ab-846c-324dbb675a69">
       <driver-ref>derby.embedded</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.apache.derby.jdbc.EmbeddedDriver</jdbc-driver>
-      <jdbc-url>jdbc:derby:$PROJECT_DIR$/src/main/java/Databases/EmployeeProfilesData</jdbc-url>
+      <jdbc-url>jdbc:derby:$PROJECT_DIR$/src/main/java/Hotel/Databases/EmployeeProfilesData</jdbc-url>
       <jdbc-additional-properties>
         <property name="com.intellij.clouds.kubernetes.db.enabled" value="false" />
       </jdbc-additional-properties>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="HotelRoomsData" uuid="d30ff77a-0059-45a3-a38c-9cdb3657347b">
+    <data-source source="LOCAL" name="HotelRoomsData" uuid="163aa1e1-44f4-4b3e-b83f-366269275e00">
       <driver-ref>derby.embedded</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.apache.derby.jdbc.EmbeddedDriver</jdbc-driver>
-      <jdbc-url>jdbc:derby:$PROJECT_DIR$/src/main/java/Databases/HotelRoomsData</jdbc-url>
+      <jdbc-url>jdbc:derby:$PROJECT_DIR$/src/main/java/Hotel/Databases/HotelRoomsData</jdbc-url>
       <jdbc-additional-properties>
         <property name="com.intellij.clouds.kubernetes.db.enabled" value="false" />
       </jdbc-additional-properties>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="PersonProfilesData" uuid="4d61745c-7bee-49f4-a77b-c1a91db2968f">
+    <data-source source="LOCAL" name="PersonProfilesData" uuid="78f671af-dd6d-4d5e-918a-aede4ed0b657">
       <driver-ref>derby.embedded</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.apache.derby.jdbc.EmbeddedDriver</jdbc-driver>
-      <jdbc-url>jdbc:derby:$PROJECT_DIR$/../../../Desktop/hotel-transylvania--HotelUI/HotelRoom/src/main/java/Databases/PersonProfilesData</jdbc-url>
+      <jdbc-url>jdbc:derby:$PROJECT_DIR$/src/main/java/Hotel/Databases/PersonProfilesData</jdbc-url>
       <jdbc-additional-properties>
         <property name="com.intellij.clouds.kubernetes.db.enabled" value="false" />
       </jdbc-additional-properties>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="ShoppingCartData" uuid="ba3834df-513d-4544-b830-faa4e81507ec">
+    <data-source source="LOCAL" name="ShoppingCartData" uuid="38dade64-a960-4e61-b948-e360dfe9b20e">
       <driver-ref>derby.embedded</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.apache.derby.jdbc.EmbeddedDriver</jdbc-driver>
-      <jdbc-url>jdbc:derby:$PROJECT_DIR$/src/main/java/Databases/ShoppingCartData</jdbc-url>
+      <jdbc-url>jdbc:derby:$PROJECT_DIR$/src/main/java/Hotel/Databases/ShoppingCartData</jdbc-url>
       <jdbc-additional-properties>
         <property name="com.intellij.clouds.kubernetes.db.enabled" value="false" />
       </jdbc-additional-properties>

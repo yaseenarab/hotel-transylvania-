@@ -5,35 +5,91 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="706720d6-6ce5-4d83-ac1a-7436f9f583d1" name="Changes" comment="nothing">
-      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/a0d8a50a-8333-4323-bb62-b578e9cbab97.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/a0d8a50a-8333-4323-bb62-b578e9cbab97.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/derby.log" beforeDir="false" afterPath="$PROJECT_DIR$/derby.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Central/CentralDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Central/CentralDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Central/CentralReservations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Central/CentralReservations.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/AdminProfilesData/db.lck" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/AdminProfilesData/db.lck" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/AdminProfilesData/log/log.ctrl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/AdminProfilesData/log/log.ctrl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/AdminProfilesData/log/log3.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/AdminProfilesData/log/log3.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/AdminProfilesData/log/logmirror.ctrl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/AdminProfilesData/log/logmirror.ctrl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/AdminProfilesData/seg0/c10.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/AdminProfilesData/seg0/c10.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/AdminProfilesData/seg0/c230.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/AdminProfilesData/seg0/c230.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/AdminProfilesData/seg0/c241.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/AdminProfilesData/seg0/c241.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/AdminProfilesData/seg0/c251.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/AdminProfilesData/seg0/c251.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CashieringData/db.lck" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CashieringData/db.lck" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CashieringData/log/log.ctrl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CashieringData/log/log.ctrl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CashieringData/log/log1.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CashieringData/log/logmirror.ctrl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CashieringData/log/logmirror.ctrl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CashieringData/seg0/c10.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CashieringData/seg0/c10.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CashieringData/seg0/c230.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CashieringData/seg0/c230.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CashieringData/seg0/c241.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CashieringData/seg0/c241.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CashieringData/seg0/c251.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CashieringData/seg0/c251.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CashieringData/seg0/c490.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CashieringData/seg0/c490.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CatalogueDatabase/db.lck" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CatalogueDatabase/db.lck" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CatalogueDatabase/log/log.ctrl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CatalogueDatabase/log/log.ctrl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CatalogueDatabase/log/log3.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CatalogueDatabase/log/log3.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CatalogueDatabase/log/logmirror.ctrl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CatalogueDatabase/log/logmirror.ctrl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CatalogueDatabase/seg0/c10.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CatalogueDatabase/seg0/c10.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CatalogueDatabase/seg0/c230.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CatalogueDatabase/seg0/c230.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CatalogueDatabase/seg0/c241.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CatalogueDatabase/seg0/c241.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CatalogueDatabase/seg0/c251.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CatalogueDatabase/seg0/c251.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/DataBaseManipulation/HotelRoomsAddDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/DataBaseManipulation/HotelRoomsAddDatabase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/EmployeeProfilesData/db.lck" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/EmployeeProfilesData/db.lck" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/EmployeeProfilesData/log/log.ctrl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/EmployeeProfilesData/log/log.ctrl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/EmployeeProfilesData/log/log4.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/EmployeeProfilesData/log/log4.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/EmployeeProfilesData/log/log4.dat" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/EmployeeProfilesData/log/logmirror.ctrl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/EmployeeProfilesData/log/logmirror.ctrl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/EmployeeProfilesData/seg0/c10.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/EmployeeProfilesData/seg0/c10.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/EmployeeProfilesData/seg0/c230.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/EmployeeProfilesData/seg0/c230.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/EmployeeProfilesData/seg0/c241.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/EmployeeProfilesData/seg0/c241.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/EmployeeProfilesData/seg0/c251.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/EmployeeProfilesData/seg0/c251.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/EmployeeProfilesData/seg0/c490.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/EmployeeProfilesData/seg0/c490.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/HotelRoomsData/db.lck" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/HotelRoomsData/db.lck" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/HotelRoomsData/log/log.ctrl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/HotelRoomsData/log/log.ctrl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/HotelRoomsData/log/log10.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/HotelRoomsData/log/log10.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/HotelRoomsData/log/log10.dat" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/HotelRoomsData/log/logmirror.ctrl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/HotelRoomsData/log/logmirror.ctrl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/HotelRoomsData/seg0/c10.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/HotelRoomsData/seg0/c10.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/HotelRoomsData/seg0/c230.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/HotelRoomsData/seg0/c230.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/HotelRoomsData/seg0/c241.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/HotelRoomsData/seg0/c241.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/HotelRoomsData/seg0/c251.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/HotelRoomsData/seg0/c251.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/HotelRoomsData/seg0/c490.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/HotelRoomsData/seg0/c490.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/PersonProfilesData/db.lck" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/PersonProfilesData/db.lck" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/PersonProfilesData/log/log.ctrl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/PersonProfilesData/log/log.ctrl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/PersonProfilesData/log/log10.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/PersonProfilesData/log/log10.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/PersonProfilesData/log/logmirror.ctrl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/PersonProfilesData/log/logmirror.ctrl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/PersonProfilesData/seg0/c10.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/PersonProfilesData/seg0/c10.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/PersonProfilesData/seg0/c230.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/PersonProfilesData/seg0/c230.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/PersonProfilesData/seg0/c241.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/PersonProfilesData/seg0/c241.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/PersonProfilesData/seg0/c251.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/PersonProfilesData/seg0/c251.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/PersonProfilesData/seg0/c490.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/PersonProfilesData/seg0/c490.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ReservationsData/db.lck" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ReservationsData/db.lck" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ReservationsData/log/log.ctrl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ReservationsData/log/log.ctrl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ReservationsData/log/log17.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ReservationsData/log/log17.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ReservationsData/log/log17.dat" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ReservationsData/log/logmirror.ctrl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ReservationsData/log/logmirror.ctrl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ReservationsData/seg0/c10.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ReservationsData/seg0/c10.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ReservationsData/seg0/c20.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ReservationsData/seg0/c20.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ReservationsData/seg0/c230.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ReservationsData/seg0/c230.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ReservationsData/seg0/c241.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ReservationsData/seg0/c241.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ReservationsData/seg0/c251.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ReservationsData/seg0/c251.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ReservationsData/seg0/c4a0.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ReservationsData/seg0/c90.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ReservationsData/seg0/c90.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ReservationsData/seg0/ca1.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ReservationsData/seg0/ca1.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ReservationsData/seg0/cb1.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ReservationsData/seg0/cb1.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ShoppingCartData/db.lck" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ShoppingCartData/db.lck" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ShoppingCartData/log/log.ctrl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ShoppingCartData/log/log.ctrl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ShoppingCartData/log/log1.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ShoppingCartData/log/log1.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ShoppingCartData/log/logmirror.ctrl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ShoppingCartData/log/logmirror.ctrl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ShoppingCartData/seg0/c10.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ShoppingCartData/seg0/c10.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ShoppingCartData/seg0/c230.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ShoppingCartData/seg0/c230.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ShoppingCartData/seg0/c241.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ShoppingCartData/seg0/c241.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ShoppingCartData/seg0/c251.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ShoppingCartData/seg0/c251.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/derby.log" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/derby.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Enums/BedType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Enums/BedType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/UI/Panels/AvailableRoomsPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/UI/Panels/AvailableRoomsPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/UI/Panels/UpdateRoomsPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/UI/Panels/UpdateRoomsPanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,28 +111,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Rafe/IdeaProjects/hotel-transylvania-/src/main/java/Hotel/Databases&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.HotelRoomsAddDatabase.executor": "Run",
+    "Application.Main.executor": "Run",
+    "Application.Unnamed.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/kbctr/OneDrive/Documents/GitHub/hotel-transylvania-/src/main/java/Hotel/Databases",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;derby&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "derby"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\kbctr\OneDrive\Desktop\hotel-transylvania--HotelUI\HotelRoom\src\main\java\UI\Frames" />
@@ -86,8 +144,18 @@
       <recent name="C:\Users\kbctr\OneDrive\Desktop\hotel-transylvania--HotelUI\HotelRoom\src\main\java\Central" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="HotelRoomsAddDatabase" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Hotel.Databases.DataBaseManipulation.HotelRoomsAddDatabase" />
+      <module name="HotelRoom" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/main/java/Hotel/Databases" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application">
+      <option name="ALTERNATIVE_JRE_PATH" value="22" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="Hotel.Main" />
       <module name="HotelRoom" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/main/java/Hotel/Databases" />
@@ -95,6 +163,10 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Application.HotelRoomsAddDatabase" />
+    </list>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -125,6 +197,7 @@
       <workItem from="1714796998252" duration="325000" />
       <workItem from="1714797330738" duration="540000" />
       <workItem from="1714797999065" duration="219000" />
+      <workItem from="1714798819237" duration="3573000" />
     </task>
     <task id="LOCAL-00001" summary="nothing">
       <option name="closed" value="true" />

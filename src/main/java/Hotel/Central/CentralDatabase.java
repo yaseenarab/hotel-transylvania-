@@ -33,6 +33,7 @@ public class CentralDatabase {
             conCart = DriverManager.getConnection(DB_URLCart);
             conCatalogue = DriverManager.getConnection(DB_URLCatalogue);
         } catch (Exception e) {
+            //e.printStackTrace();
             return false;
         }
         return true;
@@ -382,8 +383,7 @@ public class CentralDatabase {
                 smoking = false;
             }
 
-
-            stmt.executeUpdate("insert into ROOMS(ROOMNUMBER, ROOMSTATUS, ROOMTYPE, BEDTYPE, QUALITYLEVEL, SMOKINGALLOWED) values(" + roomNum + ",'" + split[1] + "','"+ split[2]+ "','" + BedType.databaseFormat(split[3]) + "','" + QualityLevel.databaseFormat(split[4]) + "'," + smoking + ")");
+            stmt.executeUpdate("insert into ROOMS(ROOMNUMBER, ROOMSTATUS, ROOMTYPE, BEDTYPE, QUALITYLEVEL, SMOKINGALLOWED) values(" + roomNum + ",'" + split[1] + "','"+ split[2]+ "','" + split[3] + "','" + QualityLevel.databaseFormat(split[4]) + "'," + smoking + ")");
 
         } catch (SQLException e) {
             throw new RuntimeException(e);

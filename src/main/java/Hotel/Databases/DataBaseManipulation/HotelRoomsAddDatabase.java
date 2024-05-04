@@ -33,7 +33,7 @@ public class HotelRoomsAddDatabase {
             PreparedStatement pstmt;
 
             //ResultSet res = stmt.executeQuery("select RoomType" + " FROM Rooms " + "WHERE RoomNumber = " + 302);
-            pstmt = con.prepareStatement("Alter Table Reservations Add CheckedIn BOOLEAN");
+            pstmt = con.prepareStatement("Alter Table Reservations add Column NightsStayed Integer");
             pstmt.executeUpdate();
 
 

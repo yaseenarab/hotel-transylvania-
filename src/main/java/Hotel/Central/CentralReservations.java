@@ -275,6 +275,8 @@ public class CentralReservations {
 
         ResultSet resultSet = stmt.executeQuery(SQL);
 
+
+
         if(SQL.equals("")){
             throw new SQLException();
         }

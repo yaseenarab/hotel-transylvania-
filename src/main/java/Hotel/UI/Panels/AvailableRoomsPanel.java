@@ -114,6 +114,7 @@ public class AvailableRoomsPanel extends JPanel {
             validDate.setText("");
 
         }catch (SQLException e) {
+
             //e.printStackTrace();
 
             noRooms.setFont(new Font("Serif", Font.ITALIC, 55));
