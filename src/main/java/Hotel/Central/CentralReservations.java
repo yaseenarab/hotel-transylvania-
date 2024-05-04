@@ -99,7 +99,7 @@ public class CentralReservations {
 
 
             double cost = totalCost.doubleValue() * oneNightStayMultiplier;
-            String SQL = "INSERT INTO Reservations(Reservationid,Roomnumber,username,startDate,endDate,cost,checkedin, nightsStayed) values('"+resID +"'," + roomID + ",'" + username + "','" + start  + "','" + end + "'," + cost+", false, " + nightsStayed + ")";
+            String SQL = "INSERT INTO Reservations(Reservationid,Roomnumber,username,startDate,endDate,cost,checkedin,nightsStayed) values('"+resID +"'," + roomID + ",'" + username + "','" + start  + "','" + end + "'," + cost+", false, " + nightsStayed + ")";
             exectueSQL(SQL,stmt);
 
             //;

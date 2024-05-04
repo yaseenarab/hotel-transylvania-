@@ -15,7 +15,7 @@
       <driver-ref>derby.embedded</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.apache.derby.jdbc.EmbeddedDriver</jdbc-driver>
-      <jdbc-url>jdbc:derby:$PROJECT_DIR$/src/main/java/Databases/ReservationsData</jdbc-url>
+      <jdbc-url>jdbc:derby:$PROJECT_DIR$/../../../Desktop/hotel-transylvania--HotelUI/HotelRoom/src/main/java/Databases/ReservationsData</jdbc-url>
       <jdbc-additional-properties>
         <property name="com.intellij.clouds.kubernetes.db.enabled" value="false" />
       </jdbc-additional-properties>
@@ -65,7 +65,7 @@
       <driver-ref>derby.embedded</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.apache.derby.jdbc.EmbeddedDriver</jdbc-driver>
-      <jdbc-url>jdbc:derby:$PROJECT_DIR$/src/main/java/Databases/PersonProfilesData</jdbc-url>
+      <jdbc-url>jdbc:derby:$PROJECT_DIR$/../../../Desktop/hotel-transylvania--HotelUI/HotelRoom/src/main/java/Databases/PersonProfilesData</jdbc-url>
       <jdbc-additional-properties>
         <property name="com.intellij.clouds.kubernetes.db.enabled" value="false" />
       </jdbc-additional-properties>
