@@ -1,28 +1,24 @@
 package Hotel.Enums;
 
 //Vacant Clean, Vacant Dirty, Occupied Clean, Occupied Dirty, Out Of Order
+/**
+ * Enum representing various statuses that a hotel room can have.
+ * Each status provides information about the room's occupancy and cleanliness.
+ */
 public enum RoomStatus {
     VaCl, VaDi,
     OcCl, OcDi,
     OOO;
     private static final RoomStatus[] types = values();
+
+    /**
+     * Returns the next room status in the sequence, wrapping around to the first status.
+     * This method can be used to cycle through statuses, for example, in user interfaces or simulations.
+     *
+     * @return RoomStatus The next room status in the enumeration.
+     */
     public RoomStatus next() {
         return types[(this.ordinal() + 1) % types.length];
     }
-    public static RoomStatus getEnum(String str) {
-        str = str.toLowerCase();
-        if (str.contains("vac")) {
-            return RoomStatus.VaCl;
-        } else if (str.contains("vad")) {
-            return RoomStatus.VaDi;
-        } else if (str.contains("occ")) {
-            return RoomStatus.OcCl;
-        } else if (str.contains("ocd")) {
-            return RoomStatus.OcDi;
-        } else if (str.contains("ooo")) {
-            return RoomStatus.OOO;
-        } else {
-            throw new IllegalArgumentException("Invalid RoomStatus");
-        }
-    }
+
 }
