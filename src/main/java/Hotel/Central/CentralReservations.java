@@ -18,9 +18,21 @@ import java.util.*;
 import java.util.Date;
 import java.util.logging.Level;
 
+
+/**
+ * Central management for hotel reservations, handling database interactions
+ * for reservation data retrieval and updates.
+ */
 public class CentralReservations {
     private static Integer nightsStayed = 0;
 
+
+    /**
+     * Retrieves all reservations for a specific guest from the database.
+     *
+     * @param guest The guest for whom to retrieve reservations.
+     * @return A map of reservation IDs to Reservation objects if successful, otherwise null.
+     */
     public static Map<String,Reservation> getReservations(Guest guest) {
         Map<String,Reservation> reservations = new HashMap();
 
@@ -54,14 +66,35 @@ public class CentralReservations {
         return reservations;
     }
 
+    /**
+     * Sets the number of nights a guest has stayed.
+     *
+     * @param nightsStayed The number of nights stayed.
+     */
     public static void setNightsStayed(Integer nightsStayed) {
         CentralReservations.nightsStayed = nightsStayed;
     }
-
+    /**
+     * Gets the number of nights stayed.
+     *
+     * @return The number of nights stayed.
+     */
     public static Integer getNightsStayed() {
         return nightsStayed;
     }
 
+
+
+    /**
+     * Creates a reservation in the system.
+     *
+     * @param roomID     The room ID to book.
+     * @param username   The username of the guest making the booking.
+     * @param guestID    The ID of the guest.
+     * @param startDate  The start date of the reservation.
+     * @param endDate    The end date of the reservation.
+     * @return A new Reservation object.
+     */
     public static Reservation makeReservation(Integer roomID, String username, String guestID, Date startDate, Date endDate) {
         RentableRoom room;
         Reservation myReservation=null;
@@ -116,6 +149,13 @@ public class CentralReservations {
         return myReservation;
     }
 
+    /**
+     * Calculates a cost multiplier for reservations that are only for one night.
+     *
+     * @param startDate The start date of the reservation.
+     * @param endDate   The end date of the reservation.
+     * @return The multiplier to be applied to the cost.
+     */
     private static double handleOneNightStay(Date startDate, Date endDate) {
 
         double oneNightStayMultiplier = 1;
@@ -125,6 +165,12 @@ public class CentralReservations {
         return oneNightStayMultiplier;
     }
 
+    /**
+     * Executes a given SQL statement.
+     *
+     * @param SQL  The SQL statement to be executed.
+     * @param stmt The statement object used to execute the SQL.
+     */
     public static void exectueSQL(String SQL, Statement stmt){
 
         try {
@@ -134,11 +180,26 @@ public class CentralReservations {
             throw new RuntimeException(e);
         }
     }
+
+    /**
+     * Resets the nights stayed count to zero.
+     */
     public static void resetEditStatus(){
         nightsStayed = 0;
     }
 
-
+    /**
+     * Displays available rooms based on specified criteria and reservation dates.
+     *
+     * @param hotelType        The type of hotel.
+     * @param roomType         The type of room.
+     * @param qualityLevel     The quality level of the room.
+     * @param bedType          The type of bed.
+     * @param smokingStatus    Whether the room allows smoking.
+     * @param reservationStart The start date of the reservation.
+     * @param reservationEnd   The end date of the reservation.
+     * @return An SQL query string that fetches available rooms.
+     */
     public static String displayAvailableRooms(String hotelType, String roomType, String qualityLevel, String bedType, boolean smokingStatus, Date reservationStart, Date reservationEnd){
         String SQL = null;
         try {
@@ -266,7 +327,13 @@ public class CentralReservations {
 
     }
 
-
+    /**
+     * Inserts the values from a SQL query into a table model.
+     *
+     * @param SQL   The SQL query to execute.
+     * @param model The table model to be populated with the query results.
+     * @throws SQLException If an SQL error occurs.
+     */
     public static void putValues(String SQL, DefaultTableModel model) throws SQLException {
 
 
@@ -306,7 +373,12 @@ public class CentralReservations {
 
         }
     }
-
+    /**
+     * Retrieves all reservation records from the database.
+     *
+     * @return A ResultSet containing all reservation records.
+     * @throws SQLException If an SQL error occurs during the retrieval.
+     */
     public static ResultSet getReservaions()  {
 
         try {
@@ -321,7 +393,13 @@ public class CentralReservations {
 
 
     }
-    
+    /**
+     * Updates the cost associated with a specific reservation by adding an additional cost.
+     *
+     * @param resID     The reservation ID to be updated.
+     * @param addedCost The additional cost to add.
+     */
+
     public static void updateCost(String resID, double addedCost) {
         Connection con = CentralDatabase.getConReservationDatabase();
         try {

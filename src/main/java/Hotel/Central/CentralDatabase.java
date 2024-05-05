@@ -500,6 +500,14 @@ public class CentralDatabase {
 
         return res;
     }
+
+    /**
+     * Updates the password for a user across all profile databases (guest, employee, admin).
+     *
+     * @param username The username whose password is to be updated.
+     * @param password The new password to set.
+     * @throws Exception If the update operation fails.
+     */
     public static void updatePassword(String username, String password) throws Exception {
         ResultSet employee = getEmployee(username);
         ResultSet admin = getAdmin(username);
@@ -546,6 +554,13 @@ public class CentralDatabase {
         }
         catch (Exception e) {}
     }
+
+    /**
+     * Inserts new hotel room data into the hotel rooms database.
+     *
+     * @param line A string containing the details of the room to be inserted.
+     * @throws SQLException If an SQL error occurs during the insert operation.
+     */
     public static void insertIntoHotelRoomsData(String line) {
         try {
             Statement stmt = conHot.createStatement();
@@ -566,6 +581,13 @@ public class CentralDatabase {
             throw new RuntimeException(e);
         }
     }
+
+    /**
+     * Retrieves the entire catalogue from the catalogue database.
+     *
+     * @return ResultSet containing all catalogue items, throws SQLException if retrieval fails.
+     * @throws SQLException If an SQL error occurs during data retrieval.
+     */
     public static ResultSet getCatalogue() throws SQLException {
         ResultSet rs = null;
         Statement stmt = null;
@@ -579,6 +601,13 @@ public class CentralDatabase {
 
         return rs;
     }
+
+    /**
+     * Inserts a new reservation into the reservations' database.
+     *
+     * @param line A string containing the details of the reservation to be inserted.
+     *
+     */
     public static  void insertIntoReservations(String line)  {
         try {
             Statement stmt = conRes.createStatement();
@@ -589,6 +618,13 @@ public class CentralDatabase {
             throw new RuntimeException(e);
         }
     }
+
+    /**
+     * Retrieves a specific card's details from the cashiering data based on the username.
+     *
+     * @param username The username associated with the card.
+     * @return ResultSet containing the card details, null if not found.
+     */
     public static ResultSet getCard(String username) {
         ResultSet res = null;
         try {
@@ -600,6 +636,15 @@ public class CentralDatabase {
             return null;
         }
     }
+
+    /**
+     * Checks if a given card number and expiration date match the records in the cashiering database.
+     *
+     * @param username The username associated with the card.
+     * @param cardNumber The card number to match.
+     * @param expiration The expiration date to match.
+     * @return true if the card number and expiration date match the records, false otherwise.
+     */
     public static boolean cardNumMatchExp(String username,String cardNumber, String expiration) {
         try {
             ResultSet res = getCard(username);
@@ -614,6 +659,14 @@ public class CentralDatabase {
         }
         return false;
     }
+
+
+    /**
+     * Inserts or updates a card's details in the cashiering database based on the provided username.
+     *
+     * @param line A string containing the card details to be inserted or updated.
+     * @throws SQLException If an SQL error occurs during the insert or update operation.
+     */
     public static void insertIntoCards(String line) {
         ResultSet res;
         try {
@@ -643,6 +696,12 @@ public class CentralDatabase {
             throw new RuntimeException(e);
         }
     }
+
+    /**
+     * Retrieves all rooms from the hotel rooms database.
+     *
+     * @return ResultSet containing all room records.
+     */
     public static ResultSet getRooms() {
         ResultSet res = null;
         try {
@@ -655,6 +714,14 @@ public class CentralDatabase {
 
         return res;
     }
+
+    /**
+     * Updates the status of a specific room in the hotel rooms database.
+     *
+     * @param roomNum The room number whose status needs updating.
+     * @param roomStatus The new status to set for the room.
+     * @throws SQLException If an SQL error occurs during the update operation.
+     */
     public static void updateRoom(int roomNum, RoomStatus roomStatus ) {
         try {
             String sqlStatement = "UPDATE ROOMS SET ROOMSTATUS = ? WHERE ROOMNUMBER = ?";

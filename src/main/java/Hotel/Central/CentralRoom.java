@@ -12,13 +12,25 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 
+
+
+/**
+ * Provides functionality related to room operations and initialization.
+ */
 public class CentralRoom {
     private static boolean roomsInitialized;
     private static final RoomInitializer ROOM_INITIALIZER = new RoomInitializer();
     //private static final RoomAvailabilityDatabase ROOM_AVAILABILITY_DATABASE = new RoomAvailabilityDatabase();
     //private static final RoomCostDatabase ROOM_COST_DATABASE = new RoomCostDatabase();
 
-    public static boolean initializeRooms(Integer numFloors, Integer numRooms) {
+
+    /**
+     * gets whether the room is initialized or not.
+     *
+     *
+     * @return returns true if the room is initialized and false if not.
+     */
+    public static boolean initializeRooms() {
         /*
         try {
             Method initRooms = RoomInitializer.class.getDeclaredMethod("initRooms", Integer.class, Integer.class);
@@ -36,6 +48,12 @@ public class CentralRoom {
         return roomsInitialized;
     }
 
+    /**
+     * Calculates the cost of a room based on its attributes.
+     *
+     * @param roomId The ID of the room.
+     * @return The cost of the room as a BigDecimal.
+     */
     public static BigDecimal calculatorCost(Integer roomId){
         BigDecimal b = null;
 
@@ -113,7 +131,12 @@ public class CentralRoom {
         }
         return b;
     }
-
+    /**
+     * Adds a room to the system.
+     *
+     * @param roomID The ID of the room to add.
+     * @param room   The RentableRoom object representing the room.
+     */
     public static void addRoom(String roomID, RentableRoom room) {
 
         try {
@@ -127,7 +150,12 @@ public class CentralRoom {
 
 
     }
-
+    /**
+     * Quotes a room for a guest.
+     *
+     * @param roomID  The ID of the room to quote.
+     * @return The quoted room rate as an Integer.
+     */
     public static Integer quoteRoom(String roomID) {
 
         try {
@@ -144,6 +172,14 @@ public class CentralRoom {
         return 1;
     }
 
+    /**
+     * Initializes rooms based on the number of floors and rooms per floor.
+     *
+     * @param numFloors The number of floors in the hotel.
+     * @param numRooms  The number of rooms per floor.
+     * @param username  The username of the administrator initiating room initialization.
+     * @return True if rooms are successfully initialized, false otherwise.
+     */
     public static boolean initializeRooms(Integer numFloors, Integer numRooms, String username) {
         if(CentralProfiles.AdminisIn(username)) {
             try {
@@ -164,6 +200,12 @@ public class CentralRoom {
         return roomsInitialized;
     }
 
+    /**
+     * Retrieves a room based on its ID.
+     *
+     * @param roomID The ID of the room to retrieve.
+     * @return The RentableRoom object representing the room.
+     */
     public static RentableRoom getRoom(String roomID) {
         try {
             //Method getRoom = RoomAvailabilityDatabase.class.getDeclaredMethod("getRoom", String.class);

@@ -11,10 +11,22 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 
+
+/**
+ * Manages the retrieval and management of profiles for guests, employees, and administrators
+ * within the hotel management system. This class facilitates the interaction with the database
+ * for operations related to user profiles.
+ */
 public class CentralProfiles {
     private static final Arlow ARLOW = new Arlow();
 
-
+    /**
+     * Retrieves a guest profile from the database based on username and password.
+     *
+     * @param username The username of the guest.
+     * @param password The password of the guest.
+     * @return Guest object if credentials match a record, null otherwise.
+     */
     public static Guest getGuest(String username, String password) {
 
         Guest guest = null;
@@ -44,7 +56,12 @@ public class CentralProfiles {
     }
 
 
-
+    /**
+     * Retrieves the guest ID associated with a username.
+     *
+     * @param username The username of the guest.
+     * @return The ID of the guest if found, null otherwise.
+     */
     public static String getGuestID(String username) {
 
         try {
@@ -68,7 +85,14 @@ public class CentralProfiles {
         return null;
     }
 
-
+    /**
+     * Authenticates a user based on username, password, and type.
+     *
+     * @param username The username of the user.
+     * @param password The password of the user.
+     * @param type     The type of user ("Guest", "Employee", "Admin").
+     * @return true if authentication is successful, false otherwise.
+     */
     public static Boolean authenticateUser(String username, String password, String type) {
 
         Guest guest = null;
@@ -104,6 +128,13 @@ public class CentralProfiles {
         }
         return false;
     }
+
+    /**
+     * Checks if a guest profile exists in the database.
+     *
+     * @param username The username of the guest.
+     * @return true if the guest profile exists, false otherwise.
+     */
     public static Boolean guestisIn(String username) {
         Guest guest = null;
         try{
@@ -120,7 +151,12 @@ public class CentralProfiles {
         }
         return false;
     }
-
+    /**
+     * Checks if an employee profile exists in the database.
+     *
+     * @param username The username of the employee.
+     * @return true if the employee profile exists, false otherwise.
+     */
     public static Boolean EmployeeisIn(String username) {
 
         Guest guest = null;
@@ -138,6 +174,17 @@ public class CentralProfiles {
         }
         return false;
     }
+    /**
+     * Creates a new guest profile in the database.
+     *
+     * @param firstName    First name of the guest.
+     * @param lastName     Last name of the guest.
+     * @param email        Email of the guest.
+     * @param phoneNumber  Phone number of the guest.
+     * @param username     Username for the guest profile.
+     * @param password     Password for the guest profile.
+     * @return The ID of the new guest profile, or null if the creation fails.
+     */
     public static String makeGuestProfile(String firstName, String lastName,
                                           String email, String phoneNumber,
                                           String username, String password ) {
@@ -169,7 +216,13 @@ public class CentralProfiles {
             return null;
         }
     }
-    
+    /**
+     * Retrieves employee details from the database based on username and password.
+     *
+     * @param username The username of the employee.
+     * @param password The password of the employee.
+     * @return Employee object if found, null otherwise.
+     */
     public static Employee getEmployee(String username, String password){
         Employee employee = null;
         try {
@@ -198,6 +251,13 @@ public class CentralProfiles {
         }
         return employee;
     }
+    /**
+     * Retrieves administrator details from the database based on username and password.
+     *
+     * @param username The username of the admin.
+     * @param password The password of the admin.
+     * @return Admin object if found, null otherwise.
+     */
     public static Admin getAdmin(String username, String password){
 
         Admin admin = null;
@@ -226,7 +286,17 @@ public class CentralProfiles {
         }
         return admin;
     }
-    
+    /**
+     * Creates a new employee profile in the database.
+     *
+     * @param firstName    First name of the employee.
+     * @param lastName     Last name of the employee.
+     * @param email        Email of the employee.
+     * @param phoneNumber  Phone number of the employee.
+     * @param username     Username for the employee profile.
+     * @param password     Password for the employee profile.
+     * @return The ID of the new employee profile, or null if the creation fails.
+     */
     public static String makeEmployeeProfile(String firstName, String lastName,
                                              String email, String phoneNumber,
                                              String username, String password ) {
@@ -258,6 +328,12 @@ public class CentralProfiles {
         }
     }
 
+    /**
+     * Checks if an admin profile exists in the database.
+     *
+     * @param text The username of the admin.
+     * @return true if the admin profile exists, false otherwise.
+     */
     public static boolean AdminisIn(String text) {
         Admin admin = null;
         try{
@@ -277,6 +353,17 @@ public class CentralProfiles {
 
     }
 
+    /**
+     * Creates a new admin profile in the database.
+     *
+     * @param firstName    First name of the admin.
+     * @param lastName     Last name of the admin.
+     * @param email        Email of the admin.
+     * @param phoneNumber  Phone number of the admin.
+     * @param username     Username for the admin profile.
+     * @param password     Password for the admin profile.
+     * @return The ID of the new admin profile, or null if the creation fails.
+     */
     public static String makeAdminProfile(String firstName, String lastName, String email, String phoneNumber, String username, String password) {
         try {
 
@@ -304,86 +391,5 @@ public class CentralProfiles {
                     phoneNumber + "," + username + "," + password);
             return null;
         }
-    }
-
-    
-    public static boolean resetGuestPassword(String username) {
-	    if (guestisIn(username)) {
-    		try {
-	            Connection con = CentralDatabase.getConGuestProfileDataBase();
-	            Statement stmt = con.createStatement();
-	            int numAffected = stmt.executeUpdate("UPDATE PersonProfiles SET password='password' WHERE username = '" + username + "'");
-	
-	
-	            if (numAffected > 0) {
-	            	return true;
-	            }
-	            return false;
-	        } catch (SQLException e) {
-	            throw new RuntimeException(e);
-	        } catch (Exception e) {
-	            throw new RuntimeException(e);
-	        }
-	    }
-    	
-    	return false;
-    }
-    
-    public static boolean resetEmployeePassword(String username) {
-	    if (EmployeeisIn(username)) {
-    		try {
-	            Connection con = CentralDatabase.getConEmployeeProfileDataBase();
-	            Statement stmt = con.createStatement();
-	            ResultSet res = stmt.executeQuery("UPDATE PersonProfiles SET password='password' WHERE username = " + username + " RETURNING personid, username, password");
-	
-	
-	            while(res.next()){
-	
-	                String employeeid = res.getString("personid");
-	                String employeeUsername = res.getString("firstname");
-	                String password = res.getString("lastname");
-	                
-	                if (employeeUsername.equals(username) && password.equals("password")) {
-	                	return true;
-	                }
-	
-	            }
-	        } catch (SQLException e) {
-	            throw new RuntimeException(e);
-	        } catch (Exception e) {
-	            throw new RuntimeException(e);
-	        }
-	    }
-    	
-    	return false;
-    }
-    
-    public static boolean resetAdminPassword(String username) {
-    	if (AdminisIn(username)) {
-	    	try {
-	            Connection con = CentralDatabase.getConGuestProfileDataBase();
-	            Statement stmt = con.createStatement();
-	            ResultSet res = stmt.executeQuery("UPDATE PersonProfiles SET password='password' WHERE username = " + username + " RETURNING personid, username, password");
-	
-	
-	            while(res.next()){
-	
-	                String adminid = res.getString("personid");
-	                String adminUsername = res.getString("firstname");
-	                String password = res.getString("lastname");
-	                
-	                if (adminUsername.equals(username) && password.equals("password")) {
-	                	return true;
-	                }
-	
-	            }
-	        } catch (SQLException e) {
-	            throw new RuntimeException(e);
-	        } catch (Exception e) {
-	            throw new RuntimeException(e);
-	        }
-    	}
-    	
-    	return false;
     }
 }
