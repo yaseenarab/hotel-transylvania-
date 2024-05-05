@@ -6,12 +6,28 @@ import Hotel.Utilities.MyLogger;
 
 import java.util.logging.Level;
 
+
+/**
+ * Represents a rentable room in the hotel, extending the base Room class with additional
+ * properties and behaviors specific to rooms that can be rented.
+ */
 public class RentableRoom extends Room implements RoomData {
 
     private Integer roomID;
     private RoomTheme roomTheme;
     private RoomSize roomSize;
     private QualityLevel qualityLevel;
+
+
+    /**
+     * Constructs a RentableRoom with specified identifiers and status.
+     * Validates the room types before setting the room number.
+     *
+     * @param roomID The unique identifier for the room.
+     * @param roomStatus The initial status of the room (e.g., vacant, occupied).
+     * @param roomNumber The room number.
+     * @throws Exception if there is an error in setting initial values.
+     */
     public RentableRoom(Integer roomID, RoomStatus roomStatus, Integer roomNumber) throws Exception {
         try {
             this.setRoomID(roomID);
@@ -27,7 +43,15 @@ public class RentableRoom extends Room implements RoomData {
     }
 
     // Set Functions
-private void setRoomID(Integer roomID) throws Exception {
+
+    /**
+     * Sets the room ID after validating it.
+     * Processes the ID to extract theme, size, quality level, and smoking status.
+     *
+     * @param roomID The room ID to set.
+     * @throws Exception If the room ID is null or invalid, or if there is an error in processing the ID.
+     */
+    private void setRoomID(Integer roomID) throws Exception {
         if(roomID == null) {
             MyLogger.logger.log(Level.SEVERE, "Error in RentableRoom.setRoomID: roomID is null");
             throw new Exception();
@@ -51,6 +75,13 @@ private void setRoomID(Integer roomID) throws Exception {
             throw new Exception();
         }
     }
+
+    /**
+     * Sets attributes from the parsed room ID.
+     *
+     * @param roomID The integer room ID from which attributes are set.
+     * @throws Exception If the room ID is null, invalid, or there is an error in setting attributes.
+     */
     private void setRoomFromID(Integer roomID) throws Exception {
         if(roomID == null) {
             MyLogger.logger.log(Level.SEVERE, "Error in RentableRoom.setRoomFromID: roomID is null");
@@ -72,61 +103,8 @@ private void setRoomID(Integer roomID) throws Exception {
             throw new Exception();
         }
     }
-    private void setRoomTheme(RoomTheme roomTheme) throws Exception {
-        if(roomTheme == null) {
-            MyLogger.logger.log(Level.SEVERE, "Error in RentableRoom.setRoomTheme: roomTheme is null");
-            throw new Exception();
-        }
-        this.roomTheme = roomTheme;
-    }
-    private void setRoomSize(RoomSize roomSize) throws Exception {
-        if(roomSize == null) {
-            MyLogger.logger.log(Level.SEVERE, "Error in RentableRoom.setRoomSize: roomSize is null");
-            throw new Exception();
-        }
-        try {
-            if(roomSize.equals(RoomSize.Single) || roomSize.equals(RoomSize.Standard)) {
-                this.setNumBeds(1);
-            }
-            else if (roomSize.equals(RoomSize.Double) || roomSize.equals(RoomSize.Suite) ||
-                    roomSize.equals(RoomSize.Deluxe)) {
-                this.setNumBeds(2);
-            }
-            else if (roomSize.equals(RoomSize.Family)) {
-                this.setNumBeds(3);
-            }
-            this.roomSize = roomSize;
-        }
-        catch (Exception e) {
-            MyLogger.logger.log(Level.SEVERE, "Error caught in RentableRoom.setRoomSize: Passed value was " + roomSize);
-            throw new Exception();
-        }
-    }
-    private void setQualityLevel(QualityLevel qualityLevel) throws Exception {
-        if(qualityLevel == null) {
-            MyLogger.logger.log(Level.SEVERE, "Error in RentableRoom.setQualityLevel: qualityLevel is null");
-            throw new Exception();
-        }
-        try {
-            if(qualityLevel.equals(QualityLevel.EcL)) {
-                this.setBedType(BedType.TW);
-            }
-            else if(qualityLevel.equals(QualityLevel.CoL)) {
-                this.setBedType(BedType.FL);
-            }
-            else if(qualityLevel.equals(QualityLevel.BuL)) {
-                this.setBedType(BedType.QN);
-            }
-            else if(qualityLevel.equals(QualityLevel.ExL)) {
-                this.setBedType(BedType.KG);
-            }
-            this.qualityLevel = qualityLevel;
-        }
-        catch (Exception e) {
-            MyLogger.logger.log(Level.SEVERE, "Error caught in RentableRoom.setQualityLevel: Passed value was " + qualityLevel);
-            throw new Exception();
-        }
-    }
+
+
 
     // Get Functions
     public Integer getRoomID() { return this.roomID; }
@@ -138,6 +116,14 @@ private void setRoomID(Integer roomID) throws Exception {
         return this.qualityLevel;
     }
 
+    /**
+     * Validates compatibility of room theme and size.
+     * Throws an exception if the combination is invalid.
+     *
+     * @param roomTheme The theme of the room to validate.
+     * @param roomSize The size of the room to validate.
+     * @throws Exception If the room theme and size combination is invalid.
+     */
     private void validTypes(RoomTheme roomTheme, RoomSize roomSize) throws Exception {
         boolean valid = false;
         if (roomTheme.equals(RoomTheme.NatureRetreat)) {

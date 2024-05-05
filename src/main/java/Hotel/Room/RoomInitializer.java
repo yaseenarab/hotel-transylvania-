@@ -6,6 +6,13 @@ import Hotel.Enums.RoomTheme;
 import Hotel.Utilities.MyLogger;
 import java.util.logging.Level;
 
+
+
+/**
+ * Handles the initialization of hotel rooms across multiple floors and configurations.
+ * This class sets up room matrices based on specified floor and room counts and initializes
+ * rooms with various attributes including room theme, size, quality level, and smoking status.
+ */
 public class RoomInitializer implements RoomData {
     protected static Integer numFloors, roomsPerFloor, currRoomNumber;
     private static QualityLevel initQualityLevel;
@@ -13,6 +20,15 @@ public class RoomInitializer implements RoomData {
     private static RoomTheme initRoomTheme;
     private static Boolean initSmokingStatus;
     private static RentableRoom[][] roomMatrix;
+
+
+    /**
+     * Initializes rooms across specified number of floors and rooms per floor.
+     *
+     * @param floorCount Number of floors to initialize.
+     * @param roomCount Number of rooms per floor.
+     * @throws Exception If there is an error during the initialization process.
+     */
     private void initRooms(Integer floorCount, Integer roomCount) throws Exception {
         try {
             setNumFloors(floorCount);
@@ -43,6 +59,13 @@ public class RoomInitializer implements RoomData {
             throw new Exception();
         }
     }
+
+
+    /**
+     * Sets the number of floors for room initialization.
+     *
+     * @param floorCount The count of floors to be set.
+     */
     private void setNumFloors(Integer floorCount) {
         if (floorCount == null || floorCount < 0) {
             numFloors = RoomData.DEF_NUM_FLOORS;
@@ -51,6 +74,12 @@ public class RoomInitializer implements RoomData {
             numFloors = floorCount;
         }
     }
+
+    /**
+     * Sets the number of rooms per floor for room initialization.
+     *
+     * @param roomCount The count of rooms per floor to be set.
+     */
     private void setRoomsPerFloor(Integer roomCount) {
         if(roomCount == null || roomCount < 0) {
             roomsPerFloor = RoomData.DEF_ROOMS_PER_FLOOR;
@@ -59,6 +88,12 @@ public class RoomInitializer implements RoomData {
             roomsPerFloor = roomCount;
         }
     }
+
+    /**
+     * Determines the room size based on the room's index and the current room theme.
+     *
+     * @param ndx The index of the room within the floor.
+     */
     private void setRoomSize(Integer ndx) {
         if(initRoomTheme.equals(RoomTheme.NatureRetreat)) {
             initRoomSize = RoomData.NATURE_ROOM_SIZES[ndx % RoomData.NATURE_ROOM_SIZES.length];
@@ -70,6 +105,9 @@ public class RoomInitializer implements RoomData {
             initRoomSize = RoomData.VINTAGE_CHARM_SIZES[ndx % RoomData.VINTAGE_CHARM_SIZES.length];
         }
     }
+
+
+    //Getters
     public Integer getNumFloors() {
         return numFloors;
     }
@@ -79,6 +117,14 @@ public class RoomInitializer implements RoomData {
     public RentableRoom[][] getRoomMatrix() {
         return roomMatrix;
     }
+
+
+    /**
+     * Validates the format of a room number.
+     *
+     * @param roomNumber The room number to validate.
+     * @return true if the room number is valid, false otherwise.
+     */
     public static boolean isValidRoomNumber(Integer roomNumber) {
         if(roomNumber == 0)
             return true;

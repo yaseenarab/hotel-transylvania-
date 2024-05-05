@@ -3,6 +3,13 @@ package Hotel.Room;
 import Hotel.Enums.RoomSize;
 import Hotel.Enums.RoomStatus;
 
+
+/**
+ * Interface defining constants for managing room data across the hotel management system.
+ * It includes identifiers for room themes, sizes, quality levels, and smoking status,
+ * as well as default values for room configurations.
+ */
+
 public interface RoomData {
     Integer ROOM_THEME = 0;
     Integer ROOM_SIZE = 1;
