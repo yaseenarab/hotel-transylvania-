@@ -47,7 +47,7 @@ public class CentralDatabase {
             conCart = DriverManager.getConnection(DB_URLCart);
             conCatalogue = DriverManager.getConnection(DB_URLCatalogue);
         } catch (Exception e) {
-            //e.printStackTrace();
+            e.printStackTrace();
             return false;
         }
         return true;

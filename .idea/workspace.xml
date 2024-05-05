@@ -5,8 +5,41 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="706720d6-6ce5-4d83-ac1a-7436f9f583d1" name="Changes" comment="nothing">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/01d22578-13c3-4e65-a820-c8741b126e1f.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/01d22578-13c3-4e65-a820-c8741b126e1f/storage_v2/_src_/schema/SYS.rUIBAA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/01d22578-13c3-4e65-a820-c8741b126e1f/storage_v2/_src_/schema/SYSCS_UTIL.JC_i2A.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/01d22578-13c3-4e65-a820-c8741b126e1f/storage_v2/_src_/schema/SYSIBM.hzyvkg.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/4d61745c-7bee-49f4-a77b-c1a91db2968f.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/4d61745c-7bee-49f4-a77b-c1a91db2968f/storage_v2/_src_/schema/SYS.rUIBAA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/4d61745c-7bee-49f4-a77b-c1a91db2968f/storage_v2/_src_/schema/SYSCS_UTIL.JC_i2A.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/4d61745c-7bee-49f4-a77b-c1a91db2968f/storage_v2/_src_/schema/SYSIBM.hzyvkg.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/69e6476b-08c0-4539-af89-dc98799e3928.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/69e6476b-08c0-4539-af89-dc98799e3928/storage_v2/_src_/schema/SYS.rUIBAA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/69e6476b-08c0-4539-af89-dc98799e3928/storage_v2/_src_/schema/SYSCS_UTIL.JC_i2A.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/69e6476b-08c0-4539-af89-dc98799e3928/storage_v2/_src_/schema/SYSIBM.hzyvkg.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/6ad89d88-2787-41a7-b896-784ba974fa19.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/6ad89d88-2787-41a7-b896-784ba974fa19/storage_v2/_src_/schema/SYS.rUIBAA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/6ad89d88-2787-41a7-b896-784ba974fa19/storage_v2/_src_/schema/SYSCS_UTIL.JC_i2A.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/6ad89d88-2787-41a7-b896-784ba974fa19/storage_v2/_src_/schema/SYSIBM.hzyvkg.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/a0d8a50a-8333-4323-bb62-b578e9cbab97.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/a0d8a50a-8333-4323-bb62-b578e9cbab97/storage_v2/_src_/schema/SYS.rUIBAA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/a0d8a50a-8333-4323-bb62-b578e9cbab97/storage_v2/_src_/schema/SYSCS_UTIL.JC_i2A.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/a0d8a50a-8333-4323-bb62-b578e9cbab97/storage_v2/_src_/schema/SYSIBM.hzyvkg.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/ba3834df-513d-4544-b830-faa4e81507ec.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/ba3834df-513d-4544-b830-faa4e81507ec/storage_v2/_src_/schema/SYS.rUIBAA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/ba3834df-513d-4544-b830-faa4e81507ec/storage_v2/_src_/schema/SYSCS_UTIL.JC_i2A.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/ba3834df-513d-4544-b830-faa4e81507ec/storage_v2/_src_/schema/SYSIBM.hzyvkg.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/d30ff77a-0059-45a3-a38c-9cdb3657347b.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/d30ff77a-0059-45a3-a38c-9cdb3657347b/storage_v2/_src_/schema/SYS.rUIBAA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/d30ff77a-0059-45a3-a38c-9cdb3657347b/storage_v2/_src_/schema/SYSCS_UTIL.JC_i2A.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/d30ff77a-0059-45a3-a38c-9cdb3657347b/storage_v2/_src_/schema/SYSIBM.hzyvkg.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/e9b2a24a-bfba-4080-9e14-54fd84b4b650.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/e9b2a24a-bfba-4080-9e14-54fd84b4b650/storage_v2/_src_/schema/SYS.rUIBAA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/e9b2a24a-bfba-4080-9e14-54fd84b4b650/storage_v2/_src_/schema/SYSCS_UTIL.JC_i2A.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/e9b2a24a-bfba-4080-9e14-54fd84b4b650/storage_v2/_src_/schema/SYSIBM.hzyvkg.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/derby.log" beforeDir="false" afterPath="$PROJECT_DIR$/derby.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Central/CentralDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Central/CentralDatabase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/AdminProfilesData/db.lck" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/AdminProfilesData/db.lck" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/AdminProfilesData/log/log.ctrl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/AdminProfilesData/log/log.ctrl" afterDir="false" />
@@ -14,56 +47,33 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/AdminProfilesData/log/logmirror.ctrl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/AdminProfilesData/log/logmirror.ctrl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CashieringData/db.lck" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CashieringData/db.lck" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CashieringData/log/log.ctrl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CashieringData/log/log.ctrl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CashieringData/log/log2.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CashieringData/log/log3.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CashieringData/log/log3.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CashieringData/log/logmirror.ctrl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CashieringData/log/logmirror.ctrl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CashieringData/seg0/c10.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CashieringData/seg0/c10.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CashieringData/seg0/c230.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CashieringData/seg0/c230.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CashieringData/seg0/c241.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CashieringData/seg0/c241.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CashieringData/seg0/c251.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CashieringData/seg0/c251.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CashieringData/seg0/c490.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CashieringData/seg0/c490.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CatalogueDatabase/db.lck" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CatalogueDatabase/db.lck" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CatalogueDatabase/log/log.ctrl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CatalogueDatabase/log/log.ctrl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CatalogueDatabase/log/log3.dat" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CatalogueDatabase/log/log4.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CatalogueDatabase/log/log4.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CatalogueDatabase/log/logmirror.ctrl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CatalogueDatabase/log/logmirror.ctrl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CatalogueDatabase/seg0/c10.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CatalogueDatabase/seg0/c10.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CatalogueDatabase/seg0/c230.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CatalogueDatabase/seg0/c230.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CatalogueDatabase/seg0/c241.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CatalogueDatabase/seg0/c241.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CatalogueDatabase/seg0/c251.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CatalogueDatabase/seg0/c251.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/EmployeeProfilesData/db.lck" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/EmployeeProfilesData/db.lck" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/HotelRoomsData/db.lck" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/HotelRoomsData/db.lck" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/HotelRoomsData/log/log.ctrl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/HotelRoomsData/log/log.ctrl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/HotelRoomsData/log/log12.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/HotelRoomsData/log/log12.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/HotelRoomsData/log/logmirror.ctrl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/HotelRoomsData/log/logmirror.ctrl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/HotelRoomsData/seg0/c10.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/HotelRoomsData/seg0/c10.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/HotelRoomsData/seg0/c230.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/HotelRoomsData/seg0/c230.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/HotelRoomsData/seg0/c241.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/HotelRoomsData/seg0/c241.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/HotelRoomsData/seg0/c251.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/HotelRoomsData/seg0/c251.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/HotelRoomsData/seg0/c490.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/HotelRoomsData/seg0/c490.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/PersonProfilesData/db.lck" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/PersonProfilesData/db.lck" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/PersonProfilesData/log/log.ctrl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/PersonProfilesData/log/log.ctrl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/PersonProfilesData/log/log11.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/PersonProfilesData/log/log11.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/PersonProfilesData/log/logmirror.ctrl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/PersonProfilesData/log/logmirror.ctrl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/PersonProfilesData/seg0/c10.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/PersonProfilesData/seg0/c10.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/PersonProfilesData/seg0/c230.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/PersonProfilesData/seg0/c230.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/PersonProfilesData/seg0/c241.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/PersonProfilesData/seg0/c241.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/PersonProfilesData/seg0/c251.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/PersonProfilesData/seg0/c251.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/PersonProfilesData/seg0/c490.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/PersonProfilesData/seg0/c490.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ReservationsData/db.lck" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ReservationsData/db.lck" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ReservationsData/log/log.ctrl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ReservationsData/log/log.ctrl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ReservationsData/log/log19.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ReservationsData/log/log19.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ReservationsData/log/logmirror.ctrl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ReservationsData/log/logmirror.ctrl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ReservationsData/seg0/c10.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ReservationsData/seg0/c10.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ReservationsData/seg0/c230.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ReservationsData/seg0/c230.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ReservationsData/seg0/c241.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ReservationsData/seg0/c241.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ReservationsData/seg0/c251.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ReservationsData/seg0/c251.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ReservationsData/seg0/c4b0.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ReservationsData/seg0/c4b0.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ShoppingCartData/db.lck" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ShoppingCartData/db.lck" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ShoppingCartData/log/log.ctrl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ShoppingCartData/log/log.ctrl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ShoppingCartData/log/log1.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ShoppingCartData/log/log1.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ShoppingCartData/log/logmirror.ctrl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ShoppingCartData/log/logmirror.ctrl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/derby.log" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/derby.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/UI/Panels/ReserveRoomPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/UI/Panels/ReserveRoomPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/CatalogueTests/CatalogueTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/CatalogueTests/CatalogueTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,12 +105,15 @@
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/kbctr/OneDrive/Documents/GitHub/hotel-transylvania-/src/main/java/Hotel/Databases",
+    "last_opened_file_path": "C:/Users/kbctr/OneDrive/Documents/GitHub/hotel-transylvania-/src/main/resources/ReservationsData",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.22557472",
+    "project.structure.side.proportion": "0.2",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -171,7 +184,9 @@
       <workItem from="1714796998252" duration="325000" />
       <workItem from="1714797330738" duration="540000" />
       <workItem from="1714797999065" duration="219000" />
-      <workItem from="1714798819237" duration="16939000" />
+      <workItem from="1714798819237" duration="17078000" />
+      <workItem from="1714877143157" duration="1626000" />
+      <workItem from="1714878886565" duration="928000" />
     </task>
     <task id="LOCAL-00001" summary="nothing">
       <option name="closed" value="true" />
