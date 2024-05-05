@@ -4,6 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+
+/**
+ * Represents a guest profile in the hotel management system.
+ * This class contains personal and contact details of a guest, as well as their reservation history
+ * and account information necessary for online interactions.
+ */
+
 public class GuestProfile  {
     // Constants (inclusive)
     final int
@@ -23,6 +30,18 @@ public class GuestProfile  {
     private Card card;
 
     private List<Integer> roomNights;
+
+    /**
+     * Constructs a new GuestProfile with specified personal and contact details and a payment card.
+     * Initializes the list of room nights and sets initial values for user identification.
+     *
+     * @param firstName   The guest's first name.
+     * @param lastName    The guest's last name.
+     * @param email       The guest's email address.
+     * @param phoneNumber The guest's phone number.
+     * @param card        The guest's payment card information.
+     * @throws Exception If any input is invalid or missing.
+     */
     GuestProfile(String firstName, String lastName, String email, String phoneNumber, Card card) throws Exception {
         roomNights = new ArrayList<>();
 
@@ -39,6 +58,14 @@ public class GuestProfile  {
     }
 
     // Modifier Methods
+
+    /**
+     * Creates an online account for the guest with a username and password.
+     *
+     * @param username The username for the online account.
+     * @param password The password for the online account.
+     * @throws Exception If the username or password are invalid, or if an account already exists.
+     */
     public void MakeOnlineAccount(String username, String password) throws Exception {
         if(this.username != null || this.password != null) {
             throw new IllegalAccessException();
@@ -55,6 +82,13 @@ public class GuestProfile  {
         this.username = username;
         this.password = password;
     }
+
+    /**
+     * Sets the guest's first name after validation.
+     *
+     * @param firstName The first name to set.
+     * @throws Exception If the first name is null, empty, or too long.
+     */
     public void setFirstName(String firstName) throws Exception {
         if (firstName == null || firstName.isEmpty()) {
             throw new NullPointerException("First name not provided");
@@ -64,6 +98,13 @@ public class GuestProfile  {
         }
         this.firstName = firstName;
     }
+
+    /**
+     * Sets the guest's last name after validation.
+     *
+     * @param lastName The last name to set.
+     * @throws Exception If the last name is null, empty, or too long.
+     */
     public void setLastName (String lastName) throws Exception {
         if (lastName == null || lastName.isEmpty()) {
             throw new NullPointerException("Last name not provided");
@@ -73,6 +114,14 @@ public class GuestProfile  {
         }
         this.lastName = lastName;
     }
+
+
+    /**
+     * Sets the guest's email after validation.
+     *
+     * @param email The email address to set.
+     * @throws Exception If the email is null, empty, or does not contain an '@' symbol.
+     */
     public void setEmail (String email) throws Exception {
         if (email == null || email.isEmpty()) {
             throw new NullPointerException("Email not provided");
@@ -82,6 +131,14 @@ public class GuestProfile  {
         }
         this.email = email;
     }
+
+
+    /**
+     * Sets the guest's phone number after validation.
+     *
+     * @param phoneNumber The phone number to set.
+     * @throws Exception If the phone number is null, empty, or not the correct length.
+     */
     public void setPhoneNumber(String phoneNumber) throws Exception {
         if (phoneNumber == null || phoneNumber.isEmpty()) {
             throw new NullPointerException("No phone number provided");
@@ -91,14 +148,34 @@ public class GuestProfile  {
         }
         this.phoneNumber = phoneNumber;
     }
+
+
+    /**
+     * Sets the payment card for the guest profile.
+     *
+     * @param card The card to associate with the guest profile.
+     */
     public void setCard(Card card) {
         this.card = card;
     }
+
+
+
+    /**
+     * Generates a unique user ID for the guest using a hash code and random number.
+     */
     public void setUserID() {
         Random rand= new Random(System.currentTimeMillis());
         this.userID = this.hashCode() * (rand.nextInt((END_RAND - START_RAND) + 1) + START_RAND);
     }
 
+
+    /**
+     * Compares this GuestProfile to another object for equality.
+     *
+     * @param obj The object to compare against.
+     * @return true if the other object is a GuestProfile with the same username, password, and personal details.
+     */
     @Override
     public boolean equals(Object obj) {
         if (!(obj instanceof GuestProfile)) {
@@ -112,6 +189,8 @@ public class GuestProfile  {
                 this.phoneNumber.equals(((GuestProfile) obj).phoneNumber);
     }
 
+
+    // Accessor methods for guest profile attributes.
     // Get Methods
     public String getFirstName() {
         return this.firstName;
@@ -132,6 +211,11 @@ public class GuestProfile  {
     }
 
     // Modifiers
+    /**
+     * Adds a reservation ID to the list of room nights for the guest.
+     *
+     * @param reservationID The reservation ID to add.
+     */
     public void addReservation(Integer reservationID) {
         roomNights.add(reservationID);
     }
