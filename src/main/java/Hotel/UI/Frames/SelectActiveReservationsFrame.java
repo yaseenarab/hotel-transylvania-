@@ -32,7 +32,6 @@ public class SelectActiveReservationsFrame extends JFrame {
             reservationModel.addColumn(name);
         }
         JLabel label = new JLabel("Please select the reservation you want to bill this to");
-        //tablePanel.add(label,BorderLayout.NORTH);
 
         try {
             Connection con = CentralDatabase.getConReservationDatabase();

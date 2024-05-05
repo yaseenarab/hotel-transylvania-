@@ -174,7 +174,7 @@ public class ShoppingMainPanel extends JPanel {
      *
      * @param frame Frame containing all guest capabilities
      */
-    public ShoppingMainPanel(GuestHomeFrame frame) {
+    public ShoppingMainPanel(GuestHomeFrame frame) throws IOException {
         // Container initialization
         guest = frame.getGuest();
         try {
@@ -195,14 +195,16 @@ public class ShoppingMainPanel extends JPanel {
 
         // Header - Logo
         Image hotelLogo = null;
-        try {
-            hotelLogo = Utilities.generateScaledImage(this, "Hotel_Transylvania_logo.png", hotelLogoX, hotelLogoY);
-        } catch (IOException e) {
+        //try {
+            //hotelLogo = Utilities.generateScaledImage(this, "Hotel_Transylvania_logo.png", hotelLogoX, hotelLogoY);
+        //} catch (IOException e) {
             SMP_Logger.warning("Could not load hotel logo");
-        }
-        hotelLogoLabel = new JLabel(new ImageIcon(hotelLogo));
+            //hotelLogo = Utilities.generateScaledImage(this, "missing_texture.png", hotelLogoX, hotelLogoY);
+        //}
+        //hotelLogoLabel = new JLabel(new ImageIcon(hotelLogo));
         SMP_Logger.info("Successfully loaded hotel logo");
-        hotelLogoLabel.setMinimumSize(new Dimension(80, 80));
+        //hotelLogoLabel.setMinimumSize(new Dimension(80, 80));
+        hotelLogoLabel = new JLabel();
         header.add(hotelLogoLabel);
 
         // Header - Home button
@@ -222,21 +224,27 @@ public class ShoppingMainPanel extends JPanel {
         searchPanel.add(searchBar);
 
         Image searchIcon = null;
-        try {
-            searchIcon = Utilities.generateScaledImage(this, "search-icon.png", 20, 20);
-        } catch (IOException e) {
+       // try {
+            //searchIcon = Utilities.generateScaledImage(this, "search-icon.png", 20, 20);
+        //} catch (IOException e) {
             SMP_Logger.warning("Could not load search icon");
-        }
-        searchBtn = new JButton(new ImageIcon(searchIcon));
+            //searchIcon = Utilities.generateScaledImage(this, "missing_texture.png", 20, 20);
+        //}
+        //searchBtn = new JButton(new ImageIcon(searchIcon));
         SMP_Logger.info("Successfully loaded search icon");
         //searchBtn.setMinimumSize(new Dimension(50, 50));
+        searchBtn = new JButton();
         searchPanel.add(searchBtn);
         //header.add(searchPanel);
 
         // Header - Cart button
         cartBtn = new JButton("Cart");
         cartBtn.addActionListener(e -> {
-            SCP = new ShoppingCartPanel(this);
+            try {
+                SCP = new ShoppingCartPanel(this);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
             shoppingContent.add(SCP, "Cart");
             shoppingCL.show(shoppingContent, "Cart");
         });
@@ -257,24 +265,26 @@ public class ShoppingMainPanel extends JPanel {
             JLabel itemTitle = new JLabel(is.getName());
 
             JLabel itemPic;
-            try {
-                BufferedImage itemBU = Utilities.generateImage(this, is.getImageURL());
-                itemPic = new JLabel(new ImageIcon(itemBU.getScaledInstance(
-                        Math.min(imageXY, itemBU.getWidth()),
-                        Math.min(imageXY, itemBU.getHeight()), Image.SCALE_SMOOTH
-                )));
+            //try {
+                //BufferedImage itemBU = Utilities.generateImage(this, is.getImageURL());
+                //itemPic = new JLabel(new ImageIcon(itemBU.getScaledInstance(
+                      //  Math.min(imageXY, itemBU.getWidth()),
+                       // Math.min(imageXY, itemBU.getHeight()), Image.SCALE_SMOOTH
+                //)));
                 SMP_Logger.info("Successfully loaded image of item : " + is.getName());
-            } catch (IOException e) {
+            //} catch (IOException e) {
                 SMP_Logger.severe("Could not load image of item : " + is.getName());
-                itemPic = new JLabel(new ImageIcon());
-            }
-            itemPic.setMinimumSize(new Dimension(180, 100));
+                //BufferedImage err = Utilities.generateImage(this, "missing_texture.png");
+                //itemPic = new JLabel(new ImageIcon(err.getScaledInstance(imageXY, imageXY, Image.SCALE_SMOOTH)));
+                //itemPic = new JLabel(new ImageIcon());
+            //}
+            //itemPic.setMinimumSize(new Dimension(180, 100));
 
             //JLabel itemPrice = new JLabel(is.getPrice().toString());
             JLabel itemPrice = new JLabel(NumberFormat.getCurrencyInstance(Locale.US).format(is.getPrice()));
 
             itemPanel.add(itemTitle);
-            itemPanel.add(itemPic);
+            //itemPanel.add(itemPic);
             itemPanel.add(itemPrice);
             itemPanel.setSize(new Dimension(200, 200));
             itemPanel.addMouseListener(new MouseAdapter() {

@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
 
 // Panel to look at contents of cart and / or go to checkout
 
@@ -44,7 +45,7 @@ public class ShoppingCartPanel extends JPanel {
      * @param shoppingPanel Main shopping panel, containing guest information
      */
 
-    public ShoppingCartPanel(ShoppingMainPanel shoppingPanel) {
+    public ShoppingCartPanel(ShoppingMainPanel shoppingPanel) throws IOException {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         // Items in cart - up here due to button that can remove all items below vvv

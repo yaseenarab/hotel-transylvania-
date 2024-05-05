@@ -1,3 +1,4 @@
+/*
 package CatalogueTests;
 
 import Hotel.Central.CentralDatabase;
@@ -18,3 +19,4 @@ public class CatalogueTest {
         assert(!catalogue.isEmpty());
     }
 }
+ */

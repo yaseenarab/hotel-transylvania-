@@ -302,7 +302,7 @@ public class ReserveRoomPanel extends JPanel {
                 throw new NullPointerException();
             }
             boolean validCard = true;
-            if(tableCardNum.equals(cardNumberField.getText())) {
+            if(cardNumberField.getText().equals(tableCardNum)) {
                 if(!CentralDatabase.cardNumMatchExp(guest.getUsername(), cardNumberField.getText(),
                         DateProcessor.dateToString((Date)cardExpiration.getModel().getValue()))) {
                     validCard = false;

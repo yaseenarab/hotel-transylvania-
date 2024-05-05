@@ -5,9 +5,92 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="706720d6-6ce5-4d83-ac1a-7436f9f583d1" name="Changes" comment="nothing">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/00248ace-fb88-4825-93c8-cf3dc9487f3d.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/00248ace-fb88-4825-93c8-cf3dc9487f3d.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/163aa1e1-44f4-4b3e-b83f-366269275e00.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/163aa1e1-44f4-4b3e-b83f-366269275e00.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1d9d8437-8133-423c-b730-ed4a3e4ee6f6.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/1d9d8437-8133-423c-b730-ed4a3e4ee6f6.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/38dade64-a960-4e61-b948-e360dfe9b20e.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/38dade64-a960-4e61-b948-e360dfe9b20e.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/78f671af-dd6d-4d5e-918a-aede4ed0b657.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/78f671af-dd6d-4d5e-918a-aede4ed0b657.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/7b37d455-a043-48b2-8b74-3c0904139c1b.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/7b37d455-a043-48b2-8b74-3c0904139c1b.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/a9c26495-7b57-47ab-846c-324dbb675a69.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/a9c26495-7b57-47ab-846c-324dbb675a69.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c97255b9-a3fb-4c65-9f58-be4dec3d7261.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/c97255b9-a3fb-4c65-9f58-be4dec3d7261.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Central/CentralCashiering.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Central/CentralCashiering.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Central/CentralDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Central/CentralDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/derby.log" beforeDir="false" afterPath="$PROJECT_DIR$/derby.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/AdminProfilesData/db.lck" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/AdminProfilesData/db.lck" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/AdminProfilesData/log/log.ctrl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/AdminProfilesData/log/log.ctrl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/AdminProfilesData/log/log3.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/AdminProfilesData/log/log3.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/AdminProfilesData/log/logmirror.ctrl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/AdminProfilesData/log/logmirror.ctrl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CashieringData/db.lck" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CashieringData/db.lck" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CashieringData/log/log2.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CashieringData/log/log2.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CashieringData/seg0/c490.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CashieringData/seg0/c490.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CatalogueDatabase/db.lck" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CatalogueDatabase/db.lck" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CatalogueDatabase/log/log.ctrl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CatalogueDatabase/log/log.ctrl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CatalogueDatabase/log/log3.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CatalogueDatabase/log/log3.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CatalogueDatabase/log/logmirror.ctrl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/CatalogueDatabase/log/logmirror.ctrl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/EmployeeProfilesData/db.lck" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/EmployeeProfilesData/db.lck" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/HotelRoomsData/db.lck" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/HotelRoomsData/db.lck" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/HotelRoomsData/log/log.ctrl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/HotelRoomsData/log/log.ctrl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/HotelRoomsData/log/log12.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/HotelRoomsData/log/log12.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/HotelRoomsData/log/logmirror.ctrl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/HotelRoomsData/log/logmirror.ctrl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/HotelRoomsData/seg0/c10.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/HotelRoomsData/seg0/c10.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/HotelRoomsData/seg0/c230.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/HotelRoomsData/seg0/c230.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/HotelRoomsData/seg0/c241.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/HotelRoomsData/seg0/c241.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/HotelRoomsData/seg0/c251.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/HotelRoomsData/seg0/c251.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/PersonProfilesData/db.lck" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/PersonProfilesData/db.lck" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/PersonProfilesData/log/log.ctrl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/PersonProfilesData/log/log.ctrl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/PersonProfilesData/log/log10.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/PersonProfilesData/log/log11.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/PersonProfilesData/log/log11.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/PersonProfilesData/log/logmirror.ctrl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/PersonProfilesData/log/logmirror.ctrl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/PersonProfilesData/seg0/c10.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/PersonProfilesData/seg0/c10.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/PersonProfilesData/seg0/c230.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/PersonProfilesData/seg0/c230.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/PersonProfilesData/seg0/c241.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/PersonProfilesData/seg0/c241.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/PersonProfilesData/seg0/c251.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/PersonProfilesData/seg0/c251.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/PersonProfilesData/seg0/c490.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/PersonProfilesData/seg0/c490.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ReservationsData/db.lck" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ReservationsData/db.lck" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ReservationsData/log/log.ctrl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ReservationsData/log/log.ctrl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ReservationsData/log/log19.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ReservationsData/log/log19.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ReservationsData/log/logmirror.ctrl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ReservationsData/log/logmirror.ctrl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ReservationsData/seg0/c10.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ReservationsData/seg0/c10.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ReservationsData/seg0/c230.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ReservationsData/seg0/c230.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ReservationsData/seg0/c241.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ReservationsData/seg0/c241.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ReservationsData/seg0/c251.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ReservationsData/seg0/c251.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ShoppingCartData/db.lck" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ShoppingCartData/db.lck" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ShoppingCartData/log/log.ctrl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ShoppingCartData/log/log.ctrl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ShoppingCartData/log/log1.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ShoppingCartData/log/log1.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ShoppingCartData/log/logmirror.ctrl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/ShoppingCartData/log/logmirror.ctrl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/Databases/derby.log" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/Databases/derby.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/UI/Frames/Guest/GuestHomeFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/UI/Frames/Guest/GuestHomeFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/UI/Frames/SelectActiveReservationsFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/UI/Frames/SelectActiveReservationsFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/UI/Panels/ReserveRoomPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/UI/Panels/ReserveRoomPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/UI/Panels/ShoppingCartPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/UI/Panels/ShoppingCartPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/UI/Panels/ShoppingMainPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/UI/Panels/ShoppingMainPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hotel/UI/ShoppingCartPanelHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hotel/UI/ShoppingCartPanelHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/CatalogueTests/CatalogueTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/CatalogueTests/CatalogueTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Hotel/AccountService/Admin.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Hotel/AccountService/Admin.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Hotel/AccountService/Arlow.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Hotel/AccountService/Arlow.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Hotel/AccountService/Card.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Hotel/AccountService/Card.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Hotel/AccountService/Employee.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Hotel/AccountService/Employee.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Hotel/AccountService/Guest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Hotel/AccountService/Guest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Hotel/AccountService/GuestProfile.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Hotel/AccountService/GuestProfile.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Hotel/AccountService/Person.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Hotel/AccountService/Person.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Hotel/Central/CentralCashiering.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Hotel/Central/CentralCashiering.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Hotel/Central/CentralDatabase.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Hotel/Central/CentralDatabase.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Hotel/UI/Frames/Guest/GuestHomeFrame$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Hotel/UI/Frames/Guest/GuestHomeFrame$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Hotel/UI/Frames/Guest/GuestHomeFrame$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Hotel/UI/Frames/Guest/GuestHomeFrame$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Hotel/UI/Frames/Guest/GuestHomeFrame$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Hotel/UI/Frames/Guest/GuestHomeFrame$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Hotel/UI/Frames/Guest/GuestHomeFrame$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Hotel/UI/Frames/Guest/GuestHomeFrame$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Hotel/UI/Frames/Guest/GuestHomeFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Hotel/UI/Frames/Guest/GuestHomeFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Hotel/UI/Frames/SelectActiveReservationsFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Hotel/UI/Frames/SelectActiveReservationsFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Hotel/UI/Panels/ReserveRoomPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Hotel/UI/Panels/ReserveRoomPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Hotel/UI/Panels/ShoppingCartPanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Hotel/UI/Panels/ShoppingCartPanel$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Hotel/UI/Panels/ShoppingCartPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Hotel/UI/Panels/ShoppingCartPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Hotel/UI/Panels/ShoppingMainPanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Hotel/UI/Panels/ShoppingMainPanel$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Hotel/UI/Panels/ShoppingMainPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Hotel/UI/Panels/ShoppingMainPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Hotel/UI/ShoppingCartPanelHandler$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Hotel/UI/ShoppingCartPanelHandler$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Hotel/UI/ShoppingCartPanelHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Hotel/UI/ShoppingCartPanelHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/a" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/a" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/CatalogueTests/CatalogueTest.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,30 +112,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.HotelRoomsAddDatabase.executor": "Run",
-    "Application.Main.executor": "Run",
-    "Application.Unnamed.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/kbctr/OneDrive/Documents/GitHub/hotel-transylvania-/src/main/java/Hotel/Databases",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.HotelRoomsAddDatabase.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Unnamed.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/kbctr/OneDrive/Documents/GitHub/hotel-transylvania-/src/main/java/Hotel/Databases&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "derby"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;derby&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\kbctr\OneDrive\Desktop\hotel-transylvania--HotelUI\HotelRoom\src\main\java\UI\Frames" />
@@ -86,13 +169,6 @@
       <item itemvalue="Application.HotelRoomsAddDatabase" />
     </list>
   </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="jdk-21.0.2-corretto-21.0.2-4caba194b151-51586f01" />
-      </set>
-    </attachedChunks>
-  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -116,6 +192,7 @@
       <workItem from="1714797330738" duration="540000" />
       <workItem from="1714797999065" duration="219000" />
       <workItem from="1714798819237" duration="11361000" />
+      <workItem from="1714871215777" duration="7726000" />
     </task>
     <task id="LOCAL-00001" summary="nothing">
       <option name="closed" value="true" />

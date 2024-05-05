@@ -12,6 +12,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class GuestHomeFrame extends JFrame {
     private Guest guest;
@@ -85,7 +86,11 @@ public class GuestHomeFrame extends JFrame {
         ShoppingBtn = new JButton("Shop");
         ShoppingBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                shoppingPanel = new ShoppingMainPanel(GuestHomeFrame.this);
+                try {
+                    shoppingPanel = new ShoppingMainPanel(GuestHomeFrame.this);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
                 container.add(shoppingPanel, "Shop");
                 //cl.addLayoutComponent(shoppingPanel, "Shop");
                 //container.revalidate();

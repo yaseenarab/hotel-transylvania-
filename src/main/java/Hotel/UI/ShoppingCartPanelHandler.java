@@ -66,7 +66,7 @@ public class ShoppingCartPanelHandler {
      * @param scp ShoppingCartPanel to update the subtotal displayed to the user
      * @return Set of JPanels to display user's cart items
      */
-    public static LinkedHashSet<JPanel> loadCartItemPanels(ShoppingMainPanel smp, ShoppingCartPanel scp) {
+    public static LinkedHashSet<JPanel> loadCartItemPanels(ShoppingMainPanel smp, ShoppingCartPanel scp) throws IOException {
         LinkedHashSet<JPanel> cartItems = new LinkedHashSet<>();
 
         for (Map.Entry<ItemSpec, Integer> entry : smp.getGuest().getCart().getEntries()) {
@@ -75,17 +75,21 @@ public class ShoppingCartPanelHandler {
             var quantity = entry.getValue();
 
             JLabel itemImgLabel;
-            try {
-                BufferedImage itemBI = Utilities.generateImage(smp, item.getImageURL());
-                Image itemImage = itemBI.getScaledInstance(
-                        Math.min(imageDimension, itemBI.getWidth()),
-                        Math.min(imageDimension, itemBI.getHeight()),
-                        Image.SCALE_SMOOTH);
-                itemImgLabel = new JLabel(new ImageIcon(itemImage));
-                itemPanel.add(itemImgLabel);
-            } catch (IOException e) {
+            //try {
+                //BufferedImage itemBI = Utilities.generateImage(smp, item.getImageURL());
+                //Image itemImage = itemBI.getScaledInstance(
+                //        Math.min(imageDimension, itemBI.getWidth()),
+               //         Math.min(imageDimension, itemBI.getHeight()),
+                //        Image.SCALE_SMOOTH);
+                //itemImgLabel = new JLabel(new ImageIcon(itemImage));
+                //itemPanel.add(itemImgLabel);
+            //} //catch (IOException e) {
                 SCPH_Logger.severe("Unable to load image for item : " + item.getName());
-            }
+                //BufferedImage err = Utilities.generateImage(smp, "missing_texture.png");
+                //Image itemImage = err.getScaledInstance(imageDimension, imageDimension, Image.SCALE_SMOOTH);
+                //itemImgLabel = new JLabel(new ImageIcon(itemImage));
+                //itemPanel.add(itemImgLabel);
+            //}
 
             JLabel itemName = new JLabel(item.getName());
             itemPanel.add(itemName);
