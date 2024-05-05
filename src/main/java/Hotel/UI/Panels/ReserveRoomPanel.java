@@ -30,7 +30,7 @@ public class ReserveRoomPanel extends JPanel {
     private JCheckBox smokingCheckBox;
     private JOptionPane jPane;
     private AvailableRoomsPanel availableRoomsPanel;
-    private UtilDateModel checkOutDateModel,checkInDateModel;
+    private UtilDateModel checkOutDateModel,checkInDateModel,expirationMod;
     private JTextArea reservationSummary = new JTextArea();
     private JTable roomAvailability;
     private DefaultTableModel roomAvailModel;
@@ -62,7 +62,7 @@ public class ReserveRoomPanel extends JPanel {
         c.put("text.month", "Month");
         c.put("text.year", "Year");
         formPanel.add(new JLabel("Card expiration:"));
-        UtilDateModel expirationMod = new UtilDateModel();
+        expirationMod = new UtilDateModel();
         JDatePanelImpl expirationPanel = new JDatePanelImpl(expirationMod,c);
         cardExpiration = new JDatePickerImpl(expirationPanel, new DateLabelFormatter());
         cardExpiration.addActionListener(e -> updateTable());
@@ -291,11 +291,24 @@ public class ReserveRoomPanel extends JPanel {
 
     public String performReservation() {
         Reservation reserve =null;
+
+        if(cardNumberField.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Please enter a card. Please try again" );
+            throw new NullPointerException();
+        }
+        if(cardExpiration.getModel().getValue() == null){
+            JOptionPane.showMessageDialog(this, "Please enter a card. Please try again" );
+            throw new NullPointerException();
+        }
         try {
             ResultSet guestCard = CentralDatabase.getCard(guest.getUsername());
             String tableCardNum = null;
             if(guestCard.next()) {
                 tableCardNum = guestCard.getString("CARDNUMBER");
+            }
+            else{
+                CentralDatabase.setCard(guest.getUsername(),guest.getPassword(),cardNumberField.getText(),DateProcessor.dateToString( (Date) cardExpiration.getModel().getValue()));
+                tableCardNum = cardNumberField.getText();
             }
 
             if(!availableRoomsPanel.roomIsSelected()) {

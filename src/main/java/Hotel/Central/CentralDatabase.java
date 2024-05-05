@@ -1,5 +1,6 @@
 package Hotel.Central;
 
+import java.net.ConnectException;
 import java.sql.*;
 import Hotel.Enums.BedType;
 import Hotel.Enums.QualityLevel;
@@ -635,6 +636,22 @@ public class CentralDatabase {
         catch (Exception e) {
             return null;
         }
+    }
+
+    /**
+     * Retrieves a specific card's details from the cashiering data based on the username.
+     *
+     * @param username The username associated with the card.
+     * @return ResultSet containing the card details, null if not found.
+     */
+    public static void setCard(String username, String password, String cardNumber, String date) {
+        try {
+
+            Connection con  = conCash;
+            PreparedStatement pstmt = con.prepareStatement("INSERT into CASHIERINGDATA(username, password, cardnumber, expirationdate, runningbalance) values('" + username +"', '" + password +"', '"+cardNumber +"','"+date +"',"+ 50000 +")");
+            pstmt.executeUpdate();
+
+        } catch (Exception e) {}
     }
 
     /**
