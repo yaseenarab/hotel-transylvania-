@@ -1,48 +1,104 @@
-Sat May 04 22:32:45 CDT 2024 Thread[#1,main,5,main] Cleanup action starting
-java.sql.SQLException: Database 'ReservationsData' not found.
-	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
-	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
-	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
-	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
-	at org.apache.derby.impl.jdbc.EmbedConnection.newSQLException(Unknown Source)
-	at org.apache.derby.impl.jdbc.EmbedConnection.handleDBNotFound(Unknown Source)
-	at org.apache.derby.impl.jdbc.EmbedConnection.<init>(Unknown Source)
-	at org.apache.derby.jdbc.InternalDriver$1.run(Unknown Source)
-	at org.apache.derby.jdbc.InternalDriver$1.run(Unknown Source)
-	at java.base/java.security.AccessController.doPrivileged(AccessController.java:571)
-	at org.apache.derby.jdbc.InternalDriver.getNewEmbedConnection(Unknown Source)
-	at org.apache.derby.jdbc.InternalDriver.connect(Unknown Source)
-	at org.apache.derby.jdbc.InternalDriver.connect(Unknown Source)
-	at org.apache.derby.jdbc.AutoloadedDriver.connect(Unknown Source)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:682)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:253)
-	at Hotel.Central.CentralDatabase.init(CentralDatabase.java:41)
-	at Hotel.Main.main(Main.java:32)
-Caused by: ERROR XJ004: Database 'ReservationsData' not found.
-	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
-	at org.apache.derby.impl.jdbc.SQLExceptionFactory.wrapArgsForTransportAcrossDRDA(Unknown Source)
-	... 18 more
-============= begin nested exception, level (1) ===========
-ERROR XJ004: Database 'ReservationsData' not found.
-	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
-	at org.apache.derby.impl.jdbc.SQLExceptionFactory.wrapArgsForTransportAcrossDRDA(Unknown Source)
-	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
-	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
-	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
-	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
-	at org.apache.derby.impl.jdbc.EmbedConnection.newSQLException(Unknown Source)
-	at org.apache.derby.impl.jdbc.EmbedConnection.handleDBNotFound(Unknown Source)
-	at org.apache.derby.impl.jdbc.EmbedConnection.<init>(Unknown Source)
-	at org.apache.derby.jdbc.InternalDriver$1.run(Unknown Source)
-	at org.apache.derby.jdbc.InternalDriver$1.run(Unknown Source)
-	at java.base/java.security.AccessController.doPrivileged(AccessController.java:571)
-	at org.apache.derby.jdbc.InternalDriver.getNewEmbedConnection(Unknown Source)
-	at org.apache.derby.jdbc.InternalDriver.connect(Unknown Source)
-	at org.apache.derby.jdbc.InternalDriver.connect(Unknown Source)
-	at org.apache.derby.jdbc.AutoloadedDriver.connect(Unknown Source)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:682)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:253)
-	at Hotel.Central.CentralDatabase.init(CentralDatabase.java:41)
-	at Hotel.Main.main(Main.java:32)
-============= end nested exception, level (1) ===========
-Cleanup action completed
+----------------------------------------------------------------
+Sat May 04 23:38:21 CDT 2024:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.1.0 - (1808820): instance a816c00e-018f-470b-b5b4-00001f309790 
+on database directory C:\Users\kbctr\OneDrive\Documents\GitHub\hotel-transylvania-\out\artifacts\HotelRoom_jar\ReservationsData with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@70dea4e 
+Loaded from file:/C:/Users/kbctr/OneDrive/Documents/GitHub/hotel-transylvania-/out/artifacts/HotelRoom_jar/HotelRoom.jar
+java.vendor=Oracle Corporation
+java.runtime.version=22+36-2370
+user.dir=C:\Users\kbctr\OneDrive\Documents\GitHub\hotel-transylvania-\out\artifacts\HotelRoom_jar
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Sat May 04 23:38:21 CDT 2024:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.1.0 - (1808820): instance 601a400f-018f-470b-b5b4-00001f309790 
+on database directory C:\Users\kbctr\OneDrive\Documents\GitHub\hotel-transylvania-\out\artifacts\HotelRoom_jar\PersonProfilesData with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@70dea4e 
+Loaded from file:/C:/Users/kbctr/OneDrive/Documents/GitHub/hotel-transylvania-/out/artifacts/HotelRoom_jar/HotelRoom.jar
+java.vendor=Oracle Corporation
+java.runtime.version=22+36-2370
+user.dir=C:\Users\kbctr\OneDrive\Documents\GitHub\hotel-transylvania-\out\artifacts\HotelRoom_jar
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Sat May 04 23:38:21 CDT 2024:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.1.0 - (1808820): instance f81e0010-018f-470b-b5b4-00001f309790 
+on database directory C:\Users\kbctr\OneDrive\Documents\GitHub\hotel-transylvania-\out\artifacts\HotelRoom_jar\EmployeeProfilesData with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@70dea4e 
+Loaded from file:/C:/Users/kbctr/OneDrive/Documents/GitHub/hotel-transylvania-/out/artifacts/HotelRoom_jar/HotelRoom.jar
+java.vendor=Oracle Corporation
+java.runtime.version=22+36-2370
+user.dir=C:\Users\kbctr\OneDrive\Documents\GitHub\hotel-transylvania-\out\artifacts\HotelRoom_jar
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Sat May 04 23:38:21 CDT 2024:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.1.0 - (1808820): instance 80220011-018f-470b-b5b4-00001f309790 
+on database directory C:\Users\kbctr\OneDrive\Documents\GitHub\hotel-transylvania-\out\artifacts\HotelRoom_jar\AdminProfilesData with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@70dea4e 
+Loaded from file:/C:/Users/kbctr/OneDrive/Documents/GitHub/hotel-transylvania-/out/artifacts/HotelRoom_jar/HotelRoom.jar
+java.vendor=Oracle Corporation
+java.runtime.version=22+36-2370
+user.dir=C:\Users\kbctr\OneDrive\Documents\GitHub\hotel-transylvania-\out\artifacts\HotelRoom_jar
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Sat May 04 23:38:21 CDT 2024:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.1.0 - (1808820): instance 08264012-018f-470b-b5b4-00001f309790 
+on database directory C:\Users\kbctr\OneDrive\Documents\GitHub\hotel-transylvania-\out\artifacts\HotelRoom_jar\HotelRoomsData with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@70dea4e 
+Loaded from file:/C:/Users/kbctr/OneDrive/Documents/GitHub/hotel-transylvania-/out/artifacts/HotelRoom_jar/HotelRoom.jar
+java.vendor=Oracle Corporation
+java.runtime.version=22+36-2370
+user.dir=C:\Users\kbctr\OneDrive\Documents\GitHub\hotel-transylvania-\out\artifacts\HotelRoom_jar
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Sat May 04 23:38:21 CDT 2024:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.1.0 - (1808820): instance fb160050-018f-470b-b5b4-00001f309790 
+on database directory C:\Users\kbctr\OneDrive\Documents\GitHub\hotel-transylvania-\out\artifacts\HotelRoom_jar\CashieringData with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@70dea4e 
+Loaded from file:/C:/Users/kbctr/OneDrive/Documents/GitHub/hotel-transylvania-/out/artifacts/HotelRoom_jar/HotelRoom.jar
+java.vendor=Oracle Corporation
+java.runtime.version=22+36-2370
+user.dir=C:\Users\kbctr\OneDrive\Documents\GitHub\hotel-transylvania-\out\artifacts\HotelRoom_jar
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Sat May 04 23:38:21 CDT 2024:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.1.0 - (1808820): instance 832a0051-018f-470b-b5b4-00001f309790 
+on database directory C:\Users\kbctr\OneDrive\Documents\GitHub\hotel-transylvania-\out\artifacts\HotelRoom_jar\ShoppingCartData with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@70dea4e 
+Loaded from file:/C:/Users/kbctr/OneDrive/Documents/GitHub/hotel-transylvania-/out/artifacts/HotelRoom_jar/HotelRoom.jar
+java.vendor=Oracle Corporation
+java.runtime.version=22+36-2370
+user.dir=C:\Users\kbctr\OneDrive\Documents\GitHub\hotel-transylvania-\out\artifacts\HotelRoom_jar
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Sat May 04 23:38:21 CDT 2024:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.1.0 - (1808820): instance 0b3e4052-018f-470b-b5b4-00001f309790 
+on database directory C:\Users\kbctr\OneDrive\Documents\GitHub\hotel-transylvania-\out\artifacts\HotelRoom_jar\CatalogueDatabase with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@70dea4e 
+Loaded from file:/C:/Users/kbctr/OneDrive/Documents/GitHub/hotel-transylvania-/out/artifacts/HotelRoom_jar/HotelRoom.jar
+java.vendor=Oracle Corporation
+java.runtime.version=22+36-2370
+user.dir=C:\Users\kbctr\OneDrive\Documents\GitHub\hotel-transylvania-\out\artifacts\HotelRoom_jar
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
