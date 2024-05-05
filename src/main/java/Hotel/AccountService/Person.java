@@ -3,7 +3,11 @@ package Hotel.AccountService;
 import Hotel.Utilities.MyLogger;
 
 import java.util.logging.Level;
-
+/**
+ * Represents a person within the hotel management system.
+ * This class serves as a base class for different types of persons such as guests or employees,
+ * providing common properties and validation mechanisms for personal and contact information.
+ */
 public class Person {
     
     // Constants (inclusive)
@@ -20,6 +24,17 @@ public class Person {
             phoneNumber,
             username,
             password;
+    /**
+     * Constructs a new Person with specified personal and contact information.
+     *
+     * @param firstName   The first name of the person.
+     * @param lastName    The last name of the person.
+     * @param email       The email address of the person.
+     * @param phoneNumber The phone number of the person.
+     * @param username    The username for the person's account.
+     * @param password    The password for the person's account.
+     * @throws Exception If any provided attribute fails validation checks.
+     */
     protected Person (String firstName, String lastName, String email,
             String phoneNumber, String username, String password) throws Exception {
         try {
@@ -37,6 +52,19 @@ public class Person {
             throw new Exception();
         }
     }
+    /**
+     * Validates the complete set of personal and contact information for a person.
+     * Checks include validation of name, email, phone number, username, and password.
+     *
+     * @param firstName   The first name to validate.
+     * @param lastName    The last name to validate.
+     * @param email       The email to validate.
+     * @param phoneNumber The phone number to validate.
+     * @param username    The username to validate.
+     * @param password    The password to validate.
+     * @return true if all inputs are valid, otherwise throws an exception.
+     * @throws Exception If any validation fails.
+     */
 
     public static boolean isValidPerson(String firstName, String lastName, String email, String phoneNumber,
                                         String username, String password) throws Exception {
@@ -100,6 +128,14 @@ public class Person {
         }
         return true;
     }
+
+
+    /**
+     * Sets the first name of the person after validating it against specific criteria.
+     *
+     * @param firstName The first name to set.
+     * @throws Exception If the first name is null, empty, or exceeds the maximum length.
+     */
     protected void setFirstName(String firstName) throws Exception {
         if(firstName == null) {
             MyLogger.logger.log(Level.SEVERE, "Error in Person.setFirstName: firstName is null");
@@ -116,6 +152,13 @@ public class Person {
         }
         this.firstName = firstName;
     }
+
+    /**
+     * Sets the last name of the person after validating it against specific criteria.
+     *
+     * @param lastName The first name to set.
+     * @throws Exception If the first name is null, empty, or exceeds the maximum length.
+     */
     protected void setLastName (String lastName) throws Exception {
         if(lastName == null) {
             MyLogger.logger.log(Level.SEVERE, "Error in Person.setLastName: firstName is null");
@@ -132,6 +175,12 @@ public class Person {
         }
         this.lastName = lastName;
     }
+    /**
+     * Sets the email of the person after validating it against specific criteria.
+     *
+     * @param email The first name to set.
+     * @throws Exception If the first name is null, empty, or exceeds the maximum length.
+     */
     protected void setEmail (String email) throws Exception {
         if(email == null) {
             MyLogger.logger.log(Level.SEVERE, "Error in Person.setEmail: email is null");
@@ -154,6 +203,12 @@ public class Person {
         }
         this.email = email;
     }
+    /**
+     * Sets the phone number of the person after validating it against specific criteria.
+     *
+     * @param phoneNumber The first name to set.
+     * @throws Exception If the first name is null, empty, or exceeds the maximum length.
+     */
     protected void setPhoneNumber(String phoneNumber) throws Exception {
         if(phoneNumber == null) {
             MyLogger.logger.log(Level.SEVERE, "Error in Person.setPhoneNumber: phoneNumber is null");
@@ -175,6 +230,12 @@ public class Person {
         }
         this.phoneNumber = phoneNumber;
     }
+    /**
+     * Sets the username of the person after validating it against specific criteria.
+     *
+     * @param username The first name to set.
+     * @throws Exception If the first name is null, empty, or exceeds the maximum length.
+     */
     protected void setUsername(String username) throws Exception {
         if(username == null) {
             MyLogger.logger.log(Level.SEVERE, "Error in Person.setUsername: username is null");
@@ -200,6 +261,13 @@ public class Person {
         }
         this.username = username;
     }
+
+    /**
+     * Sets the password  of the person after validating it against specific criteria.
+     *
+     * @param password The first name to set.
+     * @throws Exception If the first name is null, empty, or exceeds the maximum length.
+     */
     protected void setPassword(String password) throws Exception {
         if(password == null) {
             MyLogger.logger.log(Level.SEVERE, "Error in Person.setPassword: password is null");
@@ -227,9 +295,15 @@ public class Person {
     }
 
     // Get Methods
+
+    // Additional setters follow a similar pattern, validating and setting each attribute.
+    // These methods include setLastName, setEmail, setPhoneNumber, setUsername, and setPassword.
+
+    // Getters for each attribute.
     public String getFirstName() {
         return this.firstName;
     }
+
     public String getLastName() {
         return this.lastName;
     }
@@ -246,6 +320,13 @@ public class Person {
         return this.password;
     }
 
+
+    /**
+     * Validates if the provided phone number is numeric and meets required length.
+     *
+     * @param phoneNumber The phone number to validate.
+     * @return true if the phone number is valid, otherwise false.
+     */
     private static boolean validPhoneNumber(String phoneNumber) {
         for(int i = 0; i < PHONE_LENGTH; ++i) {
             if(!Character.isDigit(phoneNumber.charAt(i))) {
@@ -255,6 +336,13 @@ public class Person {
         return true;
     }
 
+
+    /**
+     * Compares this person with another object for equality based on personal and contact details.
+     *
+     * @param obj The object to compare with.
+     * @return true if the other object is a Person with the same details, otherwise false.
+     */
     @Override
     public boolean equals(Object obj) {
         if (!(obj instanceof Guest)) {
@@ -266,10 +354,13 @@ public class Person {
                 this.phoneNumber.equals(((Person) obj).phoneNumber);
     }
 
+    /**
+     * Provides a string representation of this person, including all personal and contact details.
+     *
+     * @return A string that lists all personal and contact details.
+     */
     public String toString() {
         return this.firstName + "," + this.lastName + "," + this.email + "," + this.phoneNumber + "," +
                 this.username + "," + this.password;
     }
-
-    // Modifiers
 }
