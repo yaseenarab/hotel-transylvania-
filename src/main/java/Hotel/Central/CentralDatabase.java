@@ -6,8 +6,6 @@ import Hotel.Enums.BedType;
 import Hotel.Enums.QualityLevel;
 import Hotel.Enums.RoomStatus;
 
-
-
 /**
  * Centralized database management class for handling all database operations
  * within the hotel management system. This class establishes connections to multiple
